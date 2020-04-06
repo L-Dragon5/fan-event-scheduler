@@ -1,79 +1,91 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# SaaS Event Schedule
+Successor to the Fan Event Schedule.
+Schedule application for fan events built as a SaaS for ease-of-use for users.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Built on Laravel REST API backend with a ReactJS frontend and MaterialUI.
 
-## About Laravel
+## To-Do
+- Main Site
+  - Front Page: AppName, Description, Events Listing
+  - Account Creation w/ Settings
+  - Account Roles
+- Individual Event Pages
+  - Global Settings (Name, Location, Date/Time, Social Media, Live or Not)
+  - Home Page
+  - Schedule (Grid / List)
+  - Exhibitors
+  - Rules & Policies
+  - Guests
+  - Maps
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
+* MySQL/MariaDB Server
+* PHP >= 7.3.0
+* PHP Extensions: BCMath, Ctype, JSON, Mbstring, OpenSSL, PDO, XML
+* Composer
+* NodeJS
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Ubuntu 18.04 Installation with Nginx
+1. Make sure server is up to date
+   1. `apt-get update && apt-get upgrade`
+2. Instal NGINX
+   1. `apt install nginx` & `systemctl enable nginx.service`
+3. Install MariaDB (newest version that supports large index keys by default)
+   1. `apt-get install software-properties-common`
+   2. `apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8`
+   3. `add-apt-repository "deb [arch=amd64,arm64,ppc64el] http://mariadb.mirror.liquidtelecom.com/repo/10.4/ubuntu $(lsb_release -cs) main"`
+   4. `apt update`
+   5. `apt install mariadb-server mariadb-client`
+   6. `systemctl enable mariadb.service`
+4. Secure MariaDB installation
+   1. `mysql_secure_installation`
+5. Setup firewall
+   1. `ufw app list`
+   2. `ufw allow OpenSSH`
+   3. `ufw allow 'Nginx HTTP'`
+   4. `ufw allow 'Nginx HTTPS'`
+   5. `ufw enable`
+   6. `ufw status`
+6. Install PHP, extensions, and other tools
+   1. `apt install php-fpm php-common php-mbstring php-xmlrpc php-soap php-gd php-xml php-mysql php-cli php-zip php-bcmath`
+   2. `apt install composer unzip`
+7. Update PHP settings to process for Nginx
+   1. `nano /etc/php/<version>/fpm/php.ini`
+   2. `memory_limit = 256M`
+   3. `upload_max_filesize = 64M`
+   4. `cgi.fix_pathinfo=0`
+8.  Clone repository into /var/www/html. Rename if you want to.
+9.  Setup nginx to have permission over the folder
+    1.  `chown -R www-data:www-data /var/www/html/<Folder Name>`
+    2.  `chmod -R 755 /var/www/html/<Folder Name>`
+10. Setup nginx sites-available for folder. Create symbolic link to sites-enabled
+11. Restart Nginx to refresh changes
+    1.  `systemctl restart nginx.service`
+12. Go into MariaDB and create a new database for the website
+    1.  `CREATE DATABASE <database name>;`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation
+1. Go into folder
+2. Install composer modules
+   * Development: `composer install`
+   * Production: `composer install --no-dev --optimize-autoloader`
+3. Install node modules
+   * `npm install`
+   * Development: `npm run dev` or `npm run watch`
+   * Production: `npm run prod`
+4. Change `.env.example` file into `.env`
+5. Update entries within the `.env` file to match database and other information
+   * If in production, be sure to set `APP_ENV=production` and `APP_DEBUG=false`
+   * Update `MIX_EVENT_NAME` with your event name in quotes
+6. Generate a new key
+   * `php artisan key:generate`
+7. Create database tables
+   * `php artisan migrate`
+   * If you want it seeded, then `php artisan migrate --seed`
+   * You can wipe and seed again by doing `php artisan migrate:fresh --seed`
+8. Generate encryption keys for API Auth
+   * `php artisan passport:install`
+9. Create user account by sending register email and password to api url
+   * Send `email`, `password`, `c_password` to `/api/register` via POST form-data
+   * ` curl -X POST -F 'email=<email>' -F 'password=<password>' -F 'c_password=<password>' http://localhost/api/register`
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
