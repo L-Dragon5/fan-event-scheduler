@@ -1,5 +1,18 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ExhibitorController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MapController;
+use App\Http\Controllers\RuleController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,57 +25,65 @@
 */
 
 // User Routes
-Route::post('login', 'UserController@login');
-Route::post('register', 'UserController@register');
+Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register']);
+Route::post('forgot-password', [UserController::class, 'forgotPassword']);
+Route::post('checkUser', [UserController::class, 'checkUser']);
 
-Route::middleware(['api'])->group(function () {
+// Public Shared Route
+Route::get('all/{uuid}', [PublicController::class, 'index']);
+
+Route::middleware('auth:api')->group(function () {
+    // User Routes
+    Route::post('update-password', [UserController::class, 'updatePassword']);
+
     // Schedule Routes
-    Route::get('schedule/byGrid', 'ScheduleController@byGrid');
-    Route::get('schedule/byTime', 'ScheduleController@byTime');
-    Route::get('schedule/byTime/{location}', 'ScheduleController@byLocation');
+    Route::get('schedule/byGrid', [ScheduleController::class, 'byGrid']);
+    Route::get('schedule/byTime', [ScheduleController::class, 'byTime']);
+    Route::get('schedule/byTime/{location}', [ScheduleController::class, 'byLocation']);
 
     // Location Routes
-    Route::get('locations', 'LocationController@index');
-    Route::post('location/create', 'LocationController@store');
-    Route::post('location/destroy/{id}', 'LocationController@destroy');
+    Route::get('locations', [LocationController::class, 'index']);
+    Route::post('location/create', [LocationController::class, 'store']);
+    Route::post('location/destroy/{id}', [LocationController::class, 'destroy']);
 
     // Setting Routes
-    Route::get('setting/{key}', 'SettingController@getByKey');
-    Route::get('settings/social', 'SettingController@getSocial');
+    Route::get('setting/{key}', [SettingController::class, 'getByKey']);
+    Route::get('settings/social', [SettingController::class, 'getSocial']);
 
     // Rules Routes
-    Route::get('rules', 'RuleController@index');
-    Route::post('rule/create', 'RuleController@store');
-    Route::post('rule/update/{id}', 'RuleController@update');
-    Route::get('rule/destroy/{id}', 'RuleController@destroy');
+    Route::get('rules', [RuleController::class, 'index']);
+    Route::post('rule/create', [RuleController::class, 'store']);
+    Route::post('rule/update/{id}', [RuleController::class, 'update']);
+    Route::get('rule/destroy/{id}', [RuleController::class, 'destroy']);
 
     // Exhibitors Routes
-    Route::get('exhibitors', 'ExhibitorController@index');
-    Route::post('exhibitor/create', 'ExhibitorController@store');
-    Route::post('exhibitor/update/{id}', 'ExhibitorController@update');
-    Route::get('exhibitor/destroy/{id}', 'ExhibitorController@destroy');
+    Route::get('exhibitors', [ExhibitorController::class, 'index']);
+    Route::post('exhibitor/create', [ExhibitorController::class, 'store']);
+    Route::post('exhibitor/update/{id}', [ExhibitorController::class, 'update']);
+    Route::get('exhibitor/destroy/{id}', [ExhibitorController::class, 'destroy']);
 
     // Guests Routes
-    Route::get('guests', 'GuestController@index');
-    Route::get('guest/{id}', 'GuestController@view');
-    Route::post('guest/create', 'GuestController@store');
-    Route::post('guest/update/{id}', 'GuestController@update');
-    Route::get('guest/destroy/{id}', 'GuestController@destroy');
+    Route::get('guests', [GuestController::class, 'index']);
+    Route::get('guest/{id}', [GuestController::class, 'view']);
+    Route::post('guest/create', [GuestController::class, 'store']);
+    Route::post('guest/update/{id}', [GuestController::class, 'update']);
+    Route::get('guest/destroy/{id}', [GuestController::class, 'destroy']);
 
     // Events Routes
-    Route::get('event/{id}', 'EventController@view');
-    Route::post('event/create', 'EventController@store');
-    Route::post('event/update/{id}', 'EventController@update');
-    Route::get('event/destroy/{id}', 'EventController@destroy');
+    Route::get('event/{id}', [EventController::class, 'view']);
+    Route::post('event/create', [EventController::class, 'store']);
+    Route::post('event/update/{id}', [EventController::class, 'update']);
+    Route::get('event/destroy/{id}', [EventController::class, 'destroy']);
 
     // Home Routes
-    Route::get('home', 'HomeController@index');
-    Route::post('home/update', 'HomeController@update');
+    Route::get('home', [HomeController::class, 'index']);
+    Route::post('home/update', [HomeController::class, 'update']);
 
     // Map Routes
-    Route::get('maps', 'MapController@index');
-    Route::get('map/{id}', 'MapController@view');
-    Route::post('map/create', 'MapController@store');
-    Route::post('map/update/{id}', 'MapController@update');
-    Route::get('map/destroy/{id}', 'MapController@destroy');
+    Route::get('maps', [MapController::class, 'index']);
+    Route::get('map/{id}', [MapController::class, 'view']);
+    Route::post('map/create', [MapController::class, 'store']);
+    Route::post('map/update/{id}', [MapController::class, 'update']);
+    Route::get('map/destroy/{id}', [MapController::class, 'destroy']);
 });

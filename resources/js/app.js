@@ -6,8 +6,12 @@ import ReactDOM from 'react-dom';
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-import AdminMain from './admin/AdminMain';
-import PublicMain from './public/PublicMain';
+import AuthenticatedMain from './admin/AuthenticatedMain';
+import HomePage from './public/HomePage';
+import LoginPage from './public/LoginPage';
+import RegisterPage from './public/RegisterPage';
+import ForgotPasswordPage from './public/ForgotPasswordPage';
+import PublicSchedulePage from './public/PublicSchedulePage';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -17,13 +21,29 @@ import PublicMain from './public/PublicMain';
 
 require('./bootstrap');
 
-const adminRoot = document.getElementById('admin-root');
-const publicRoot = document.getElementById('public-root');
+const authenticatedRoot = document.getElementById('authenticated-root');
+const homeRoot = document.getElementById('home-root');
+const loginRoot = document.getElementById('login-root');
+const registerRoot = document.getElementById('register-root');
+const forgotPasswordRoot = document.getElementById('forgot-password-root');
+const publicScheduleRoot = document.getElementById('public-schedule-root');
 
-if (typeof adminRoot !== 'undefined' && adminRoot !== null) {
-    ReactDOM.render(<AdminMain />, document.getElementById('admin-root'));
-}
-
-if (typeof publicRoot !== 'undefined' && publicRoot !== null) {
-    ReactDOM.render(<PublicMain />, document.getElementById('public-root'));
+if (typeof authenticatedRoot !== 'undefined' && authenticatedRoot !== null) {
+  ReactDOM.render(<AuthenticatedMain />, authenticatedRoot);
+} else if (typeof homeRoot !== 'undefined' && homeRoot !== null) {
+  ReactDOM.render(<HomePage />, homeRoot);
+} else if (typeof loginRoot !== 'undefined' && loginRoot !== null) {
+  ReactDOM.render(<LoginPage />, loginRoot);
+} else if (typeof registerRoot !== 'undefined' && registerRoot !== null) {
+  ReactDOM.render(<RegisterPage />, registerRoot);
+} else if (
+  typeof forgotPasswordRoot !== 'undefined' &&
+  forgotPasswordRoot !== null
+) {
+  ReactDOM.render(<ForgotPasswordPage />, forgotPasswordRoot);
+} else if (
+  typeof publicScheduleRoot !== 'undefined' &&
+  publicScheduleRoot !== null
+) {
+  ReactDOM.render(<PublicSchedulePage />, publicScheduleRoot);
 }
