@@ -8,17 +8,22 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('page_name') | {{ config('app.name', 'Laravel') }}</title>
+    <title>
+        @if (trim($__env->yieldContent('title')))
+            @yield('title') | {{ config('app.name', 'Laravel') }}
+        @else
+            {{ config('app.name', 'Laravel') }}
+        @endif
+    </title>
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src='https://www.google.com/recaptcha/api.js' defer></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body style='background-color: #f8fafc;'>
-    @yield('content')
+@yield('content')
 </body>
 </html>

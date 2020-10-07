@@ -20,8 +20,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
 @yield('content')

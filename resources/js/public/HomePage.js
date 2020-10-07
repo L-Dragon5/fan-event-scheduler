@@ -101,11 +101,7 @@ const HomePage = () => {
           <Box className={classes.overlay} />
           <Box className={classes.introContent}>
             <Typography component="h1" variant="h2">
-              Get Organized
-            </Typography>
-            <Typography variant="subtitle1" className={classes.introSubtitle}>
-              CosManage is a collection of tools to help you organize your
-              cosplay plans and projects.
+              Schedule Made Simple
             </Typography>
 
             <Box className={classes.introButtons}>
@@ -133,48 +129,6 @@ const HomePage = () => {
           </Box>
         </Box>
 
-        <Paper elevation={4} className={classes.features} align="center">
-          <Typography variant="h3">Features</Typography>
-
-          <Grid container spacing={2} style={{ margin: '32px 0' }}>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h5">Cosplay Management</Typography>
-              <Typography variant="body1">
-                Organize your cosplay plans and ones currently owned in one easy
-                place. Easy to look through and organize with images and
-                customized text fields.
-              </Typography>
-              <Typography variant="body2" style={{ marginTop: '16px' }}>
-                The colors match up to the status of the outfit in the plan.
-              </Typography>
-              <Typography variant="body2">
-                (Future = Green, Owned & Unworn = Blue, Worn = Red)
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h5">Taobao Organizer</Typography>
-              <Typography variant="body1">
-                If you buy a lot of your cosplays on Taobao and have a
-                never-ending folder of bookmarks on your browser, this is the
-                right tool for you. Just paste in the taobao link of your choice
-                and it will grab the necessary information of the item and
-                display in it a grid format for easy viewing and access.
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h5">Tag Manager</Typography>
-              <Typography variant="body1">
-                An added bonus for more management, there is a tag management
-                system that can be applied to all Outfits in the Cosplay
-                Management tool and all Items in the Taobao Organizer tool and
-                can be searched for on the corresponding pages. This will make
-                it easier to have custom names that aren't available straight
-                out of the box.
-              </Typography>
-            </Grid>
-          </Grid>
-        </Paper>
-
         <Box className={classes.about} align="center">
           <Typography variant="h4">Who made this?</Typography>
 
@@ -188,25 +142,13 @@ const HomePage = () => {
             >
               GitHub
             </Link>
-            ). My girlfriend and a lot of my friends are very active cosplayers,
-            so I built this website as a collection of tools for them to use to
-            organize their plans.
+            ).
           </Typography>
 
           <Typography variant="body1" style={{ marginTop: '16px' }}>
             Feel free to contact me if you have any problems or any things you
             wanted added in the future. I hope to grow this as much as possible!
           </Typography>
-
-          <Button
-            type="button"
-            variant="outlined"
-            size="large"
-            style={{ marginTop: '32px' }}
-            href="mailto:help@cosmanage.com"
-          >
-            help@cosmanage.com
-          </Button>
         </Box>
       </Grid>
 
