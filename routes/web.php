@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 
 // Authenticated Routes
-Route::get('/dashboard', fn() => view('authenticated'));
-Route::get('/dashboard/{any}', fn($any) => view('authenticated'))->where('any', '.*');
+Route::domain('admin.saas-event-schedule.test')->group(function () {
+    Route::get('/', fn() => view('admin'));
+    Route::get('/{any}', fn($any) => view('admin'))->where('any', '.*');
+});
 
 // Authentication Routes
 Route::get('/login', fn() => view('auth.login'))->name('login');

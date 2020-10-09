@@ -109,7 +109,7 @@ const LoginPage = () => {
         })
         .then((response) => {
           if (response.status === 200) {
-            window.location.replace('/dashboard');
+            window.location.replace('http://admin.saas-event-schedule.test/');
           }
         });
     }

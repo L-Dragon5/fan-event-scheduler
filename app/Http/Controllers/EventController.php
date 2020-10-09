@@ -3,16 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Event;
 use App\Location;
 use App\EventType;
 
 class EventController extends Controller
 {
-    private $successStatus = 200;
-    private $errorStatus = 422;
+    /**
+     * Retrieve all events by user id.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request) {
+        $user_id = Auth::user()->id;
+        $events = Event::where('user_id', $user_id)->orderBy('created_at', 'DESC')->get();
 
+        // Set all events to location
+        foreach ($events as $event) {
+            $location = Location::find($event->location_id);
+            $event->location = $location->name;
+        }
+
+        return $events;
+    }
+
+    
     /**
      * Get event by id.
      * 
@@ -41,7 +59,7 @@ class EventController extends Controller
             $event->location = $location->name;
             $event->event_type_names = $event_type_names;
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid event id', 401);
+            return return_json_message('Invalid event id', self::STATUS_NOT_FOUND);
         }
 
         return $event;
@@ -64,7 +82,7 @@ class EventController extends Controller
         ]);
 
         if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
+            return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
         }
 
         $event = new Event;
@@ -77,9 +95,9 @@ class EventController extends Controller
         $success = $event->save();
 
         if ($success) {
-            return return_json_message('Created new event succesfully', $this->successStatus);
+            return return_json_message('Created new event succesfully', self::STATUS_CREATED);
         } else {
-            return return_json_message('Something went wrong while trying to create a new event', 401);
+            return return_json_message('Something went wrong while trying to create a new event', self::STATUS_UNPROCESSABLE);
         }
     }
 
@@ -103,7 +121,7 @@ class EventController extends Controller
         ]);
 
         if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
+            return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
         }
 
         try {
@@ -118,12 +136,12 @@ class EventController extends Controller
             $success = $event->save();
 
             if ($success) {
-                return return_json_message('Updated succesfully', $this->successStatus);
+                return return_json_message('Updated succesfully', self::STATUS_SUCCESS);
             } else {
-                return return_json_message('Something went wrong while trying to update', 401);
+                return return_json_message('Something went wrong while trying to update', self::STATUS_UNPROCESSABLE);
             }
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid event id', 401);
+            return return_json_message('Invalid event id', self::STATUS_NOT_FOUND);
         }
     }
 
@@ -138,9 +156,9 @@ class EventController extends Controller
         $success = Event::destroy($id);
 
         if ($success) {
-            return return_json_message('Deleted succesfully', $this->successStatus);
+            return return_json_message('Deleted succesfully', self::STATUS_SUCCESS);
         } else {
-            return return_json_message('Did not find a event to remove', 401);
+            return return_json_message('Did not find a event to remove', self::STATUS_NOT_FOUND);
         }
     }
 }

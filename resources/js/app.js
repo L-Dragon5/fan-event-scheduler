@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-import AuthenticatedMain from './admin/AuthenticatedMain';
+import AdminUserMain from './admin/AdminUserMain';
 import HomePage from './public/HomePage';
 import LoginPage from './public/LoginPage';
 import RegisterPage from './public/RegisterPage';
@@ -21,15 +21,15 @@ import PublicSchedulePage from './public/PublicSchedulePage';
 
 require('./bootstrap');
 
-const authenticatedRoot = document.getElementById('authenticated-root');
+const adminRoot = document.getElementById('admin-root');
 const homeRoot = document.getElementById('home-root');
 const loginRoot = document.getElementById('login-root');
 const registerRoot = document.getElementById('register-root');
 const forgotPasswordRoot = document.getElementById('forgot-password-root');
 const publicScheduleRoot = document.getElementById('public-schedule-root');
 
-if (typeof authenticatedRoot !== 'undefined' && authenticatedRoot !== null) {
-  ReactDOM.render(<AuthenticatedMain />, authenticatedRoot);
+if (typeof adminRoot !== 'undefined' && adminRoot !== null) {
+  ReactDOM.render(<AdminUserMain />, adminRoot);
 } else if (typeof homeRoot !== 'undefined' && homeRoot !== null) {
   ReactDOM.render(<HomePage />, homeRoot);
 } else if (typeof loginRoot !== 'undefined' && loginRoot !== null) {

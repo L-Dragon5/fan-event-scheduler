@@ -2,67 +2,159 @@
 
 namespace App\Http\Controllers;
 
+use App\Schedule;
 use Illuminate\Http\Request;
-use App\Location;
-use App\Event;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller
 {
     /**
-     * Retrieve built array of schedule listing organized by room location for grid layout.
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function byGrid() {
-        $return = [];
-        $events = Event::all()->sortBy('time_start');
+    public function index()
+    {
+        $user_id = Auth::user()->id;
+        $schedules = Schedule::where('user_id', $user_id)->orderBy('name', 'ASC')->get();
 
-        // Set all events to location
-        foreach ($events as $event) {
-            $loc = Location::find($event->location_id);
+        return $schedules;
+    }
 
-            $return[$loc->id][] = $event;
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|required',
+        ]);
 
-            if(!isset($return[$loc->id]['name'])) {
-                $return[$loc->id]['name'] = $loc->name;
+        if($validator->fails()) {
+            return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
+        }
+
+        $user_id = Auth::user()->id;
+
+        if (check_for_duplicate($user_id, $request->name, 'schedules', 'name')) {
+            return return_json_message('Schedule already exists with this name', self::STATUS_BAD_REQUEST);
+        }
+
+        $schedule = new Schedule;
+        $schedule->user_id = $user_id;
+        $schedule->name = trim($request->name);
+
+        $success = $schedule->save();
+
+        if ($success) {
+            return return_json_message('Created new schedule succesfully', self::STATUS_SUCCESS);
+        } else {
+            return return_json_message('Something went wrong while trying to create a new schedule', self::STATUS_UNPROCESSABLE);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $schedule = null;
+
+        try {
+            $schedule = Series::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return return_json_message('Invalid schedule id', self::STATUS_BAD_REQUEST);
+        }
+        
+        return $schedule;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|required',
+        ]);
+
+        if($validator->fails()) {
+            return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
+        }
+
+        $user_id = Auth::user()->id;
+
+        try {
+            $schedule = Schedule::findOrFail($id);
+
+            if ($schedule->user_id === $user_id) {
+                // If they want to change title
+                if ($request->has('name')) {
+                    $trimmed_name = trim($request->name);
+
+                    // Check if new title is same as old title
+                    if ($trimmed_name === $schedule->name) {
+                        // Do nothing
+                    } else if(check_for_duplicate($user_id, $request->title, 'schedules', 'name')) {
+                        return return_json_message('Schedule name already exists.', self::STATUS_BAD_REQUEST);
+                    } else {
+                        $schedule->name = $trimmed_name;
+                    }
+                }
+
+                $success = $schedule->save();
+
+                if ($success) {
+                    return return_json_message('Updated series succesfully', self::STATUS_SUCCESS, ['schedule' => $schedule]);
+                } else {
+                    return return_json_message('Something went wrong while trying to update series', self::STATUS_UNPROCESSABLE);
+                }
+            } else {
+                return return_json_message('You do not have permission to edit this schedule', self::STATUS_UNAUTHORIZED);
             }
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return return_json_message('Invalid schedule id', self::STATUS_BAD_REQUEST);
         }
-
-        // Sort events by location id
-        ksort($return);
-
-        // Set events by location name instead of id
-        foreach($return as $k => $v) {
-            $name = $return[$k]['name'];
-
-            unset($return[$k]['name']);
-            $return[$name] = $return[$k];
-            unset($return[$k]);
-        }
-
-        return $return;
     }
 
     /**
-     * Retrieve array of schedule listing by time, earliest to latest.
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function byTime() {
-        $return = [];
-        $events = Event::all()->sortBy('time_start');
-        foreach($events as $event) {
-            $loc = Location::find($event->location_id);
-            $event->location = $loc->name;
+    public function destroy($id)
+    {
+        $user_id = Auth::user()->id;
 
-            $return[] = $event;
+        try {
+            $schedule = Schedule::findOrFail($id);
+            $success = false;
+
+            if ($schedule->user_id === $user_id) {
+                $success = $schedule->delete();
+            } else {
+                return return_json_message('You do not have permission to delete this schedule', self::STATUS_UNAUTHORIZED);
+            }
+    
+            if ($success) {
+                return return_json_message('Deleted schedule succesfully', self::STATUS_SUCCESS);
+            } else {
+                return return_json_message('Something went wrong while trying to remove schedule', self::STATUS_UNPROCESSABLE);
+            }
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return return_json_message('Invalid schedule id', self::STATUS_BAD_REQUEST);
         }
-
-        return $return;
-    }
-
-    /**
-     * Retrieve array of schedule listing by singular location in grid layout.
-     */
-    public function byLocation($location) {
-        $events = Event::where('location_id', $location)->orderBy('time_start')->get();
-
-        return $events;
     }
 }

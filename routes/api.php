@@ -38,30 +38,32 @@ Route::middleware('auth:api')->group(function () {
     Route::post('update-password', [UserController::class, 'updatePassword']);
 
     // Schedule Routes
-    Route::get('schedule/byGrid', [ScheduleController::class, 'byGrid']);
-    Route::get('schedule/byTime', [ScheduleController::class, 'byTime']);
-    Route::get('schedule/byTime/{location}', [ScheduleController::class, 'byLocation']);
+    Route::get('schedules', [ScheduleController::class, 'index']);
+    Route::get('schedules/{id}', [ScheduleController::class, 'view']);
+    Route::post('schedules/create', [ScheduleController::class, 'store']);
+    Route::post('schedules/update/{id}', [ScheduleController::class, 'update']);
+    Route::get('schedules/destroy/{id}', [ScheduleController::class, 'destroy']);
 
     // Location Routes
     Route::get('locations', [LocationController::class, 'index']);
-    Route::post('location/create', [LocationController::class, 'store']);
-    Route::post('location/destroy/{id}', [LocationController::class, 'destroy']);
+    Route::post('locations/create', [LocationController::class, 'store']);
+    Route::post('locations/destroy/{id}', [LocationController::class, 'destroy']);
 
     // Setting Routes
-    Route::get('setting/{key}', [SettingController::class, 'getByKey']);
+    Route::get('settings/{key}', [SettingController::class, 'getByKey']);
     Route::get('settings/social', [SettingController::class, 'getSocial']);
 
     // Rules Routes
     Route::get('rules', [RuleController::class, 'index']);
-    Route::post('rule/create', [RuleController::class, 'store']);
-    Route::post('rule/update/{id}', [RuleController::class, 'update']);
-    Route::get('rule/destroy/{id}', [RuleController::class, 'destroy']);
+    Route::post('rules/create', [RuleController::class, 'store']);
+    Route::post('rules/update/{id}', [RuleController::class, 'update']);
+    Route::get('rules/destroy/{id}', [RuleController::class, 'destroy']);
 
     // Exhibitors Routes
     Route::get('exhibitors', [ExhibitorController::class, 'index']);
-    Route::post('exhibitor/create', [ExhibitorController::class, 'store']);
-    Route::post('exhibitor/update/{id}', [ExhibitorController::class, 'update']);
-    Route::get('exhibitor/destroy/{id}', [ExhibitorController::class, 'destroy']);
+    Route::post('exhibitors/create', [ExhibitorController::class, 'store']);
+    Route::post('exhibitors/update/{id}', [ExhibitorController::class, 'update']);
+    Route::get('exhibitors/destroy/{id}', [ExhibitorController::class, 'destroy']);
 
     // Guests Routes
     Route::get('guests', [GuestController::class, 'index']);
@@ -71,10 +73,11 @@ Route::middleware('auth:api')->group(function () {
     Route::get('guest/destroy/{id}', [GuestController::class, 'destroy']);
 
     // Events Routes
-    Route::get('event/{id}', [EventController::class, 'view']);
-    Route::post('event/create', [EventController::class, 'store']);
-    Route::post('event/update/{id}', [EventController::class, 'update']);
-    Route::get('event/destroy/{id}', [EventController::class, 'destroy']);
+    Route::get('events', [EventController::class, 'index']);
+    Route::get('events/{id}', [EventController::class, 'view']);
+    Route::post('events/create', [EventController::class, 'store']);
+    Route::post('events/update/{id}', [EventController::class, 'update']);
+    Route::get('events/destroy/{id}', [EventController::class, 'destroy']);
 
     // Home Routes
     Route::get('home', [HomeController::class, 'index']);
@@ -82,8 +85,8 @@ Route::middleware('auth:api')->group(function () {
 
     // Map Routes
     Route::get('maps', [MapController::class, 'index']);
-    Route::get('map/{id}', [MapController::class, 'view']);
-    Route::post('map/create', [MapController::class, 'store']);
-    Route::post('map/update/{id}', [MapController::class, 'update']);
-    Route::get('map/destroy/{id}', [MapController::class, 'destroy']);
+    Route::get('maps/{id}', [MapController::class, 'view']);
+    Route::post('maps/create', [MapController::class, 'store']);
+    Route::post('maps/update/{id}', [MapController::class, 'update']);
+    Route::get('maps/destroy/{id}', [MapController::class, 'destroy']);
 });
