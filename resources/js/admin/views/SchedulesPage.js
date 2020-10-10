@@ -1,21 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-import { Box, Typography } from '@material-ui/core';
+import { Box, ButtonBase, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 
 import Helper from '../components/Helper';
 import AlertMessage from '../components/AlertMessage';
 import AdminUserNavbar from '../components/AdminUserNavbar';
+import AddScheduleButton from '../components/AddScheduleButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
   },
+  title: {
+    marginBottom: theme.spacing(2),
+  },
+  scheduleButton: {
+    backgroundColor: 'rgba(0, 0, 0, 0.02)',
+    border: '1px solid rgba(0, 0, 0, 0.15)',
+    borderRadius: '5px',
+    width: '100%',
+    '& > div': {
+      padding: theme.spacing(3),
+      width: '100%',
+    },
+  },
+  scheduleButtonImage: {
+    width: '100%',
+    borderBottom: '1px solid rgba(0, 0, 0, 0.15)',
+    '& > svg': {
+      fontSize: '3.5rem',
+      marginBottom: theme.spacing(2),
+    },
+  },
+  scheduleButtonText: {
+    width: '100%',
+    textAlign: 'center',
+    fontSize: '1.25rem',
+    paddingTop: theme.spacing(2),
+  },
 }));
 
-const SchedulesPage = () => {
+const SchedulesPage = ({ history }) => {
   const classes = useStyles();
   const [errorAlertMessage, setErrorAlertMessage] = useState(null);
   const [successAlertMessage, setSuccessAlertMessage] = useState(null);
@@ -31,8 +60,11 @@ const SchedulesPage = () => {
         },
       })
       .then((response) => {
-        if (response.data) {
-          setSchedules(response.data);
+        if (response.data && response.data.length > 0) {
+          setSchedules([
+            ...response.data,
+            { image: 'add', name: 'Add Schedule' },
+          ]);
         }
       })
       .catch((error) => {
@@ -52,11 +84,35 @@ const SchedulesPage = () => {
       });
   };
 
-  const handleAddSchedule = () => {};
+  const handleOnAdd = () => {
+    getSchedules();
+  };
 
   const handleEditSchedule = () => {};
 
   const handleDeleteSchedule = () => {};
+
+  const ScheduleButton = ({ id, image, text }) => {
+    return (
+      <ButtonBase
+        focusRipple
+        key={`${text}-button`}
+        className={classes.scheduleButton}
+        onClick={() => history.push(`/schedule/${id}`)}
+      >
+        <Box>
+          <Box className={classes.scheduleButtonImage}>
+            {image === undefined || image === null ? (
+              <CancelPresentationIcon />
+            ) : (
+              <img alt="" src={image} />
+            )}
+          </Box>
+          <Box className={classes.scheduleButtonText}>{text}</Box>
+        </Box>
+      </ButtonBase>
+    );
+  };
 
   useEffect(() => {
     getSchedules();
@@ -81,6 +137,22 @@ const SchedulesPage = () => {
         {successAlertMessage && (
           <AlertMessage type="success" content={successAlertMessage} />
         )}
+
+        <Grid container spacing={3}>
+          {schedules.map((schedule) => (
+            <Grid key={schedule.name} item xs={12} sm={6} md={4}>
+              {schedule.image === 'add' ? (
+                <AddScheduleButton onAdd={handleOnAdd} />
+              ) : (
+                <ScheduleButton
+                  id={schedule.id}
+                  image={schedule.image}
+                  text={schedule.name}
+                />
+              )}
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     </>
   );

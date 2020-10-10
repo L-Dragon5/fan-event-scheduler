@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, withRouter, useHistory } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import {
   AppBar,
@@ -31,7 +31,13 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: 'none',
     },
   },
-  nav: {
+  mobileNav: {
+    '& > a': {
+      color: 'rgba(0, 0, 0, 0.87)',
+      textDecoration: 'none',
+    },
+  },
+  desktopNav: {
     '& > a': {
       color: 'rgba(0, 0, 0, 0.87)',
       textDecoration: 'none',
@@ -59,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AdminUserNavbar = () => {
-  const history = useHistory();
   const classes = useStyles();
 
   const [drawerStatus, setDrawerStatus] = useState(false);
@@ -70,11 +75,6 @@ const AdminUserNavbar = () => {
 
   const drawerClose = () => {
     setDrawerStatus(false);
-  };
-
-  const mobileNavClick = (url) => {
-    drawerClose();
-    history.push(url);
   };
 
   return (
@@ -88,6 +88,7 @@ const AdminUserNavbar = () => {
         >
           <List
             component="nav"
+            className={classes.mobileNav}
             aria-labelledby="main-options-mobile-header"
             subheader={
               <ListSubheader component="div" id="main-options-mobile-header">
@@ -95,12 +96,15 @@ const AdminUserNavbar = () => {
               </ListSubheader>
             }
           >
-            <ListItem button onClick={() => mobileNavClick('/')}>
-              <ListItemText primary="Schedules" />
-            </ListItem>
+            <NavLink to="/">
+              <ListItem button>
+                <ListItemText primary="Schedules" />
+              </ListItem>
+            </NavLink>
           </List>
           <List
             component="nav"
+            className={classes.mobileNav}
             aria-labelledby="settings-mobile-header"
             subheader={
               <ListSubheader component="div" id="settings-mobile-header">
@@ -108,9 +112,11 @@ const AdminUserNavbar = () => {
               </ListSubheader>
             }
           >
-            <ListItem button onClick={() => mobileNavClick('/user-settings')}>
-              <ListItemText primary="User Settings" />
-            </ListItem>
+            <NavLink to="/user-settings">
+              <ListItem button>
+                <ListItemText primary="User Settings" />
+              </ListItem>
+            </NavLink>
           </List>
         </SwipeableDrawer>
       </Hidden>
@@ -132,7 +138,7 @@ const AdminUserNavbar = () => {
           <Typography variant="h6" className={classes.title}>
             <NavLink to="/">Admin - Saas Event Schedule</NavLink>
           </Typography>
-          <nav className={classes.nav}>
+          <nav className={classes.desktopNav}>
             <Hidden smDown>
               <NavLink to="/">Schedules</NavLink>
 

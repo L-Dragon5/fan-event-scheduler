@@ -34,7 +34,7 @@ class ScheduleController extends Controller
             'name' => 'string|required',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
         }
 
@@ -42,6 +42,11 @@ class ScheduleController extends Controller
 
         if (check_for_duplicate($user_id, $request->name, 'schedules', 'name')) {
             return return_json_message('Schedule already exists with this name', self::STATUS_BAD_REQUEST);
+        }
+
+        $existing_schedule_count = Schedule::count();
+        if ($existing_schedule_count > 0) {
+            return return_json_message('Not allowed to create more than 1 schedule', self::STATUS_FORBIDDEN);
         }
 
         $schedule = new Schedule;
@@ -89,7 +94,7 @@ class ScheduleController extends Controller
             'name' => 'string|required',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
         }
 

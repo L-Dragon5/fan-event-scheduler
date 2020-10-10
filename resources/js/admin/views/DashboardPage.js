@@ -9,6 +9,11 @@ import AdminScheduleNavbar from '../components/AdminScheduleNavbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  contentRoot: {
+    flexGrow: 1,
     padding: theme.spacing(2),
   },
 }));
@@ -24,9 +29,9 @@ const DashboardPage = ({ match }) => {
   }, []);
 
   return (
-    <>
+    <Box className={classes.root}>
       <AdminScheduleNavbar scheduleId={scheduleId} />
-      <Box className={classes.root}>
+      <Box component="main" className={classes.contentRoot}>
         <Box className={classes.title}>
           <Typography component="span" variant="h4">
             Dashboard
@@ -40,7 +45,7 @@ const DashboardPage = ({ match }) => {
           <AlertMessage type="success" content={successAlertMessage} />
         )}
       </Box>
-    </>
+    </Box>
   );
 };
 

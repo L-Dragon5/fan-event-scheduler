@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { NavLink, withRouter, useHistory } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import {
   AppBar,
   Box,
   Hidden,
+  Drawer,
   SwipeableDrawer,
   List,
   ListItem,
@@ -17,12 +18,14 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 
+const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   menuButton: {
     marginRight: theme.spacing(2),
+  },
+  appBar: {
+    width: '100vw',
   },
   title: {
     flexGrow: 1,
@@ -35,16 +38,14 @@ const useStyles = makeStyles((theme) => ({
     '& > a': {
       color: 'rgba(0, 0, 0, 0.87)',
       textDecoration: 'none',
-      padding: '12px',
-      fontSize: '1rem',
-      cursor: 'pointer',
     },
-    '& > a.active-tool': {
-      borderBottom: '2px solid rgba(0, 0, 0, 0.87)',
-    },
-    '& > a:hover': {
-      borderBottom: '2px solid rgba(0, 0, 0, 0.87)',
-    },
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
   },
   paper: {
     position: 'absolute',
@@ -59,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AdminScheduleNavbar = ({ scheduleId }) => {
-  const history = useHistory();
   const classes = useStyles();
 
   const [drawerStatus, setDrawerStatus] = useState(false);
@@ -72,64 +72,11 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
     setDrawerStatus(false);
   };
 
-  const mobileNavClick = (url) => {
-    drawerClose();
-    history.push(url);
-  };
-
   return (
-    <Box className={classes.root}>
+    <Box>
       <Hidden mdUp>
-        <SwipeableDrawer
-          anchor="left"
-          open={drawerStatus}
-          onClose={drawerClose}
-          onOpen={drawerOpen}
-        >
-          <List
-            component="nav"
-            aria-labelledby="main-options-mobile-header"
-            subheader={
-              <ListSubheader component="div" id="main-options-mobile-header">
-                Main Options
-              </ListSubheader>
-            }
-          >
-            <ListItem
-              button
-              onClick={() => mobileNavClick(`/schedule/${scheduleId}`)}
-            >
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-            <ListItem
-              button
-              onClick={() => mobileNavClick(`/schedule/${scheduleId}/events`)}
-            >
-              <ListItemText primary="Events" />
-            </ListItem>
-          </List>
-          <List
-            component="nav"
-            aria-labelledby="settings-mobile-header"
-            subheader={
-              <ListSubheader component="div" id="settings-mobile-header">
-                Settings
-              </ListSubheader>
-            }
-          >
-            <ListItem
-              button
-              onClick={() => mobileNavClick(`/schedule/${scheduleId}/settings`)}
-            >
-              <ListItemText primary="Schedule Settings" />
-            </ListItem>
-          </List>
-        </SwipeableDrawer>
-      </Hidden>
-
-      <AppBar position="static">
-        <Toolbar>
-          <Hidden mdUp>
+        <AppBar position="static" className={classes.appBar}>
+          <Toolbar>
             <IconButton
               edge="start"
               className={classes.menuButton}
@@ -139,30 +86,108 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
             >
               <MenuIcon />
             </IconButton>
-          </Hidden>
 
-          <Typography variant="h6" className={classes.title}>
-            <NavLink to={`/schedule/${scheduleId}`}>Schedule Admin</NavLink>
-          </Typography>
-          <nav className={classes.nav}>
-            <Hidden smDown>
-              <NavLink to={`/schedule/${scheduleId}`}>Dashboard</NavLink>
-              <NavLink
-                to={`/schedule/${scheduleId}/events`}
-                activeClassName="active-tool"
-              >
-                Events
-              </NavLink>
-              <NavLink
-                to={`/schedule/${scheduleId}/settings`}
-                activeClassName="active-tool"
-              >
+            <Typography variant="h6" className={classes.title}>
+              <NavLink to={`/schedule/${scheduleId}`}>Schedule Admin</NavLink>
+            </Typography>
+          </Toolbar>
+        </AppBar>
+
+        <SwipeableDrawer
+          anchor="left"
+          open={drawerStatus}
+          onClose={drawerClose}
+          onOpen={drawerOpen}
+        >
+          <List
+            component="nav"
+            className={classes.nav}
+            aria-labelledby="main-options-mobile-header"
+            subheader={
+              <ListSubheader component="div" id="main-options-mobile-header">
+                Main Options
+              </ListSubheader>
+            }
+          >
+            <NavLink to={`/schedule/${scheduleId}`}>
+              <ListItem button>
+                <ListItemText primary="Dashboard" />
+              </ListItem>
+            </NavLink>
+
+            <NavLink to={`/schedule/${scheduleId}/events`}>
+              <ListItem button>
+                <ListItemText primary="Events" />
+              </ListItem>
+            </NavLink>
+          </List>
+          <List
+            component="nav"
+            className={classes.nav}
+            aria-labelledby="settings-mobile-header"
+            subheader={
+              <ListSubheader component="div" id="settings-mobile-header">
                 Settings
-              </NavLink>
-            </Hidden>
-          </nav>
-        </Toolbar>
-      </AppBar>
+              </ListSubheader>
+            }
+          >
+            <NavLink to={`/schedule/${scheduleId}/settings`}>
+              <ListItem button>
+                <ListItemText primary="Schedule Settings" />
+              </ListItem>
+            </NavLink>
+          </List>
+        </SwipeableDrawer>
+      </Hidden>
+
+      <Hidden smDown>
+        <Drawer
+          open
+          variant="permanent"
+          anchor="left"
+          className={classes.drawer}
+          classes={{ paper: classes.drawerPaper }}
+        >
+          <List
+            component="nav"
+            className={classes.nav}
+            aria-labelledby="main-options-desktop-header"
+            subheader={
+              <ListSubheader component="div" id="main-options-desktop-header">
+                Main Options
+              </ListSubheader>
+            }
+          >
+            <NavLink to={`/schedule/${scheduleId}`}>
+              <ListItem button>
+                <ListItemText primary="Dashboard" />
+              </ListItem>
+            </NavLink>
+
+            <NavLink to={`/schedule/${scheduleId}/events`}>
+              <ListItem button>
+                <ListItemText primary="Events" />
+              </ListItem>
+            </NavLink>
+          </List>
+          <List
+            component="nav"
+            className={classes.nav}
+            aria-labelledby="settings-desktop-header"
+            subheader={
+              <ListSubheader component="div" id="settings-desktop-header">
+                Settings
+              </ListSubheader>
+            }
+          >
+            <NavLink to={`/schedule/${scheduleId}/settings`}>
+              <ListItem button>
+                <ListItemText primary="Schedule Settings" />
+              </ListItem>
+            </NavLink>
+          </List>
+        </Drawer>
+      </Hidden>
     </Box>
   );
 };
