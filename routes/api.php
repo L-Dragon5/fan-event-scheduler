@@ -2,16 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\ExhibitorController;
-use App\Http\Controllers\GuestController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\MapController;
-use App\Http\Controllers\RuleController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\api\EventController;
+use App\Http\Controllers\api\ExhibitorController;
+use App\Http\Controllers\api\GuestController;
+use App\Http\Controllers\api\HomeController;
+use App\Http\Controllers\api\LocationController;
+use App\Http\Controllers\api\MapController;
+use App\Http\Controllers\api\RuleController;
+use App\Http\Controllers\api\ScheduleController;
+use App\Http\Controllers\api\SettingController;
+use App\Http\Controllers\api\UserController;
 
 /*
 |--------------------------------------------------------------------------
