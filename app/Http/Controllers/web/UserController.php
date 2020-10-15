@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use Inertia\Inertia;
 use App\User;
 use App\Mail\ResetPassword;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class UserController extends Controller
      */
     public function login(Request $request) {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], TRUE)) {
-            return redirect()->route('admin-base');
+            return Inertia::location(route('admin-base'));
         } else {
             return back()->withErrors(['error' => ['Incorrect login credentials provided']]);
         }

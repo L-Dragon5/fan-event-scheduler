@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\web\UserController;
 use App\Http\Controllers\web\AuthController;
+use App\Http\Controllers\web\EventController;
+use App\Http\Controllers\web\ScheduleController;
+use App\Http\Controllers\web\UserController;
+use App\Http\Middleware\CheckUserOwnsSchedule;
 use Inertia\Inertia;
 
 /*
@@ -16,15 +19,27 @@ use Inertia\Inertia;
 |
 */
 
-Route::post('/admin/login', [UserController::class, 'login']);
-Route::post('/admin/register', [UserController::class, 'register']);
-Route::post('/admin/update-password', [UserController::class, 'updatePassword']);
-Route::post('/admin/forgot-password', [UserController::class, 'forgotPassword']);
-
-
-// Authenticated Routes
+// Admin Routes
 Route::domain('admin.saas-event-schedule.test')->group(function () {
-    Route::get('/', fn() => Inertia::render('Admin/Schedules')->withViewData(['title' => 'Schedules']))->name('admin-base');
+    Route::middleware('auth')->group(function() {
+        Route::get('/', [ScheduleController::class, 'index'])->name('admin-base');
+        
+        Route::prefix('admin')->group(function () {
+            Route::post('schedules/create', [ScheduleController::class, 'store']);
+        });
+
+        Route::middleware(CheckUserOwnsSchedule::class)->group(function() {
+            Route::get('/schedule/{scheduleId}', [ScheduleController::class, 'show'])->name('schedule-base');
+            Route::get('/schedule/{scheduleId}/events', [EventController::class, 'index'])->name('schedule-events');
+        });
+    });
+});
+
+Route::prefix('admin')->group(function () {
+    Route::post('login', [UserController::class, 'login']);
+    Route::post('register', [UserController::class, 'register']);
+    Route::post('update-password', [UserController::class, 'updatePassword']);
+    Route::post('forgot-password', [UserController::class, 'forgotPassword']);
 });
 
 // Authentication Routes

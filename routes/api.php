@@ -30,9 +30,6 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('forgot-password', [UserController::class, 'forgotPassword']);
 Route::post('checkUser', [UserController::class, 'checkUser']);
 
-// Public Shared Route
-Route::get('all/{uuid}', [PublicController::class, 'index']);
-
 Route::middleware('auth:api')->group(function () {
     // User Routes
     Route::post('update-password', [UserController::class, 'updatePassword']);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Inertia } from '@inertiajs/inertia';
+import { usePage } from '@inertiajs/inertia-react';
 
 import {
   Button,
@@ -12,7 +13,6 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { Add } from '@material-ui/icons';
 
-import Helper from './Helper';
 import AlertMessage from './AlertMessage';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,9 +52,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddScheduleButton = ({ onAdd }) => {
+  const { errors, flash } = usePage().props;
   const classes = useStyles();
-  const [errorAlertMessage, setErrorAlertMessage] = useState(null);
-  const [successAlertMessage, setSuccessAlertMessage] = useState(null);
 
   const [drawerStatus, setDrawerStatus] = useState(false);
 
@@ -72,46 +71,18 @@ const AddScheduleButton = ({ onAdd }) => {
     const formData = new FormData(e.target);
     e.target.reset();
 
-    axios
-      .post('/api/schedules/create', formData, {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${Helper.getToken()}`,
-          'content-type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          onAdd();
-          setSuccessAlertMessage(response.data.message);
-          setDrawerStatus(false);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          let message = '';
-
-          if (Array.isArray(error.response)) {
-            Object.keys(error.response.data.message).forEach((key) => {
-              message += `[${key}] - ${error.response.data.message[key]}\r\n`;
-            });
-          } else {
-            message += error.response.data.message;
-          }
-
-          setErrorAlertMessage(message);
-        }
-      });
+    Inertia.post('/admin/schedules/create', formData, {
+      onSuccess: (page) => {
+        onAdd();
+        setDrawerStatus(false);
+      },
+    });
   };
 
   return (
     <>
-      {errorAlertMessage && (
-        <AlertMessage type="error" content={errorAlertMessage} />
-      )}
-      {successAlertMessage && (
-        <AlertMessage type="success" content={successAlertMessage} />
-      )}
+      {errors.error && <AlertMessage type="error" content={errors.error[0]} />}
+      {flash.message && <AlertMessage type="success" content={flash.message} />}
 
       <ButtonBase
         focusRipple

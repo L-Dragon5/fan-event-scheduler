@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
 import { Box, ButtonBase, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 
-import Helper from './components/Helper';
-import AlertMessage from './components/AlertMessage';
-import AdminUserNavbar from './components/AdminUserNavbar';
+import AdminUserLayout from './AdminUserLayout';
 import AddScheduleButton from './components/AddScheduleButton';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,53 +41,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SchedulesPage = ({ history }) => {
+const Schedules = ({ schedules }) => {
   const classes = useStyles();
-  const [errorAlertMessage, setErrorAlertMessage] = useState(null);
-  const [successAlertMessage, setSuccessAlertMessage] = useState(null);
 
-  const [schedules, setSchedules] = useState([]);
-
-  const getSchedules = () => {
-    axios
-      .get('/api/schedules', {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${Helper.getToken()}`,
-        },
-      })
-      .then((response) => {
-        if (response.data && response.data.length > 0) {
-          setSchedules([
-            ...response.data,
-            { image: 'add', name: 'Add Schedule' },
-          ]);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          let message = '';
-
-          if (Array.isArray(error.response)) {
-            Object.keys(error.response.data.message).forEach((key) => {
-              message += `[${key}] - ${error.response.data.message[key]}\r\n`;
-            });
-          } else {
-            message += error.response.data.message;
-          }
-
-          setErrorAlertMessage(message);
-        }
-      });
+  const handleReload = () => {
+    Inertia.reload({ only: ['schedules'] });
   };
-
-  const handleOnAdd = () => {
-    getSchedules();
-  };
-
-  const handleEditSchedule = () => {};
-
-  const handleDeleteSchedule = () => {};
 
   const ScheduleButton = ({ id, image, text }) => {
     return (
@@ -99,7 +54,7 @@ const SchedulesPage = ({ history }) => {
         focusRipple
         key={`${text}-button`}
         className={classes.scheduleButton}
-        onClick={() => history.push(`/schedule/${id}`)}
+        onClick={() => Inertia.visit(`/schedule/${id}`)}
       >
         <Box>
           <Box className={classes.scheduleButtonImage}>
@@ -115,16 +70,8 @@ const SchedulesPage = ({ history }) => {
     );
   };
 
-  useEffect(() => {
-    getSchedules();
-    document.title = 'Schedules | SaaS Event Schedule';
-  }, []);
-
-  console.log(schedules);
-
   return (
-    <>
-      <AdminUserNavbar />
+    <AdminUserLayout title="Schedules">
       <Box className={classes.root}>
         <Box className={classes.title}>
           <Typography component="span" variant="h4">
@@ -132,18 +79,11 @@ const SchedulesPage = ({ history }) => {
           </Typography>
         </Box>
 
-        {errorAlertMessage && (
-          <AlertMessage type="error" content={errorAlertMessage} />
-        )}
-        {successAlertMessage && (
-          <AlertMessage type="success" content={successAlertMessage} />
-        )}
-
         <Grid container spacing={3}>
           {schedules.map((schedule) => (
             <Grid key={schedule.name} item xs={12} sm={6} md={4}>
               {schedule.image === 'add' ? (
-                <AddScheduleButton onAdd={handleOnAdd} />
+                <AddScheduleButton onAdd={handleReload} />
               ) : (
                 <ScheduleButton
                   id={schedule.id}
@@ -155,8 +95,8 @@ const SchedulesPage = ({ history }) => {
           ))}
         </Grid>
       </Box>
-    </>
+    </AdminUserLayout>
   );
 };
 
-export default withRouter(SchedulesPage);
+export default Schedules;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { InertiaLink } from '@inertiajs/inertia-react';
 
 import {
   AppBar,
@@ -44,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
       padding: '12px',
       fontSize: '1rem',
       cursor: 'pointer',
-    },
-    '& > a.active-tool': {
-      borderBottom: '2px solid rgba(0, 0, 0, 0.87)',
     },
     '& > a:hover': {
       borderBottom: '2px solid rgba(0, 0, 0, 0.87)',
@@ -96,11 +93,11 @@ const AdminUserNavbar = () => {
               </ListSubheader>
             }
           >
-            <NavLink to="/">
+            <InertiaLink href="/">
               <ListItem button>
                 <ListItemText primary="Schedules" />
               </ListItem>
-            </NavLink>
+            </InertiaLink>
           </List>
           <List
             component="nav"
@@ -112,11 +109,11 @@ const AdminUserNavbar = () => {
               </ListSubheader>
             }
           >
-            <NavLink to="/user-settings">
+            <InertiaLink href="/user-settings">
               <ListItem button>
                 <ListItemText primary="User Settings" />
               </ListItem>
-            </NavLink>
+            </InertiaLink>
           </List>
         </SwipeableDrawer>
       </Hidden>
@@ -136,15 +133,13 @@ const AdminUserNavbar = () => {
           </Hidden>
 
           <Typography variant="h6" className={classes.title}>
-            <NavLink to="/">Admin - Saas Event Schedule</NavLink>
+            <InertiaLink href="/">Admin - Saas Event Schedule</InertiaLink>
           </Typography>
           <nav className={classes.desktopNav}>
             <Hidden smDown>
-              <NavLink to="/">Schedules</NavLink>
+              <InertiaLink href="/">Schedules</InertiaLink>
 
-              <NavLink to="/user-settings" activeClassName="active-tool">
-                User Settings
-              </NavLink>
+              <InertiaLink href="/user-settings">User Settings</InertiaLink>
             </Hidden>
           </nav>
         </Toolbar>
@@ -153,4 +148,4 @@ const AdminUserNavbar = () => {
   );
 };
 
-export default withRouter(AdminUserNavbar);
+export default AdminUserNavbar;

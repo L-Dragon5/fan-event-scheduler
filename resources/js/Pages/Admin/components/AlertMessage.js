@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
@@ -6,10 +6,16 @@ import { Alert } from '@material-ui/lab';
 const AlertMessage = (props) => {
   const { type, content } = props;
   const [snackbarStatus, setSnackbarStatus] = useState(true);
+  const [message, setMessage] = useState(null);
 
   const snackbarClose = () => {
     setSnackbarStatus(false);
+    setMessage(null);
   };
+
+  useEffect(() => {
+    setMessage(content);
+  }, [content]);
 
   return (
     <Snackbar
@@ -19,7 +25,7 @@ const AlertMessage = (props) => {
       autoHideDuration={2000}
     >
       <Alert severity={type} style={{ whiteSpace: 'pre' }}>
-        {content}
+        {message}
       </Alert>
     </Snackbar>
   );
