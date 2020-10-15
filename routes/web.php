@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,11 @@ Route::domain('admin.saas-event-schedule.test')->group(function () {
 });
 
 // Authentication Routes
-Route::get('/login', fn() => view('auth.login'))->name('login');
-Route::get('/register', fn() => view('auth.register'))->name('register');
-Route::get('/forgot-password', fn() => view('auth.forget-password'))->name('forgot-password');
+Route::get('/login', fn() => Inertia::render('Login')->withViewData(['title' => 'Login']))->name('login');
+Route::get('/register', fn() => Inertia::render('Register')->withViewData(['title' => 'Register']))->name('register');
+Route::get('/forgot-password', fn() => Inertia::render('ForgotPassword')->withViewData(['title' => 'Forgot Password']))->name('forgot-password');
 
 // Public Routes
-Route::get('/', fn() => view('public'));
-Route::get('/s/{any}', fn() => view('public-schedule'));
+Route::get('/', fn() => Inertia::render('Public')->withViewData(['title' => 'Home']));
+Route::get('/s/{any}', fn() => Inertia::render('PublicSchedule')->withViewData(['title' => 'Schedule']));
 Route::get('/{any}', fn() => redirect('/'));

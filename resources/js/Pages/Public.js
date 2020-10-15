@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import {
   Button,
   CssBaseline,
   Link,
-  Paper,
   Box,
   Grid,
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-import Copyright from './components/Copyright';
 
 const useStyles = makeStyles((theme) => ({
   intro: {
@@ -85,12 +82,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HomePage = () => {
+const Public = () => {
   const classes = useStyles();
-
-  useEffect(() => {
-    document.title = 'Home | SaaS Event Schedule';
-  }, []);
 
   return (
     <>
@@ -151,12 +144,8 @@ const HomePage = () => {
           </Typography>
         </Box>
       </Grid>
-
-      <Box className={classes.footer}>
-        <Copyright style={{ color: '#fff' }} />
-      </Box>
     </>
   );
 };
 
-export default HomePage;
+export default Public;

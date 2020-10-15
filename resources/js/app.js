@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { InertiaApp } from '@inertiajs/inertia-react';
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -7,11 +8,6 @@ import ReactDOM from 'react-dom';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import AdminUserMain from './admin/AdminUserMain';
-import HomePage from './public/HomePage';
-import LoginPage from './public/LoginPage';
-import RegisterPage from './public/RegisterPage';
-import ForgotPasswordPage from './public/ForgotPasswordPage';
-import PublicSchedulePage from './public/PublicSchedulePage';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -22,28 +18,16 @@ import PublicSchedulePage from './public/PublicSchedulePage';
 require('./bootstrap');
 
 const adminRoot = document.getElementById('admin-root');
-const homeRoot = document.getElementById('home-root');
-const loginRoot = document.getElementById('login-root');
-const registerRoot = document.getElementById('register-root');
-const forgotPasswordRoot = document.getElementById('forgot-password-root');
-const publicScheduleRoot = document.getElementById('public-schedule-root');
+const publicRoot = document.getElementById('app');
 
 if (typeof adminRoot !== 'undefined' && adminRoot !== null) {
   ReactDOM.render(<AdminUserMain />, adminRoot);
-} else if (typeof homeRoot !== 'undefined' && homeRoot !== null) {
-  ReactDOM.render(<HomePage />, homeRoot);
-} else if (typeof loginRoot !== 'undefined' && loginRoot !== null) {
-  ReactDOM.render(<LoginPage />, loginRoot);
-} else if (typeof registerRoot !== 'undefined' && registerRoot !== null) {
-  ReactDOM.render(<RegisterPage />, registerRoot);
-} else if (
-  typeof forgotPasswordRoot !== 'undefined' &&
-  forgotPasswordRoot !== null
-) {
-  ReactDOM.render(<ForgotPasswordPage />, forgotPasswordRoot);
-} else if (
-  typeof publicScheduleRoot !== 'undefined' &&
-  publicScheduleRoot !== null
-) {
-  ReactDOM.render(<PublicSchedulePage />, publicScheduleRoot);
+} else if (typeof publicRoot !== 'undefined' && publicRoot !== null) {
+  ReactDOM.render(
+    <InertiaApp
+      initialPage={JSON.parse(app.dataset.page)}
+      resolveComponent={(name) => require(`./Pages/${name}`).default}
+    />,
+    publicRoot,
+  );
 }

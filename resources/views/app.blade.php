@@ -9,8 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-        @if (trim($__env->yieldContent('title')))
-            @yield('title') | {{ config('app.name', 'Laravel') }}
+        @if ($title !== '')
+            {{ $title }} | {{ config('app.name', 'Laravel') }}
         @else
             {{ config('app.name', 'Laravel') }}
         @endif
@@ -18,12 +18,11 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src='https://www.google.com/recaptcha/api.js' defer></script>
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
-<body style='background-color: #f8fafc;'>
-@yield('content')
+<body>
+@inertia
 </body>
 </html>

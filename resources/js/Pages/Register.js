@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RegisterPage = () => {
+const Register = () => {
   const classes = useStyles();
 
   const [errorAlertMessage, setErrorAlertMessage] = useState('');
@@ -170,4 +170,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default Register;

@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PublicSchedulePage = () => {
+const PublicSchedule = () => {
   const classes = useStyles();
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const PublicSchedulePage = () => {
   );
 };
 
-export default PublicSchedulePage;
+export default PublicSchedule;
