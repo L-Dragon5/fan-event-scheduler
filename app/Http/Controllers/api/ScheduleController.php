@@ -40,7 +40,7 @@ class ScheduleController extends Controller
 
         $user_id = Auth::user()->id;
 
-        if (check_for_duplicate($user_id, $request->name, 'schedules', 'name')) {
+        if (check_for_duplicate(['user_id' => $user_id], $request->name, 'schedules', 'name')) {
             return return_json_message('Schedule already exists with this name', self::STATUS_BAD_REQUEST);
         }
 
@@ -111,7 +111,7 @@ class ScheduleController extends Controller
                     // Check if new title is same as old title
                     if ($trimmed_name === $schedule->name) {
                         // Do nothing
-                    } else if(check_for_duplicate($user_id, $request->title, 'schedules', 'name')) {
+                    } else if(check_for_duplicate(['user_id' => $user_id], $request->title, 'schedules', 'name')) {
                         return return_json_message('Schedule name already exists.', self::STATUS_BAD_REQUEST);
                     } else {
                         $schedule->name = $trimmed_name;

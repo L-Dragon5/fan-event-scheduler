@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     '& > a': {
-      color: 'rgba(0, 0, 0, 0.87)',
+      color: '#FFFFFF',
       textDecoration: 'none',
     },
   },
@@ -72,6 +72,81 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
     setDrawerStatus(false);
   };
 
+  const NavigationList = () => {
+    return (
+      <>
+        <List
+          component="nav"
+          className={classes.nav}
+          aria-labelledby="main-options-header"
+          subheader={
+            <ListSubheader component="div" id="main-options-header">
+              Main Options
+            </ListSubheader>
+          }
+        >
+          <InertiaLink href={`/schedule/${scheduleId}`}>
+            <ListItem button>
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+          </InertiaLink>
+
+          <InertiaLink href={`/schedule/${scheduleId}/events`}>
+            <ListItem button>
+              <ListItemText primary="Events" />
+            </ListItem>
+          </InertiaLink>
+
+          <InertiaLink href={`/schedule/${scheduleId}/exhibitors`}>
+            <ListItem button>
+              <ListItemText primary="Exhibitors" />
+            </ListItem>
+          </InertiaLink>
+
+          <InertiaLink href={`/schedule/${scheduleId}/guests`}>
+            <ListItem button>
+              <ListItemText primary="Guests" />
+            </ListItem>
+          </InertiaLink>
+
+          <InertiaLink href={`/schedule/${scheduleId}/locations`}>
+            <ListItem button>
+              <ListItemText primary="Locations" />
+            </ListItem>
+          </InertiaLink>
+
+          <InertiaLink href={`/schedule/${scheduleId}/maps`}>
+            <ListItem button>
+              <ListItemText primary="Maps" />
+            </ListItem>
+          </InertiaLink>
+
+          <InertiaLink href={`/schedule/${scheduleId}/rules`}>
+            <ListItem button>
+              <ListItemText primary="Rules" />
+            </ListItem>
+          </InertiaLink>
+        </List>
+        <List
+          component="nav"
+          className={classes.nav}
+          aria-labelledby="settings-header"
+          subheader={
+            <ListSubheader component="div" id="settings-header">
+              Settings
+            </ListSubheader>
+          }
+        >
+          <InertiaLink href={`/schedule/${scheduleId}/settings`}>
+            <ListItem button>
+              <ListItemText primary="Schedule Settings" />
+            </ListItem>
+          </InertiaLink>
+        </List>
+      </>
+    );
+  };
+
   return (
     <Box>
       <Hidden mdUp>
@@ -101,44 +176,7 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
           onClose={drawerClose}
           onOpen={drawerOpen}
         >
-          <List
-            component="nav"
-            className={classes.nav}
-            aria-labelledby="main-options-mobile-header"
-            subheader={
-              <ListSubheader component="div" id="main-options-mobile-header">
-                Main Options
-              </ListSubheader>
-            }
-          >
-            <InertiaLink href={`/schedule/${scheduleId}`}>
-              <ListItem button>
-                <ListItemText primary="Dashboard" />
-              </ListItem>
-            </InertiaLink>
-
-            <InertiaLink href={`/schedule/${scheduleId}/events`}>
-              <ListItem button>
-                <ListItemText primary="Events" />
-              </ListItem>
-            </InertiaLink>
-          </List>
-          <List
-            component="nav"
-            className={classes.nav}
-            aria-labelledby="settings-mobile-header"
-            subheader={
-              <ListSubheader component="div" id="settings-mobile-header">
-                Settings
-              </ListSubheader>
-            }
-          >
-            <InertiaLink href={`/schedule/${scheduleId}/settings`}>
-              <ListItem button>
-                <ListItemText primary="Schedule Settings" />
-              </ListItem>
-            </InertiaLink>
-          </List>
+          <NavigationList />
         </SwipeableDrawer>
       </Hidden>
 
@@ -150,44 +188,7 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
           className={classes.drawer}
           classes={{ paper: classes.drawerPaper }}
         >
-          <List
-            component="nav"
-            className={classes.nav}
-            aria-labelledby="main-options-desktop-header"
-            subheader={
-              <ListSubheader component="div" id="main-options-desktop-header">
-                Main Options
-              </ListSubheader>
-            }
-          >
-            <InertiaLink href={`/schedule/${scheduleId}`}>
-              <ListItem button>
-                <ListItemText primary="Dashboard" />
-              </ListItem>
-            </InertiaLink>
-
-            <InertiaLink href={`/schedule/${scheduleId}/events`}>
-              <ListItem button>
-                <ListItemText primary="Events" />
-              </ListItem>
-            </InertiaLink>
-          </List>
-          <List
-            component="nav"
-            className={classes.nav}
-            aria-labelledby="settings-desktop-header"
-            subheader={
-              <ListSubheader component="div" id="settings-desktop-header">
-                Settings
-              </ListSubheader>
-            }
-          >
-            <InertiaLink href={`/schedule/${scheduleId}/settings`}>
-              <ListItem button>
-                <ListItemText primary="Schedule Settings" />
-              </ListItem>
-            </InertiaLink>
-          </List>
+          <NavigationList />
         </Drawer>
       </Hidden>
     </Box>

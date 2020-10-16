@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\web\AuthController;
 use App\Http\Controllers\web\EventController;
+use App\Http\Controllers\web\ExhibitorController;
+use App\Http\Controllers\web\GuestController;
+use App\Http\Controllers\web\LocationController;
+use App\Http\Controllers\web\MapController;
+use App\Http\Controllers\web\RuleController;
 use App\Http\Controllers\web\ScheduleController;
 use App\Http\Controllers\web\UserController;
 use App\Http\Middleware\CheckUserOwnsSchedule;
@@ -31,6 +36,15 @@ Route::domain('admin.saas-event-schedule.test')->group(function () {
         Route::middleware(CheckUserOwnsSchedule::class)->group(function() {
             Route::get('/schedule/{scheduleId}', [ScheduleController::class, 'show'])->name('schedule-base');
             Route::get('/schedule/{scheduleId}/events', [EventController::class, 'index'])->name('schedule-events');
+            Route::get('/schedule/{scheduleId}/exhibitors', [ExhibitorController::class, 'index'])->name('schedule-exhibitors');
+            Route::get('/schedule/{scheduleId}/guests', [GuestController::class, 'index'])->name('schedule-guests');
+            Route::get('/schedule/{scheduleId}/locations', [LocationController::class, 'index'])->name('schedule-locations');
+            Route::get('/schedule/{scheduleId}/maps', [MapController::class, 'index'])->name('schedule-maps');
+            Route::get('/schedule/{scheduleId}/rules', [RuleController::class, 'index'])->name('schedule-rules');
+        
+            Route::prefix('admin')->group(function () {
+                Route::post('locations/create', [LocationController::class, 'store']);
+            });
         });
     });
 });

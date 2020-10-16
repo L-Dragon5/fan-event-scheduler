@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { orange, pink } from '@material-ui/core/colors';
+import { blue, pink } from '@material-ui/core/colors';
 
 import AdminScheduleNavbar from './components/AdminScheduleNavbar';
 
 const theme = createMuiTheme({
   palette: {
-    primary: orange,
+    primary: blue,
     secondary: pink,
   },
 });
@@ -23,7 +23,7 @@ const AdminScheduleLayout = ({ title, scheduleId, children }) => {
       <CssBaseline />
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         <AdminScheduleNavbar scheduleId={scheduleId} />
-        <main>{children}</main>
+        <main style={{ flex: '1 1 auto' }}>{children}</main>
       </div>
     </ThemeProvider>
   );

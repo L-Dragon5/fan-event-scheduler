@@ -48,15 +48,17 @@ if (!function_exists('check_for_duplicate')) {
   /**
    * Check for duplicate title in database table.
    * 
-   * @param  int  $user_id
+   * @param  array  $id_array
    * @param  string  $title
    * @param  string  $db_table
    * @param  string  $column_name
    * @return bool
    */
-  function check_for_duplicate($user_id, $title, $db_table, $column_name) {
+  function check_for_duplicate($id_array, $title, $db_table, $column_name) {
     $t = trim(strip_and_lower($title));
-    $entries = DB::table($db_table)->where('user_id', $user_id)->pluck($column_name);
+    $id_value = current($id_array);
+    $id_name = key($id_array);
+    $entries = DB::table($db_table)->where($id_name, $id_value)->pluck($column_name);
 
     foreach ($entries as $entry) {
       if ($t === strip_and_lower($entry)) {
