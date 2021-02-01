@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LocationDeleteButton = ({ onDelete, scheduleId, locationId }) => {
+const LocationDeleteButton = ({ onDelete, locationId }) => {
   const { errors, flash } = usePage().props;
   const classes = useStyles();
 
@@ -43,16 +43,18 @@ const LocationDeleteButton = ({ onDelete, scheduleId, locationId }) => {
   const handleAddSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    formData.set('scheduleId', scheduleId);
-    e.target.reset();
-
-    Inertia.delete(`/admin/locations/${locationId}`, formData, {
-      onSuccess: (page) => {
-        onDelete();
-        setDrawerStatus(false);
+    Inertia.post(
+      `locations/destroy`,
+      {
+        location: locationId,
       },
-    });
+      {
+        onSuccess: (page) => {
+          onDelete();
+          setDrawerStatus(false);
+        },
+      },
+    );
   };
 
   return (

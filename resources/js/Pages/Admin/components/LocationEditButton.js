@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LocationEditButton = ({ onEdit, scheduleId, locationId, name }) => {
+const LocationEditButton = ({ onEdit, locationId, name }) => {
   const { errors, flash } = usePage().props;
   const classes = useStyles();
 
@@ -38,10 +38,10 @@ const LocationEditButton = ({ onEdit, scheduleId, locationId, name }) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    formData.set('scheduleId', scheduleId);
+    formData.set('location', locationId);
     e.target.reset();
 
-    Inertia.put(`/admin/locations/${locationId}`, formData, {
+    Inertia.post(`locations/update`, formData, {
       onSuccess: (page) => {
         onEdit();
         setDrawerStatus(false);

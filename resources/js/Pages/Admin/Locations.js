@@ -61,13 +61,11 @@ const Locations = ({ scheduleId, locations }) => {
                     </TableCell>
                     <TableCell align="right">
                       <LocationEditButton
-                        scheduleId={scheduleId}
                         locationId={location.id}
                         name={location.name}
                         onEdit={handleReload}
                       />
                       <LocationDeleteButton
-                        scheduleId={scheduleId}
                         locationId={location.id}
                         onDelete={handleReload}
                       />

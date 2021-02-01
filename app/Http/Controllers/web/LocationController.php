@@ -51,12 +51,61 @@ class LocationController extends Controller
         $success = $location->save();
 
         if ($success) {
-            return back()->with(['message' => 'Created new location succesfully']);
+            return back()->with(['message' => 'Created new location']);
         } else {
             return back()->withErrors(['error' => ['Something went wrong while trying to create a new location']]);
         }
     }
 
-    public function update() {}
-    public function destroy() {}
+    /**
+     * Update an existing location in storage.
+     * 
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'location' => 'numeric|required',
+            'name' => 'string|required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        if (check_for_duplicate(['id' => $request->id], $request->name, 'locations', 'name')) {
+            return back()->withErrors(['error' => ['Location already exists with this name']]);
+        }
+
+        $location = Location::find($request->location);
+        $location->name = trim($request->name);
+
+        $success = $location->save();
+
+        if ($success) {
+            return back()->with(['message' => 'Updated location']);
+        } else {
+            return back()->withErrors(['error' => ['Something went wrong while trying to update location']]);
+        }
+    }
+
+    /**
+     * Remove an existing location in storage.
+     * 
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'location' => 'numeric|required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        Location::destroy($request->location);
+
+        return back()->with(['message' => 'Removed location']);
+    }
 }

@@ -53,7 +53,7 @@ const LocationAddButton = ({ onAdd, scheduleId }) => {
     formData.set('scheduleId', scheduleId);
     e.target.reset();
 
-    Inertia.post('/admin/locations/create', formData, {
+    Inertia.post('locations/store', formData, {
       onSuccess: (page) => {
         onAdd();
         setDrawerStatus(false);

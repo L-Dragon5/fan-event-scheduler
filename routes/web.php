@@ -35,15 +35,21 @@ Route::domain('admin.saas-event-schedule.test')->group(function () {
 
         Route::middleware(CheckUserOwnsSchedule::class)->group(function() {
             Route::get('/schedule/{scheduleId}', [ScheduleController::class, 'show'])->name('schedule-base');
-            Route::get('/schedule/{scheduleId}/events', [EventController::class, 'index'])->name('schedule-events');
-            Route::get('/schedule/{scheduleId}/exhibitors', [ExhibitorController::class, 'index'])->name('schedule-exhibitors');
-            Route::get('/schedule/{scheduleId}/guests', [GuestController::class, 'index'])->name('schedule-guests');
-            Route::get('/schedule/{scheduleId}/locations', [LocationController::class, 'index'])->name('schedule-locations');
-            Route::get('/schedule/{scheduleId}/maps', [MapController::class, 'index'])->name('schedule-maps');
-            Route::get('/schedule/{scheduleId}/rules', [RuleController::class, 'index'])->name('schedule-rules');
         
-            Route::prefix('admin')->group(function () {
-                Route::post('locations/create', [LocationController::class, 'store']);
+            Route::prefix('schedule/{scheduleId}')->group(function () {
+                Route::get('events', [EventController::class, 'index'])->name('schedule-events');
+                Route::get('exhibitors', [ExhibitorController::class, 'index'])->name('schedule-exhibitors');
+                Route::get('guests', [GuestController::class, 'index'])->name('schedule-guests');
+                Route::get('locations', [LocationController::class, 'index'])->name('schedule-locations');
+                Route::get('maps', [MapController::class, 'index'])->name('schedule-maps');
+                Route::get('rules', [RuleController::class, 'index'])->name('schedule-rules');
+
+                Route::post('locations/store', [LocationController::class, 'store']);
+                Route::post('locations/update', [LocationController::class, 'update']);
+                Route::post('locations/destroy', [LocationController::class, 'destroy']);
+                Route::post('guests/store', [GuestController::class, 'store']);
+                Route::post('guests/update', [GuestController::class, 'update']);
+                Route::post('guests/destroy', [GuestController::class, 'destroy']);
             });
         });
     });

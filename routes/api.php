@@ -24,6 +24,7 @@ use App\Http\Controllers\api\UserController;
 |
 */
 
+/*
 // User Routes
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
@@ -87,3 +88,4 @@ Route::middleware('auth:api')->group(function () {
     Route::post('maps/update/{id}', [MapController::class, 'update']);
     Route::get('maps/destroy/{id}', [MapController::class, 'destroy']);
 });
+*/
