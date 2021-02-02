@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LocationDeleteButton = ({ onDelete, locationId }) => {
+const LocationDeleteButton = ({ scheduleId, location, onDelete }) => {
   const { errors, flash } = usePage().props;
   const classes = useStyles();
 
@@ -46,7 +46,8 @@ const LocationDeleteButton = ({ onDelete, locationId }) => {
     Inertia.post(
       `locations/destroy`,
       {
-        location: locationId,
+        id: location.id,
+        scheduleId,
       },
       {
         onSuccess: (page) => {
@@ -72,7 +73,7 @@ const LocationDeleteButton = ({ onDelete, locationId }) => {
         <Box>
           <form className={classes.form} onSubmit={handleAddSubmit}>
             <Typography>
-              Are you sure you want to delete this location?
+              Are you sure you want to delete &quot;{location.name}&quot;?
             </Typography>
             <Typography>This is not reversible.</Typography>
 

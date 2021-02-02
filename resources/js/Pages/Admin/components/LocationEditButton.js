@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LocationEditButton = ({ onEdit, locationId, name }) => {
+const LocationEditButton = ({ scheduleId, location, onEdit }) => {
   const { errors, flash } = usePage().props;
   const classes = useStyles();
 
@@ -38,7 +38,8 @@ const LocationEditButton = ({ onEdit, locationId, name }) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    formData.set('location', locationId);
+    formData.set('id', location.id);
+    formData.set('scheduleId', scheduleId);
     e.target.reset();
 
     Inertia.post(`locations/update`, formData, {
@@ -66,7 +67,7 @@ const LocationEditButton = ({ onEdit, locationId, name }) => {
             <TextField
               required
               fullWidth
-              defaultValue={name}
+              defaultValue={location.name}
               name="name"
               variant="outlined"
               label="Location Name"

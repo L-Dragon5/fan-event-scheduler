@@ -25,23 +25,6 @@ class GuestController extends Controller
     }
 
     /**
-     * Get guest by id.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function view(Request $request, $id) {
-        try {
-            $guest = Guest::findOrFail($id);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid guest id', 401);
-        }
-
-        return $guest;
-    }
-
-    /**
      * Store guest in DB.
      * 
      * @param  \Illuminate\Http\Request  $request
@@ -49,6 +32,7 @@ class GuestController extends Controller
      */
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
+            'scheduleId' => 'numeric|required',
             'name' => 'string|required',
             'category' => 'string|nullable',
             'description' => 'string|nullable',
@@ -57,11 +41,16 @@ class GuestController extends Controller
             'social_ig' => 'url|nullable',
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors());
+        }
+
+        if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'guests', 'name')) {
+            return back()->withErrors(['error' => ['Guest already exists with this name']]);
         }
 
         $guest = new Guest;
+        $guest->schedule_id = $request->scheduleId;
         $guest->name = $request->name;
         $guest->category = $request->category;
         $guest->description = $request->description;
@@ -71,9 +60,9 @@ class GuestController extends Controller
         $success = $guest->save();
 
         if ($success) {
-            return return_json_message('Created new guest succesfully', $this->successStatus);
+            return back()->with(['message' => 'Created new guest']);
         } else {
-            return return_json_message('Something went wrong while trying to create a new guest', 401);
+            return back()->withErrors(['error' => ['Something went wrong while trying to create a new guest']]);
         }
     }
 
@@ -81,12 +70,13 @@ class GuestController extends Controller
      * Update the guest content.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
             'name' => 'string|required',
             'category' => 'string|nullable',
             'description' => 'string|nullable',
@@ -95,12 +85,14 @@ class GuestController extends Controller
             'social_ig' => 'url|nullable',
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors());
         }
 
         try {
-            $guest = Guest::findOrFail($id);
+            $guest = Guest::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
             $guest->name = $request->name;
             $guest->category = $request->category;
             $guest->description = $request->description;
@@ -110,12 +102,12 @@ class GuestController extends Controller
             $success = $guest->save();
 
             if ($success) {
-                return return_json_message('Updated succesfully', $this->successStatus);
+                return back()->with(['message' => 'Updated guest']);
             } else {
-                return return_json_message('Something went wrong while trying to update', 401);
+                return back()->withErrors(['error' => ['Something went wrong while trying to update guest']]);
             }
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid guest id', 401);
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors(['errors' => ['Could not find guest']]);
         }
     }
 
@@ -123,16 +115,27 @@ class GuestController extends Controller
      * Remove guest by id.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id) {
-        $success = Guest::destroy($id);
+    public function destroy(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
+        ]);
 
-        if ($success) {
-            return return_json_message('Delete succesfully', $this->successStatus);
-        } else {
-            return return_json_message('Did not find a guest to remove', 401);
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors());
+        }
+
+        try {
+            $guest = Guest::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            $guest->delete();
+            
+            return back()->with(['message' => 'Removed guest']);
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors(['errors' => ['Could not find guest']]);
         }
     }
 }

@@ -37,7 +37,7 @@ class LocationController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            return back()->withErrors($validator->errors());
         }
 
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'locations', 'name')) {
@@ -65,27 +65,33 @@ class LocationController extends Controller
      */
     public function update(Request $request) {
         $validator = Validator::make($request->all(), [
-            'location' => 'numeric|required',
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
             'name' => 'string|required',
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            return back()->withErrors($validator->errors());
         }
 
-        if (check_for_duplicate(['id' => $request->id], $request->name, 'locations', 'name')) {
+        if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'locations', 'name')) {
             return back()->withErrors(['error' => ['Location already exists with this name']]);
         }
 
-        $location = Location::find($request->location);
-        $location->name = trim($request->name);
+        try {
+            $location = Location::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            $location->name = trim($request->name);
+            $success = $location->save();
 
-        $success = $location->save();
-
-        if ($success) {
-            return back()->with(['message' => 'Updated location']);
-        } else {
-            return back()->withErrors(['error' => ['Something went wrong while trying to update location']]);
+            if ($success) {
+                return back()->with(['message' => 'Updated location']);
+            } else {
+                return back()->withErrors(['error' => ['Something went wrong while trying to update location']]);
+            }
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors(['errors' => ['Could not find location']]);
         }
     }
 
@@ -97,15 +103,23 @@ class LocationController extends Controller
      */
     public function destroy(Request $request) {
         $validator = Validator::make($request->all(), [
-            'location' => 'numeric|required',
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            return back()->withErrors($validator->errors());
         }
 
-        Location::destroy($request->location);
-
-        return back()->with(['message' => 'Removed location']);
+        try {
+            $location = Location::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            $location->delete();
+        
+            return back()->with(['message' => 'Removed location']);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return back()->withErrors(['errors' => ['Could not find location']]);
+        }
     }
 }

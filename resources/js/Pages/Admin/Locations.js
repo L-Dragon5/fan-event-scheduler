@@ -50,23 +50,24 @@ const Locations = ({ scheduleId, locations }) => {
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
+                  <TableCell>Link</TableCell>
                   <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {locations.map((location) => (
                   <TableRow key={location.name}>
-                    <TableCell component="th" scope="row">
-                      {location.name}
-                    </TableCell>
+                    <TableCell>{location.name}</TableCell>
+                    <TableCell>https://twitch.tv/</TableCell>
                     <TableCell align="right">
                       <LocationEditButton
-                        locationId={location.id}
-                        name={location.name}
+                        scheduleId={scheduleId}
+                        location={location}
                         onEdit={handleReload}
                       />
                       <LocationDeleteButton
-                        locationId={location.id}
+                        scheduleId={scheduleId}
+                        location={location}
                         onDelete={handleReload}
                       />
                     </TableCell>

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LocationAddButton = ({ onAdd, scheduleId }) => {
+const LocationAddButton = ({ scheduleId, onAdd }) => {
   const { errors, flash } = usePage().props;
   const classes = useStyles();
 
