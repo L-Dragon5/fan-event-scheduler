@@ -13,8 +13,6 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { Add } from '@material-ui/icons';
 
-import AlertMessage from './AlertMessage';
-
 const useStyles = makeStyles((theme) => ({
   baseButton: {
     backgroundColor: theme.palette.primary.main,
@@ -63,9 +61,6 @@ const GuestAddButton = ({ scheduleId, onAdd }) => {
 
   return (
     <>
-      {errors.error && <AlertMessage type="error" content={errors.error[0]} />}
-      {flash.message && <AlertMessage type="success" content={flash.message} />}
-
       <ButtonBase
         focusRipple
         key="add-location-button"

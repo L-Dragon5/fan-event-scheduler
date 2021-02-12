@@ -4,7 +4,6 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Guest;
 
 class GuestController extends Controller
@@ -31,7 +30,7 @@ class GuestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
             'category' => 'string|nullable',
@@ -41,12 +40,8 @@ class GuestController extends Controller
             'social_ig' => 'url|nullable',
         ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator->errors());
-        }
-
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'guests', 'name')) {
-            return back()->withErrors(['error' => ['Guest already exists with this name']]);
+            return back()->withErrors('Guest already exists with this name');
         }
 
         $guest = new Guest;
@@ -60,9 +55,9 @@ class GuestController extends Controller
         $success = $guest->save();
 
         if ($success) {
-            return back()->with(['message' => 'Created new guest']);
+            return back()->with('message', 'Created new guest');
         } else {
-            return back()->withErrors(['error' => ['Something went wrong while trying to create a new guest']]);
+            return back()->withErrors('Something went wrong while trying to create a new guest');
         }
     }
 
@@ -74,7 +69,7 @@ class GuestController extends Controller
      */
     public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'id' => 'numeric|required',
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
@@ -84,10 +79,6 @@ class GuestController extends Controller
             'social_tw' => 'url|nullable',
             'social_ig' => 'url|nullable',
         ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator->errors());
-        }
 
         try {
             $guest = Guest::where('id', '=', $request->id)
@@ -102,12 +93,12 @@ class GuestController extends Controller
             $success = $guest->save();
 
             if ($success) {
-                return back()->with(['message' => 'Updated guest']);
+                return back()->with('message', 'Updated guest');
             } else {
-                return back()->withErrors(['error' => ['Something went wrong while trying to update guest']]);
+                return back()->withErrors('Something went wrong while trying to update guest');
             }
         } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
-            return back()->withErrors(['errors' => ['Could not find guest']]);
+            return back()->withErrors('Could not find guest');
         }
     }
 
@@ -118,14 +109,10 @@ class GuestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'id' => 'numeric|required',
             'scheduleId' => 'numeric|required',
         ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator->errors());
-        }
 
         try {
             $guest = Guest::where('id', '=', $request->id)
@@ -133,9 +120,9 @@ class GuestController extends Controller
                 ->firstOrFail();
             $guest->delete();
             
-            return back()->with(['message' => 'Removed guest']);
+            return back()->with('message', 'Removed guest');
         } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
-            return back()->withErrors(['errors' => ['Could not find guest']]);
+            return back()->withErrors('Could not find guest');
         }
     }
 }

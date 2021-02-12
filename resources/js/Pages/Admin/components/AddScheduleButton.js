@@ -13,8 +13,6 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { Add } from '@material-ui/icons';
 
-import AlertMessage from './AlertMessage';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
@@ -81,9 +79,6 @@ const AddScheduleButton = ({ onAdd }) => {
 
   return (
     <>
-      {errors.error && <AlertMessage type="error" content={errors.error[0]} />}
-      {flash.message && <AlertMessage type="success" content={flash.message} />}
-
       <ButtonBase
         focusRipple
         key="add-schedule-button"

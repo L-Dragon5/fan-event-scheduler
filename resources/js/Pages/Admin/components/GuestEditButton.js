@@ -6,8 +6,6 @@ import { Button, ButtonGroup, Box, Drawer, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Edit } from '@material-ui/icons';
 
-import AlertMessage from './AlertMessage';
-
 const useStyles = makeStyles((theme) => ({
   baseButton: {
     cursor: 'pointer',
@@ -51,9 +49,6 @@ const GuestEditButton = ({ scheduleId, guest, onEdit }) => {
 
   return (
     <>
-      {errors.error && <AlertMessage type="error" content={errors.error[0]} />}
-      {flash.message && <AlertMessage type="success" content={flash.message} />}
-
       <Edit
         key="edit-guest-button"
         className={classes.baseButton}

@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import { SnackbarProvider } from 'notistack';
 
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { blue, pink } from '@material-ui/core/colors';
 
 import AdminScheduleNavbar from './components/AdminScheduleNavbar';
+import SnackbarMessages from './SnackbarMessages';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,11 +22,19 @@ const AdminScheduleLayout = ({ title, scheduleId, children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <AdminScheduleNavbar scheduleId={scheduleId} />
-        <main style={{ flex: '1 1 auto' }}>{children}</main>
-      </div>
+      <SnackbarProvider
+        maxSnack={3}
+        dense
+        anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+        autoHideDuration={2000}
+      >
+        <SnackbarMessages />
+        <CssBaseline />
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          <AdminScheduleNavbar scheduleId={scheduleId} />
+          <main style={{ flex: '1 1 auto' }}>{children}</main>
+        </div>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 };

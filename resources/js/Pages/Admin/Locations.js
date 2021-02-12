@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
 import {
   Box,
+  Drawer,
   Paper,
   Typography,
   Table,
@@ -15,9 +16,12 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 import AdminScheduleLayout from './AdminScheduleLayout';
-import LocationAddButton from './components/LocationAddButton';
-import LocationEditButton from './components/LocationEditButton';
-import LocationDeleteButton from './components/LocationDeleteButton';
+import ButtonAdd from './components/buttons/ButtonAdd';
+import ButtonEdit from './components/buttons/ButtonEdit';
+import ButtonDelete from './components/buttons/ButtonDelete';
+import FormLocationAdd from './components/forms/FormLocationAdd';
+import FormLocationEdit from './components/forms/FormLocationEdit';
+import FormLocationDelete from './components/forms/FormLocationDelete';
 
 const useStyles = makeStyles((theme) => ({
   contentRoot: {
@@ -29,8 +33,52 @@ const useStyles = makeStyles((theme) => ({
 const Locations = ({ scheduleId, locations }) => {
   const classes = useStyles();
 
+  const [drawerStatus, setDrawerStatus] = useState(false);
+  const [drawerContent, setDrawerContent] = useState('');
+
+  const handleClose = () => {
+    setDrawerStatus(false);
+    setDrawerContent('');
+  };
+
   const handleReload = () => {
     Inertia.reload({ only: ['locations'] });
+  };
+
+  const handleAdd = () => {
+    setDrawerContent(
+      <FormLocationAdd
+        closeDrawer={handleClose}
+        reloadPage={handleReload}
+        scheduleId={scheduleId}
+      />,
+    );
+    setDrawerStatus(true);
+  };
+
+  const handleEdit = (location) => {
+    setDrawerContent(
+      <FormLocationEdit
+        closeDrawer={handleClose}
+        reloadPage={handleReload}
+        scheduleId={scheduleId}
+        location={location}
+      />,
+    );
+    setDrawerStatus(true);
+  };
+
+  const handleDelete = (locationId, locationName) => {
+    setDrawerContent(
+      <FormLocationDelete
+        closeDrawer={handleClose}
+        reloadPage={handleReload}
+        scheduleId={scheduleId}
+        locationId={locationId}
+        locationName={locationName}
+      />,
+    );
+    setDrawerStatus(true);
   };
 
   return (
@@ -42,9 +90,13 @@ const Locations = ({ scheduleId, locations }) => {
           </Typography>
         </Box>
 
-        <LocationAddButton scheduleId={scheduleId} onAdd={handleReload} />
+        <Drawer anchor="right" open={drawerStatus}>
+          <Box>{drawerContent}</Box>
+        </Drawer>
 
-        {locations && locations.length ? (
+        <ButtonAdd onClick={handleAdd}>Add Location</ButtonAdd>
+
+        {locations?.length ? (
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="table of location">
               <TableHead>
@@ -55,20 +107,14 @@ const Locations = ({ scheduleId, locations }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {locations.map((location) => (
+                {locations?.map((location) => (
                   <TableRow key={location.name}>
                     <TableCell>{location.name}</TableCell>
                     <TableCell>https://twitch.tv/</TableCell>
                     <TableCell align="right">
-                      <LocationEditButton
-                        scheduleId={scheduleId}
-                        location={location}
-                        onEdit={handleReload}
-                      />
-                      <LocationDeleteButton
-                        scheduleId={scheduleId}
-                        location={location}
-                        onDelete={handleReload}
+                      <ButtonEdit onClick={() => handleEdit(location)} />
+                      <ButtonDelete
+                        onClick={() => handleDelete(location.id, location.name)}
                       />
                     </TableCell>
                   </TableRow>

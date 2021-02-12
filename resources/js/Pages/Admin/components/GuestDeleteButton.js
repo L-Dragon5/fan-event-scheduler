@@ -12,8 +12,6 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { Delete } from '@material-ui/icons';
 
-import AlertMessage from './AlertMessage';
-
 const useStyles = makeStyles((theme) => ({
   baseButton: {
     cursor: 'pointer',
@@ -60,9 +58,6 @@ const GuestDeleteButton = ({ scheduleId, guest, onDelete }) => {
 
   return (
     <>
-      {errors.error && <AlertMessage type="error" content={errors.error[0]} />}
-      {flash.message && <AlertMessage type="success" content={flash.message} />}
-
       <Delete
         key="delete-guest-button"
         className={classes.baseButton}
