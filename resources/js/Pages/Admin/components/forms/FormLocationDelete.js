@@ -5,9 +5,6 @@ import { Button, ButtonGroup, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  baseButton: {
-    cursor: 'pointer',
-  },
   form: {
     padding: theme.spacing(1),
   },

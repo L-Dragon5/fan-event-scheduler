@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
 import {
   Box,
+  Drawer,
   Paper,
   Typography,
   Table,
@@ -15,9 +16,12 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 import AdminScheduleLayout from './AdminScheduleLayout';
-import GuestAddButton from './components/GuestAddButton';
-import GuestEditButton from './components/GuestEditButton';
-import GuestDeleteButton from './components/GuestDeleteButton';
+import ButtonAdd from './components/buttons/ButtonAdd';
+import ButtonEdit from './components/buttons/ButtonEdit';
+import ButtonDelete from './components/buttons/ButtonDelete';
+import FormGuestAdd from './components/forms/FormGuestAdd';
+import FormGuestEdit from './components/forms/FormGuestEdit';
+import FormGuestDelete from './components/forms/FormGuestDelete';
 
 const useStyles = makeStyles((theme) => ({
   contentRoot: {
@@ -29,8 +33,52 @@ const useStyles = makeStyles((theme) => ({
 const Guests = ({ scheduleId, guests }) => {
   const classes = useStyles();
 
+  const [drawerStatus, setDrawerStatus] = useState(false);
+  const [drawerContent, setDrawerContent] = useState('');
+
+  const handleClose = () => {
+    setDrawerStatus(false);
+    setDrawerContent('');
+  };
+
   const handleReload = () => {
     Inertia.reload({ only: ['guests'] });
+  };
+
+  const handleAdd = () => {
+    setDrawerContent(
+      <FormGuestAdd
+        closeDrawer={handleClose}
+        reloadPage={handleReload}
+        scheduleId={scheduleId}
+      />,
+    );
+    setDrawerStatus(true);
+  };
+
+  const handleEdit = (guest) => {
+    setDrawerContent(
+      <FormGuestEdit
+        closeDrawer={handleClose}
+        reloadPage={handleReload}
+        scheduleId={scheduleId}
+        guest={guest}
+      />,
+    );
+    setDrawerStatus(true);
+  };
+
+  const handleDelete = (guestId, guestName) => {
+    setDrawerContent(
+      <FormGuestDelete
+        closeDrawer={handleClose}
+        reloadPage={handleReload}
+        scheduleId={scheduleId}
+        guestId={guestId}
+        guestName={guestName}
+      />,
+    );
+    setDrawerStatus(true);
   };
 
   return (
@@ -42,9 +90,13 @@ const Guests = ({ scheduleId, guests }) => {
           </Typography>
         </Box>
 
-        <GuestAddButton scheduleId={scheduleId} onAdd={handleReload} />
+        <Drawer anchor="right" open={drawerStatus}>
+          <Box>{drawerContent}</Box>
+        </Drawer>
 
-        {guests && guests.length ? (
+        <ButtonAdd onClick={handleAdd}>Add Guest</ButtonAdd>
+
+        {guests?.length ? (
           <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="table of guest">
               <TableHead>
@@ -66,15 +118,9 @@ const Guests = ({ scheduleId, guests }) => {
                       {guest.social_tw} {guest.social_fb} {guest.social_ig}
                     </TableCell>
                     <TableCell align="right">
-                      <GuestEditButton
-                        scheduleId={scheduleId}
-                        guest={guest}
-                        onEdit={handleReload}
-                      />
-                      <GuestDeleteButton
-                        scheduleId={scheduleId}
-                        guest={guest}
-                        onDelete={handleReload}
+                      <ButtonEdit onClick={() => handleEdit(guest)} />
+                      <ButtonDelete
+                        onClick={() => handleDelete(guest.id, guest.name)}
                       />
                     </TableCell>
                   </TableRow>
