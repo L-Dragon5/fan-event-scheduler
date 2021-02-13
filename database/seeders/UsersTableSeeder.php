@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class PartnersTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +15,9 @@ class PartnersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('partners')->insert([
-            'name' => 'Google',
-            'url' => 'https://wwwgoogle.com/'
+        DB::table('users')->insert([
+            'email' => 'localhost@test',
+            'password' => Hash::make('password'),
         ]);
     }
 }

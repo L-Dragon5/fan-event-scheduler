@@ -17,6 +17,7 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->string('name', 255);
+            $table->string('url', 255)->nullable();
         });
     }
 

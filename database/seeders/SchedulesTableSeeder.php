@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PartnersTableSeeder extends Seeder
+class SchedulesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class PartnersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('partners')->insert([
-            'name' => 'Google',
-            'url' => 'https://wwwgoogle.com/'
+        DB::table('schedules')->insert([
+            'user_id' => 1,
+            'name' => 'Schedule A'
         ]);
     }
 }

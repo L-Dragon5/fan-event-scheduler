@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class GuestsTableSeeder extends Seeder
 {
@@ -14,22 +15,26 @@ class GuestsTableSeeder extends Seeder
     public function run()
     {
         DB::table('guests')->insert([
-            'name' => 'Guest 1',
+            'schedule_id' => 1,
+            'name' => 'Guest A',
+            'category' => 'Voice Actor'
+        ]);
+
+        DB::table('guests')->insert([
+            'schedule_id' => 1,
+            'name' => 'Guest B',
             'category' => 'Voice Actress'
         ]);
 
         DB::table('guests')->insert([
-            'name' => 'Guest 2',
-            'category' => 'Voice Actress'
-        ]);
-
-        DB::table('guests')->insert([
-            'name' => 'Guest 3',
+            'schedule_id' => 1,
+            'name' => 'Guest C',
             'category' => 'Cosplay'
         ]);
 
         DB::table('guests')->insert([
-            'name' => 'Guest 4',
+            'schedule_id' => 1,
+            'name' => 'Guest D',
             'category' => 'Cosplay'
         ]);
     }
