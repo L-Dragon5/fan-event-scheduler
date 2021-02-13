@@ -4,7 +4,6 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Rule;
 
 class RuleController extends Controller
@@ -31,24 +30,27 @@ class RuleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
+            'scheduleId' => 'numeric|required',
             'title' => 'string|required',
             'description' => 'string|nullable'
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
+        if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->title, 'rules', 'title')) {
+            return back()->withErrors('Rule already exists with this title');
         }
 
         $rule = new Rule;
+        $rule->schedule_id = $request->scheduleId;
         $rule->title = $request->title;
         $rule->description = $request->description;
+
         $success = $rule->save();
 
         if ($success) {
-            return return_json_message('Created new rule succesfully', $this->successStatus);
+            return back()->with('message', 'Created new rule');
         } else {
-            return return_json_message('Something went wrong while trying to create a new rule', 401);
+            return back()->withErrors(['Something went wrong while trying to create a new rule']);
         }
     }
 
@@ -59,30 +61,38 @@ class RuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
             'title' => 'string|required',
             'description' => 'string|nullable'
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
-        }
-
         try {
-            $rule = Rule::findOrFail($id);
-            $rule->title = $request->title;
+            $rule = Rule::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+
+            if (strcmp(trim($request->title), $location->title) !== 0) {
+                if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->title, 'rules', 'title')) {
+                    return back()->withErrors('Rule already exists with this title');
+                } else {
+                    $rule->name = trim($request->title);
+                }
+            }
+
             $rule->description = $request->description;
             $success = $rule->save();
 
             if ($success) {
-                return return_json_message('Updated succesfully', $this->successStatus);
+                return back()->with('message', 'Updated rule');
             } else {
-                return return_json_message('Something went wrong while trying to update', 401);
+                return back()->withErrors('Something went wrong while trying to update rule');
             }
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid rule id', 401);
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors('Could not find rule');
         }
     }
 
@@ -93,13 +103,21 @@ class RuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id) {
-        $success = Rule::destroy($id);
+    public function destroy(Request $request) {
+        $request->validate([
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
+        ]);
 
-        if ($success) {
-            return return_json_message('Deleted succesfully', $this->successStatus);
-        } else {
-            return return_json_message('Did not find a rule to remove', 401);
+        try {
+            $rule = Rule::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            $rule->delete();
+            
+            return back()->with('message', 'Removed rule');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return back()->withErrors('Could not find rule');
         }
     }
 }

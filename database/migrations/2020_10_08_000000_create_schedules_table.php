@@ -17,6 +17,12 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('name', 255);
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('social_fb', 255)->nullable();
+            $table->string('social_tw', 255)->nullable();
+            $table->string('social_ig', 255)->nullable();
+            $table->string('social_web', 255)->nullable();
         });
     }
 

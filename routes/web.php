@@ -43,13 +43,18 @@ Route::domain('admin.saas-event-schedule.test')->group(function () {
                 Route::get('locations', [LocationController::class, 'index'])->name('schedule-locations');
                 Route::get('maps', [MapController::class, 'index'])->name('schedule-maps');
                 Route::get('rules', [RuleController::class, 'index'])->name('schedule-rules');
+                Route::get('settings', [ScheduleController::class, 'settingsIndex'])->name('schedule-settings');
 
+                Route::post('update', [ScheduleController::class, 'update']);
                 Route::post('locations/store', [LocationController::class, 'store']);
                 Route::post('locations/update', [LocationController::class, 'update']);
                 Route::post('locations/destroy', [LocationController::class, 'destroy']);
                 Route::post('guests/store', [GuestController::class, 'store']);
                 Route::post('guests/update', [GuestController::class, 'update']);
                 Route::post('guests/destroy', [GuestController::class, 'destroy']);
+                Route::post('rules/store', [RuleController::class, 'store']);
+                Route::post('rules/update', [RuleController::class, 'update']);
+                Route::post('rules/destroy', [RuleController::class, 'destroy']);
             });
         });
     });

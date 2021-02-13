@@ -80,10 +80,10 @@ const Schedules = ({ schedules }) => {
         </Box>
 
         <Grid container spacing={3}>
-          {schedules.map((schedule) => (
+          {schedules?.map((schedule) => (
             <Grid key={schedule.name} item xs={12} sm={6} md={4}>
               {schedule.image === 'add' ? (
-                <AddScheduleButton onAdd={handleReload} />
+                <AddScheduleButton reloadPage={handleReload} />
               ) : (
                 <ScheduleButton
                   id={schedule.id}

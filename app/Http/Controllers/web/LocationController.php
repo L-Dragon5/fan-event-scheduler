@@ -33,7 +33,7 @@ class LocationController extends Controller
         $request->validate([
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
-            'url' => 'string',
+            'url' => 'url|nullable',
         ]);
 
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'locations', 'name')) {
@@ -65,7 +65,7 @@ class LocationController extends Controller
             'id' => 'numeric|required',
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
-            'url' => 'string|url',
+            'url' => 'url|nullable',
         ]);
 
         try {

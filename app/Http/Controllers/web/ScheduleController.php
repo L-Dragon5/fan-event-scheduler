@@ -6,12 +6,11 @@ use Inertia\Inertia;
 use App\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of schedules.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,6 +30,25 @@ class ScheduleController extends Controller
     }
 
     /**
+     * Display form with schedule's settings.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function settingsIndex($scheduleId) {
+        try {
+            $schedule = Schedule::findOrFail($scheduleId);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return back()->withErrors(['Invalid schedule id']);
+        }
+
+        return Inertia::render('Admin/Settings', [
+            'scheduleId' => $scheduleId,
+            'schedule' => $schedule,
+        ])->withViewData(['title' => 'Schedule Settings']);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,35 +56,43 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'name' => 'string|required',
+            'start_date' => 'date|required',
+            'end_date' => 'date|required',
+            'social_fb' => 'string|nullable',
+            'social_tw' => 'string|nullable',
+            'social_ig' => 'string|nullable',
+            'social_web' => 'string|nullable',
         ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        }
 
         $user_id = Auth::id();
 
         if (check_for_duplicate(['user_id' => $user_id], $request->name, 'schedules', 'name')) {
-            return back()->withErrors(['error' => ['Schedule already exists with this name']]);
+            return back()->withErrors(['Schedule already exists with this name']);
         }
 
-        $existing_schedule_count = Schedule::count();
+        $existing_schedule_count = Schedule::where('user_id', '=', $user_id)->count();
         if ($existing_schedule_count > 0) {
-            return back()->withErrors(['error' => ['Not allowed to create more than 1 schedule']]);
+            return back()->withErrors(['Not allowed to create more than 1 schedule']);
         }
 
         $schedule = new Schedule;
         $schedule->user_id = $user_id;
         $schedule->name = trim($request->name);
+        $schedule->start_date = trim($request->start_date);
+        $schedule->end_date = trim($request->end_date);
+        $schedule->social_fb = trim($request->social_fb);
+        $schedule->social_tw = trim($request->social_tw);
+        $schedule->social_ig = trim($request->social_ig);
+        $schedule->social_web = trim($request->social_web);
 
         $success = $schedule->save();
 
         if ($success) {
-            return back()->with(['message' => 'Created new schedule succesfully']);
+            return back()->with('message', 'Created new schedule succesfully');
         } else {
-            return back()->withErrors(['error' => ['Something went wrong while trying to create a new schedule']]);
+            return back()->withErrors(['Something went wrong while trying to create a new schedule']);
         }
     }
 
@@ -78,12 +104,10 @@ class ScheduleController extends Controller
      */
     public function show($scheduleId)
     {
-        $schedule = null;
-
         try {
-            $schedule = Schedule::findOrFail($scheduleId);
+            Schedule::findOrFail($scheduleId);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return back()->withErrors(['error' => ['Invalid schedule id']]);
+            return back()->withErrors(['Invalid schedule id']);
         }
         
         return Inertia::render('Admin/Dashboard', [
@@ -98,48 +122,52 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
+            'id' => 'numeric|required',
             'name' => 'string|required',
+            'start_date' => 'date|required',
+            'end_date' => 'date|required',
+            'social_fb' => 'string|nullable',
+            'social_tw' => 'string|nullable',
+            'social_ig' => 'string|nullable',
+            'social_web' => 'string|nullable',
         ]);
-
-        if ($validator->fails()) {
-            return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
-        }
 
         $user_id = Auth::id();
 
         try {
-            $schedule = Schedule::findOrFail($id);
+            $schedule = Schedule::findOrFail($request->id);
 
-            if ($schedule->user_id === $user_id) {
-                // If they want to change title
-                if ($request->has('name')) {
-                    $trimmed_name = trim($request->name);
+            // If they want to change name
+            if ($request->has('name')) {
+                $trimmed_name = trim($request->name);
 
-                    // Check if new title is same as old title
-                    if ($trimmed_name === $schedule->name) {
-                        // Do nothing
-                    } else if(check_for_duplicate(['user_id' => $user_id], $request->title, 'schedules', 'name')) {
-                        return return_json_message('Schedule name already exists.', self::STATUS_BAD_REQUEST);
-                    } else {
-                        $schedule->name = $trimmed_name;
-                    }
-                }
-
-                $success = $schedule->save();
-
-                if ($success) {
-                    return return_json_message('Updated series succesfully', self::STATUS_SUCCESS, ['schedule' => $schedule]);
+                // Check if new title is same as old title
+                if(check_for_duplicate(['user_id' => $user_id], $request->title, 'schedules', 'name')) {
+                    return back()->withErrors(['Schedule name already exists']);
                 } else {
-                    return return_json_message('Something went wrong while trying to update series', self::STATUS_UNPROCESSABLE);
+                    $schedule->name = $trimmed_name;
                 }
+            }
+
+            $schedule->start_date = trim($request->start_date);
+            $schedule->end_date = trim($request->end_date);
+            $schedule->social_fb = trim($request->social_fb);
+            $schedule->social_tw = trim($request->social_tw);
+            $schedule->social_ig = trim($request->social_ig);
+            $schedule->social_web = trim($request->social_web);
+
+            $success = $schedule->save();
+
+            if ($success) {
+                return back()->with('message', 'Updated schedule successfully');
             } else {
-                return return_json_message('You do not have permission to edit this schedule', self::STATUS_UNAUTHORIZED);
+                return back()->withErrors(['Something went wrong while trying to update schedule']);
             }
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid schedule id', self::STATUS_BAD_REQUEST);
+            return back()->withErrors(['Invalid schedule id']);
         }
     }
 
@@ -149,27 +177,19 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $user_id = Auth::id();
+        $request->validate([
+            'id' => 'numeric|required'
+        ]);
 
         try {
             $schedule = Schedule::findOrFail($id);
-            $success = false;
-
-            if ($schedule->user_id === $user_id) {
-                $success = $schedule->delete();
-            } else {
-                return return_json_message('You do not have permission to delete this schedule', self::STATUS_UNAUTHORIZED);
-            }
+            $schedule->delete();
     
-            if ($success) {
-                return return_json_message('Deleted schedule succesfully', self::STATUS_SUCCESS);
-            } else {
-                return return_json_message('Something went wrong while trying to remove schedule', self::STATUS_UNPROCESSABLE);
-            }
+            return back()->with('message', 'Deleted schedule successfully');
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid schedule id', self::STATUS_BAD_REQUEST);
+            return back()->withErrors(['Invalid schedule id']);
         }
     }
 }

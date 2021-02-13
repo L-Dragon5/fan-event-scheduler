@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import { SnackbarProvider } from 'notistack';
 
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { orange, pink } from '@material-ui/core/colors';
 
 import AdminUserNavbar from './components/AdminUserNavbar';
+import SnackbarMessages from '../SnackbarMessages';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,9 +22,17 @@ const AdminUserLayout = ({ title, children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AdminUserNavbar />
-      <main>{children}</main>
+      <SnackbarProvider
+        maxSnack={3}
+        dense
+        anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+        autoHideDuration={2000}
+      >
+        <SnackbarMessages />
+        <CssBaseline />
+        <AdminUserNavbar />
+        <main>{children}</main>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 };

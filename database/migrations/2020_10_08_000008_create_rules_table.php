@@ -17,7 +17,7 @@ class CreateRulesTable extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->string('title', 255);
-            $table->mediumText('description')->nullable();
+            $table->text('description')->nullable();
         });
     }
 

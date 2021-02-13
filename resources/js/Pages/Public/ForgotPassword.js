@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import { usePage } from '@inertiajs/inertia-react';
+import { SnackbarProvider } from 'notistack';
 
 import {
   Avatar,
@@ -17,7 +17,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Components
-import ErrorBox from './components/ErrorBox';
+import SnackbarMessages from '../SnackbarMessages';
 import Copyright from './components/Copyright';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ForgotPassword = () => {
   const classes = useStyles();
-  const { errors, flash } = usePage().props;
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
@@ -53,60 +52,66 @@ const ForgotPassword = () => {
   }, []);
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Forgot Password
-        </Typography>
+    <SnackbarProvider
+      maxSnack={3}
+      dense
+      anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+      autoHideDuration={2000}
+    >
+      <SnackbarMessages />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Forgot Password
+          </Typography>
 
-        {errors.error && <ErrorBox content={errors.error[0]} />}
-        {flash.message && <ErrorBox content={flash.message} />}
-
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  type="email"
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
             </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Retrieve Password
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="/login" variant="body2">
-                Back to login
-              </Link>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Retrieve Password
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="/login" variant="body2">
+                  Back to login
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/home" variant="body2">
+                  Back to home
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link href="/home" variant="body2">
-                Back to home
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </Container>
+    </SnackbarProvider>
   );
 };
 

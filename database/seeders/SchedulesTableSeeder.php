@@ -16,7 +16,9 @@ class SchedulesTableSeeder extends Seeder
     {
         DB::table('schedules')->insert([
             'user_id' => 1,
-            'name' => 'Schedule A'
+            'name' => 'Schedule A',
+            'start_date' => '2021-10-02',
+            'end_date' => '2021-10-03',
         ]);
     }
 }

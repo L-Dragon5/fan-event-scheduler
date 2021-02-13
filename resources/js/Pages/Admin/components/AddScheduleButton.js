@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import { usePage } from '@inertiajs/inertia-react';
 
 import {
   Button,
@@ -12,6 +11,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Add } from '@material-ui/icons';
+
+import FormScheduleAdd from './forms/FormScheduleAdd';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,40 +42,19 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.25rem',
     paddingTop: theme.spacing(2),
   },
-  form: {
-    padding: theme.spacing(1),
-  },
-  formField: {
-    marginBottom: theme.spacing(1),
-  },
 }));
 
-const AddScheduleButton = ({ onAdd }) => {
-  const { errors, flash } = usePage().props;
+const AddScheduleButton = ({ reloadPage }) => {
   const classes = useStyles();
 
   const [drawerStatus, setDrawerStatus] = useState(false);
 
-  const handleAddClick = () => {
-    setDrawerStatus(true);
-  };
-
-  const handleAddCancel = () => {
+  const handleClose = () => {
     setDrawerStatus(false);
   };
 
-  const handleAddSubmit = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    e.target.reset();
-
-    Inertia.post('/admin/schedules/create', formData, {
-      onSuccess: (page) => {
-        onAdd();
-        setDrawerStatus(false);
-      },
-    });
+  const handleAddClick = () => {
+    setDrawerStatus(true);
   };
 
   return (
@@ -94,30 +74,7 @@ const AddScheduleButton = ({ onAdd }) => {
       </ButtonBase>
       <Drawer anchor="right" open={drawerStatus}>
         <Box>
-          <form className={classes.form} onSubmit={handleAddSubmit}>
-            <TextField
-              required
-              fullWidth
-              name="name"
-              variant="outlined"
-              label="Schedule Name"
-              className={classes.formField}
-            />
-
-            <ButtonGroup aria-label="add form buttons">
-              <Button type="submit" variant="contained" color="primary">
-                Submit
-              </Button>
-              <Button
-                type="reset"
-                variant="contained"
-                color="secondary"
-                onClick={handleAddCancel}
-              >
-                Cancel
-              </Button>
-            </ButtonGroup>
-          </form>
+          <FormScheduleAdd closeDrawer={handleClose} reloadPage={reloadPage} />
         </Box>
       </Drawer>
     </>

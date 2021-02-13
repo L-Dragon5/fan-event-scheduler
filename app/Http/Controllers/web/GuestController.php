@@ -33,11 +33,11 @@ class GuestController extends Controller
         $request->validate([
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
-            'category' => 'string|nullable',
+            'category' => 'string|required',
             'description' => 'string|nullable',
-            'social_fb' => 'url|nullable',
-            'social_tw' => 'url|nullable',
-            'social_ig' => 'url|nullable',
+            'social_fb' => 'string|nullable',
+            'social_tw' => 'string|nullable',
+            'social_ig' => 'string|nullable',
         ]);
 
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'guests', 'name')) {
@@ -73,11 +73,11 @@ class GuestController extends Controller
             'id' => 'numeric|required',
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
-            'category' => 'string|nullable',
+            'category' => 'string|required',
             'description' => 'string|nullable',
-            'social_fb' => 'url|nullable',
-            'social_tw' => 'url|nullable',
-            'social_ig' => 'url|nullable',
+            'social_fb' => 'string|nullable',
+            'social_tw' => 'string|nullable',
+            'social_ig' => 'string|nullable',
         ]);
 
         try {

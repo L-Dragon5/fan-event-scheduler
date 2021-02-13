@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -23,7 +22,7 @@ class UserController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], TRUE)) {
             return Inertia::location(route('admin-base'));
         } else {
-            return back()->withErrors(['error' => ['Incorrect login credentials provided']]);
+            return back()->withErrors(['Incorrect login credentials provided']);
         }
     }
 
@@ -33,20 +32,16 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
             'g-recaptcha-response' => 'required|recaptcha',
         ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        }
-
         $existing_user = User::where('email', $request->email)->first();
         if (!empty($existing_user)) {
-            return back()->withErrors(['error' => ['E-mail is already registered']]);
+            return back()->withErrors(['E-mail is already registered']);
         }
 
         $input = $request->all();
@@ -63,30 +58,26 @@ class UserController extends Controller
      */
     public function updatePassword(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'old_password' => 'string|required',
             'new_password' => 'string|required',
         ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        }
-
         $existing_user = User::where('id', Auth::user()->id)->first();
         if (empty($existing_user)) {
-            return return_json_message('User doesn\'t exist', self::STATUS_BAD_REQUEST);
+            return back()->withErrors(['User doesn\'t exist']);
         } else {
             if (Hash::check($request->old_password, $existing_user->password)) {
                 $existing_user->password = Hash::make($request->new_password);
                 $success = $existing_user->save();
 
                 if ($success) {
-                    return back()->with(['message' => 'Updated password successfully']);
+                    return back()->with('message', 'Updated password successfully');
                 } else {
-                    return back()->withErrors(['error' => ['Something went wrong while saving']]);
+                    return back()->withErrors(['Something went wrong while saving']);
                 }
             } else {
-                return back()->withErrors(['error' => ['Old password doesn\'t match']]);
+                return back()->withErrors(['Old password doesn\'t match']);
             }
         }
     }
@@ -97,13 +88,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function forgotPassword(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'email' => 'required|email',
         ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        }
 
         $existing_user = User::where('email', $request->email)->first();
 
@@ -118,12 +105,12 @@ class UserController extends Controller
                 // Send email to specified email address.
                 Mail::to($existing_user->email)->send(new ResetPassword($new_password));
 
-                return back()->with(['message' => 'Sent password reset email']);
+                return back()->with('message', 'Sent password reset email');
             } else {
-                return back()->withErrors(['error' => ['Something went wrong while saving']]);
+                return back()->withErrors(['Something went wrong while saving']);
             }
         }
 
-        return back()->with(['message' => 'Sent password reset email']);
+        return back()->with('message', 'Sent password reset email');
     }
 }

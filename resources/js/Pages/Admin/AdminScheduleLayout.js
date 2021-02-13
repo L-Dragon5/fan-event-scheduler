@@ -6,7 +6,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { blue, pink } from '@material-ui/core/colors';
 
 import AdminScheduleNavbar from './components/AdminScheduleNavbar';
-import SnackbarMessages from './SnackbarMessages';
+import SnackbarMessages from '../SnackbarMessages';
 
 const theme = createMuiTheme({
   palette: {
