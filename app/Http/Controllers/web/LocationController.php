@@ -31,8 +31,9 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'string|required',
             'scheduleId' => 'numeric|required',
+            'name' => 'string|required',
+            'url' => 'string',
         ]);
 
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'locations', 'name')) {
@@ -42,6 +43,7 @@ class LocationController extends Controller
         $location = new Location;
         $location->schedule_id = $request->scheduleId;
         $location->name = trim($request->name);
+        $location->url = trim($request->url);
 
         $success = $location->save();
 
@@ -63,17 +65,23 @@ class LocationController extends Controller
             'id' => 'numeric|required',
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
+            'url' => 'string|url',
         ]);
-
-        if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'locations', 'name')) {
-            return back()->withErrors('Location already exists with this name');
-        }
 
         try {
             $location = Location::where('id', '=', $request->id)
                 ->where('schedule_id', '=', $request->scheduleId)
                 ->firstOrFail();
-            $location->name = trim($request->name);
+            
+            if (strcmp(trim($request->name), $location->name) !== 0) {
+                if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'locations', 'name')) {
+                    return back()->withErrors('Location already exists with this name');
+                } else {
+                    $location->name = trim($request->name);
+                }
+            }
+            
+            $location->url = trim($request->url);
             $success = $location->save();
 
             if ($success) {

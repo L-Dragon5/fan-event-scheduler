@@ -48,6 +48,16 @@ const FormLocationEdit = ({
         className={classes.formField}
       />
 
+      <TextField
+        fullWidth
+        type="url"
+        defaultValue={location.url}
+        name="url"
+        variant="outlined"
+        label="Location URL"
+        className={classes.formField}
+      />
+
       <ButtonGroup aria-label="add form buttons">
         <Button type="submit" variant="contained" color="primary">
           Update

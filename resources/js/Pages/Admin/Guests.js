@@ -110,7 +110,7 @@ const Guests = ({ scheduleId, guests }) => {
               </TableHead>
               <TableBody>
                 {guests?.map((guest) => (
-                  <TableRow key={guest.name}>
+                  <TableRow key={guest.id}>
                     <TableCell>{guest.name}</TableCell>
                     <TableCell>{guest.category}</TableCell>
                     <TableCell scope="small">{guest.description}</TableCell>

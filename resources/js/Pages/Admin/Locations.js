@@ -108,9 +108,9 @@ const Locations = ({ scheduleId, locations }) => {
               </TableHead>
               <TableBody>
                 {locations?.map((location) => (
-                  <TableRow key={location.name}>
+                  <TableRow key={location.id}>
                     <TableCell>{location.name}</TableCell>
-                    <TableCell>https://twitch.tv/</TableCell>
+                    <TableCell>{location.url}</TableCell>
                     <TableCell align="right">
                       <ButtonEdit onClick={() => handleEdit(location)} />
                       <ButtonDelete

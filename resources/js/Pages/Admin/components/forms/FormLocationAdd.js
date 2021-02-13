@@ -41,6 +41,15 @@ const FormLocationAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
         className={classes.formField}
       />
 
+      <TextField
+        fullWidth
+        type="url"
+        name="url"
+        variant="outlined"
+        label="Location URL"
+        className={classes.formField}
+      />
+
       <ButtonGroup aria-label="add form buttons">
         <Button type="submit" variant="contained" color="primary">
           Submit

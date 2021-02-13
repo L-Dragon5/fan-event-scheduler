@@ -84,7 +84,15 @@ class GuestController extends Controller
             $guest = Guest::where('id', '=', $request->id)
                 ->where('schedule_id', '=', $request->scheduleId)
                 ->firstOrFail();
-            $guest->name = $request->name;
+
+            if (strcmp(trim($request->name), $guest->name) !== 0) {
+                if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'guests', 'name')) {
+                    return back()->withErrors('Guest already exists with this name');
+                } else {
+                    $guest->name = trim($request->name);
+                }
+            }
+            
             $guest->category = $request->category;
             $guest->description = $request->description;
             $guest->social_fb = $request->social_fb;
