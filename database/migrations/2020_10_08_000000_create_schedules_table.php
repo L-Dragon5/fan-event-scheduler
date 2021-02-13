@@ -23,6 +23,8 @@ class CreateSchedulesTable extends Migration
             $table->string('social_tw', 255)->nullable();
             $table->string('social_ig', 255)->nullable();
             $table->string('social_web', 255)->nullable();
+            $table->boolean('is_live')->default(0);
+            $table->uuid('public_string')->nullable();
         });
     }
 

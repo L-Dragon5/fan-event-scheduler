@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import { Box, Grid, TextField, CssBaseline } from '@material-ui/core';
 
@@ -29,12 +28,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PublicSchedule = () => {
+const PublicSchedule = ({ schedule }) => {
   const classes = useStyles();
 
+  console.log(schedule);
+
   useEffect(() => {
-    document.title = 'Public Schedule';
-  }, []);
+    document.title = schedule.name;
+  }, [schedule]);
 
   return (
     <ThemeProvider theme={theme}>

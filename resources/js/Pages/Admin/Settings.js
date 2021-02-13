@@ -9,7 +9,6 @@ import FormScheduleEdit from './components/forms/FormScheduleEdit';
 
 const useStyles = makeStyles((theme) => ({
   contentRoot: {
-    marginLeft: '240px',
     flexGrow: 1,
     padding: theme.spacing(2),
   },
@@ -17,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     marginTop: theme.spacing(2),
     backgroundColor: 'white',
+  },
+  publicLink: {
+    marginTop: theme.spacing(4),
   },
 }));
 
@@ -38,6 +40,9 @@ const Settings = ({ scheduleId, schedule }) => {
 
         <Paper className={classes.formContainer}>
           <FormScheduleEdit reloadPage={handleReload} schedule={schedule} />
+          <Typography className={classes.publicLink}>
+            {schedule.public_link}
+          </Typography>
         </Paper>
       </Box>
     </AdminScheduleLayout>

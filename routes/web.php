@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\web\AuthController;
 use App\Http\Controllers\web\EventController;
+use App\Http\Controllers\web\EventTypeController;
 use App\Http\Controllers\web\ExhibitorController;
 use App\Http\Controllers\web\GuestController;
 use App\Http\Controllers\web\LocationController;
@@ -38,6 +39,7 @@ Route::domain('admin.saas-event-schedule.test')->group(function () {
         
             Route::prefix('schedule/{scheduleId}')->group(function () {
                 Route::get('events', [EventController::class, 'index'])->name('schedule-events');
+                Route::get('eventTypes', [EventTypeController::class, 'index'])->name('schedule-event-types');
                 Route::get('exhibitors', [ExhibitorController::class, 'index'])->name('schedule-exhibitors');
                 Route::get('guests', [GuestController::class, 'index'])->name('schedule-guests');
                 Route::get('locations', [LocationController::class, 'index'])->name('schedule-locations');
@@ -74,5 +76,9 @@ Route::get('/forgot-password', fn() => Inertia::render('Public/ForgotPassword')-
 
 // Public Routes
 Route::get('/', fn() => Inertia::render('Public/Index')->withViewData(['title' => 'Home']));
-Route::get('/s/{any}', fn() => Inertia::render('Public/PublicSchedule')->withViewData(['title' => 'Schedule']));
+
+// Public Schedule Routes
+Route::get('/s/{uuid}', [ScheduleController::class, 'showPublic']);
+
+// Anything that doesn't fit with above routes, send to home page.
 Route::get('/{any}', fn() => redirect('/'));

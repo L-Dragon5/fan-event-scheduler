@@ -15,6 +15,7 @@ class RulesTableSeeder extends Seeder
     public function run()
     {
         DB::table('rules')->insert([
+            'schedule_id' => 1,
             'title' => 'General Rules',
             'description' => 'Something goes in here'
         ]);

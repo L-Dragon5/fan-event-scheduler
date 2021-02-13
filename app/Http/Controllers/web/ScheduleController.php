@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ScheduleController extends Controller
 {
@@ -38,6 +39,10 @@ class ScheduleController extends Controller
     public function settingsIndex($scheduleId) {
         try {
             $schedule = Schedule::findOrFail($scheduleId);
+            
+            if (!empty($schedule->public_string)) {
+                $schedule->public_link = $this->createPublicLinkUrl($schedule->public_string);
+            }
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return back()->withErrors(['Invalid schedule id']);
         }
@@ -46,6 +51,45 @@ class ScheduleController extends Controller
             'scheduleId' => $scheduleId,
             'schedule' => $schedule,
         ])->withViewData(['title' => 'Schedule Settings']);
+    }
+
+    /**
+     * Display the Schedule admin dashboard.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($scheduleId)
+    {
+        try {
+            Schedule::findOrFail($scheduleId);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return back()->withErrors(['Invalid schedule id']);
+        }
+        
+        return Inertia::render('Admin/Dashboard', [
+            'scheduleId' => $scheduleId
+        ])->withViewData(['title' => 'Dashboard']);
+    }
+
+    /**
+     * Display the Public Schedule area.
+     * 
+     * @param uuid  $uuid
+     * @return \Illuminate\Http\Response
+     */
+    public function showPublic($uuid) {
+        try {
+            $schedule = Schedule::where('public_string', '=', $uuid)
+                ->where('is_live', '=', 1)
+                ->firstOrFail();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect('/');
+        }
+
+        return Inertia::render('Public/PublicSchedule', [
+            'schedule' => $schedule
+        ])->withViewData(['title' => $schedule->name]);
     }
 
     /**
@@ -59,7 +103,7 @@ class ScheduleController extends Controller
         $request->validate([
             'name' => 'string|required',
             'start_date' => 'date|required',
-            'end_date' => 'date|required',
+            'end_date' => 'date|after_or_equal:start_date|required',
             'social_fb' => 'string|nullable',
             'social_tw' => 'string|nullable',
             'social_ig' => 'string|nullable',
@@ -97,25 +141,6 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($scheduleId)
-    {
-        try {
-            Schedule::findOrFail($scheduleId);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return back()->withErrors(['Invalid schedule id']);
-        }
-        
-        return Inertia::render('Admin/Dashboard', [
-            'scheduleId' => $scheduleId
-        ])->withViewData(['title' => 'Dashboard']);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -128,11 +153,12 @@ class ScheduleController extends Controller
             'id' => 'numeric|required',
             'name' => 'string|required',
             'start_date' => 'date|required',
-            'end_date' => 'date|required',
+            'end_date' => 'date|after_or_equal:start_date|required',
             'social_fb' => 'string|nullable',
             'social_tw' => 'string|nullable',
             'social_ig' => 'string|nullable',
             'social_web' => 'string|nullable',
+            'is_live' => 'boolean|required',
         ]);
 
         $user_id = Auth::id();
@@ -158,6 +184,15 @@ class ScheduleController extends Controller
             $schedule->social_tw = trim($request->social_tw);
             $schedule->social_ig = trim($request->social_ig);
             $schedule->social_web = trim($request->social_web);
+            $schedule->is_live = trim($request->is_live);
+
+            // If the schedule is set to be publically visible, but there's no public identifier, create one.
+            // If the schedule is set to be hidden, but there's an identifier, remove it.
+            if ($schedule->is_live && empty($schedule->public_string)) {
+                $schedule->public_string = (string) Str::uuid();
+            } elseif (!$schedule->is_live && !empty($schedule->public_string)) {
+                $schedule->public_string = NULL;
+            }
 
             $success = $schedule->save();
 
@@ -191,5 +226,18 @@ class ScheduleController extends Controller
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return back()->withErrors(['Invalid schedule id']);
         }
+    }
+
+    /**
+     * Create public link using public_string UUID.
+     */
+    private function createPublicLinkUrl($uuid) {
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+            $protocol = 'https';
+        } else {
+            $protocol = 'http';
+        }
+      
+        return $protocol . '://' . preg_replace("/^(.*?)\.(.*)$/","$2",$_SERVER['HTTP_HOST']) . '/s/' . $uuid;
     }
 }

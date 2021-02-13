@@ -15,8 +15,17 @@ const SnackbarMessages = () => {
   }, [flash]);
 
   useEffect(() => {
+    let errorMsg = '';
     if (Array.isArray(errors) && errors.length >= 1) {
-      enqueueSnackbar(errors.join('\n'), {
+      errorMsg = errors.join('\n');
+    }
+
+    if (typeof errors === 'object') {
+      errorMsg = Object.values(errors).join('\n');
+    }
+
+    if (errorMsg !== '') {
+      enqueueSnackbar(errorMsg, {
         variant: 'error',
       });
     }

@@ -5,31 +5,23 @@ namespace App\Http\Controllers\web;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Event;
-use App\Location;
 use App\EventType;
 
-class EventController extends Controller
+class EventTypeController extends Controller
 {
     /**
-     * Retrieve all events by schedule.
+     * Retrieve all event types by schedule.
      * 
      * @param  integer  $scheduleId
      * @return \Illuminate\Http\Response
      */
     public function index($scheduleId) {
-        $events = Event::where('schedule_id', $scheduleId)->orderBy('created_at', 'DESC')->get();
+        $eventTypes = EventType::where('schedule_id', $scheduleId)->orderBy('name', 'ASC')->get();
 
-        // Set all events to location
-        foreach ($events as $event) {
-            $location = Location::find($event->location_id);
-            $event->location = $location->name;
-        }
-
-        return Inertia::render('Admin/Events', [
-            'events' => $events,
+        return Inertia::render('Admin/EventTypes', [
+            'eventTypes' => $eventTypes,
             'scheduleId' => $scheduleId,
-        ])->withViewData(['title' => 'Events']);
+        ])->withViewData(['title' => 'Event Types']);
     }
 
     

@@ -2,7 +2,7 @@
 Successor to the Fan Event Schedule.
 Schedule application for fan events built as a SaaS for ease-of-use for users.
 
-Built on Laravel REST API backend with a ReactJS frontend and MaterialUI.
+Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 
 ## To-Do
 - Main Site
@@ -76,16 +76,14 @@ Built on Laravel REST API backend with a ReactJS frontend and MaterialUI.
 4. Change `.env.example` file into `.env`
 5. Update entries within the `.env` file to match database and other information
    * If in production, be sure to set `APP_ENV=production` and `APP_DEBUG=false`
-   * Update `MIX_EVENT_NAME` with your event name in quotes
+   * Update `MIX_GOOGLE_RECAPTCHA_KEY` and `GOOGLE_RECAPTCHA_SECRET` with the necessary keys from Google ReCaptcha
 6. Generate a new key
    * `php artisan key:generate`
 7. Create database tables
    * `php artisan migrate`
    * If you want it seeded, then `php artisan migrate --seed`
    * You can wipe and seed again by doing `php artisan migrate:fresh --seed`
-8. Generate encryption keys for API Auth
-   * `php artisan passport:install`
-9. Create user account by sending register email and password to api url
+8. Create user account by sending register email and password to api url
    * Send `email`, `password`, `c_password` to `/api/register` via POST form-data
    * ` curl -X POST -F 'email=<email>' -F 'password=<password>' -F 'c_password=<password>' http://localhost/api/register`
 

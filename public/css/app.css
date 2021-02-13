@@ -33,3 +33,7 @@ li.collection-item > .collection-action-buttons {
 .collapsible-action-button {
   flex: 1 0 -1px;
 }
+
+#notistack-snackbar {
+  white-space: pre-wrap;
+}

@@ -13,36 +13,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Maps = ({ scheduleId, maps }) => {
+const EventTypes = ({ scheduleId, eventTypes }) => {
   const classes = useStyles();
 
   const handleReload = () => {
-    Inertia.reload({ only: ['maps'] });
+    Inertia.reload({ only: ['eventTypes'] });
   };
 
   return (
-    <AdminScheduleLayout title="Maps" scheduleId={scheduleId}>
+    <AdminScheduleLayout title="Event Types" scheduleId={scheduleId}>
       <Box className={classes.contentRoot}>
         <Box className={classes.title}>
           <Typography component="span" variant="h4">
-            Maps
+            Event Types
           </Typography>
         </Box>
 
-        {maps && maps.length ? (
-          maps.map((map) => (
-            <Box key={map.name}>
-              <div>{map.name}</div>
+        {eventTypes?.length ? (
+          eventTypes?.map((eventType) => (
+            <Box key={eventType.id}>
+              <div>{eventType.name}</div>
             </Box>
           ))
         ) : (
-          <Typography variant="body1">
-            No maps (This will be last due to image handling)
-          </Typography>
+          <Typography variant="body1">No event types</Typography>
         )}
       </Box>
     </AdminScheduleLayout>
   );
 };
 
-export default Maps;
+export default EventTypes;

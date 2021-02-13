@@ -32,7 +32,7 @@ const AdminScheduleLayout = ({ title, scheduleId, children }) => {
         <CssBaseline />
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           <AdminScheduleNavbar scheduleId={scheduleId} />
-          <main style={{ flex: '1 1 auto' }}>{children}</main>
+          <main style={{ flex: '1 1 0' }}>{children}</main>
         </div>
       </SnackbarProvider>
     </ThemeProvider>

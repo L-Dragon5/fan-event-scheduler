@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
-import { Button, ButtonGroup, TextField } from '@material-ui/core';
+import {
+  Button,
+  ButtonGroup,
+  FormControlLabel,
+  Switch,
+  TextField,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,11 +25,31 @@ const useStyles = makeStyles((theme) => ({
 const FormScheduleEdit = ({ reloadPage, schedule }) => {
   const classes = useStyles();
 
+  const [isLiveCheck, setIsLiveCheck] = useState(!!schedule.is_live);
+
+  const handleSwitch = (e) => {
+    // If hitting the switch, unchecks it, display warning.
+    if (!e.target.checked && schedule.is_live) {
+      if (
+        confirm(
+          'Doing so will remove the public link and a new one will be regenerated later, proceed?',
+        )
+      ) {
+        setIsLiveCheck(e.target.checked);
+      } else {
+        setIsLiveCheck(true);
+      }
+    } else {
+      setIsLiveCheck(e.target.checked);
+    }
+  };
+
   const handleEditSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     formData.set('id', schedule.id);
+    formData.set('is_live', isLiveCheck ? 1 : 0);
 
     Inertia.post(`/schedule/${schedule.id}/update`, formData, {
       onSuccess: (page) => {
@@ -47,21 +73,29 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
       <TextField
         required
         fullWidth
+        type="date"
         defaultValue={schedule.start_date}
         name="start_date"
         variant="outlined"
         label="Start Date"
         className={classes.formField}
+        inputProps={{
+          min: new Date().toISOString().split('T')[0],
+        }}
       />
 
       <TextField
         required
         fullWidth
+        type="date"
         defaultValue={schedule.end_date}
         name="end_date"
         variant="outlined"
         label="End Date"
         className={(classes.formField, classes.fieldBreak)}
+        inputProps={{
+          min: new Date().toISOString().split('T')[0],
+        }}
       />
 
       <TextField
@@ -98,6 +132,17 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
         variant="outlined"
         label="Event Website"
         className={classes.formField}
+      />
+
+      <FormControlLabel
+        control={
+          <Switch
+            name="is_live"
+            checked={isLiveCheck}
+            onChange={handleSwitch}
+          />
+        }
+        label={isLiveCheck ? 'Publically Available' : 'Hidden from Public'}
       />
 
       <ButtonGroup aria-label="add form buttons">

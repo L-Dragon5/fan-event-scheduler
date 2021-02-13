@@ -46,19 +46,35 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
       <TextField
         required
         fullWidth
+        type="date"
         name="start_date"
         variant="outlined"
         label="Start Date"
         className={classes.formField}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        inputProps={{
+          min: new Date().toISOString().split('T')[0],
+        }}
+        defaultValue={new Date().toISOString().split('T')[0]}
       />
 
       <TextField
         required
         fullWidth
+        type="date"
         name="end_date"
         variant="outlined"
         label="End Date"
         className={(classes.formField, classes.fieldBreak)}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        inputProps={{
+          min: new Date().toISOString().split('T')[0],
+        }}
+        defaultValue={new Date().toISOString().split('T')[0]}
       />
 
       <TextField

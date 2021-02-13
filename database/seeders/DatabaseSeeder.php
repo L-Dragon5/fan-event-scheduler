@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             SchedulesTableSeeder::class,
             LocationsTableSeeder::class,
             GuestsTableSeeder::class,
+            RulesTableSeeder::class,
         ]);
 
         /*
