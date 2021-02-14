@@ -17,4 +17,8 @@ class User extends Authenticatable
     protected $fillable = [
         'email', 'password',
     ];
+
+    public function schedule() {
+        return $this->hasMany(Schedule::class);
+    }
 }

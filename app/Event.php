@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     protected $fillable = [
+        'schedule_id',
         'title',
         'event_type',
         'date',
@@ -17,11 +18,15 @@ class Event extends Model
         'is_cancelled'
     ];
 
+    public function schedule() {
+        return $this->belongsTo(Schedule::class);
+    }
+
     public function location() {
-        return $this->hasOne('App\Location');
+        return $this->hasOne(Location::class);
     }
 
     public function event_types() {
-        return $this->hasMany('App\EventType');
+        return $this->hasMany(EventType::class);
     }
 }

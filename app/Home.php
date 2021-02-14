@@ -8,4 +8,8 @@ class Home extends Model
 {
     protected $table = 'home';
     protected $fillable = ['content'];
+
+    public function schedule() {
+        return $this->belongsTo(Schedule::class);
+    }
 }
