@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
+const FormEventTypeAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
   const classes = useStyles();
 
   const handleAddSubmit = (e) => {
@@ -22,7 +22,7 @@ const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
     const formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
 
-    Inertia.post(`/schedule/${scheduleId}/guests/store`, formData, {
+    Inertia.post(`/schedule/${scheduleId}/eventTypes/store`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();
@@ -37,50 +37,7 @@ const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
         fullWidth
         name="name"
         variant="outlined"
-        label="Guest Name"
-        className={classes.formField}
-      />
-
-      <TextField
-        required
-        fullWidth
-        name="category"
-        variant="outlined"
-        label="Guest Category"
-        className={classes.formField}
-      />
-
-      <TextField
-        fullWidth
-        multiline
-        rows={5}
-        name="description"
-        variant="outlined"
-        label="Guest Description"
-        className={classes.formField}
-      />
-
-      <TextField
-        fullWidth
-        name="social_fb"
-        variant="outlined"
-        label="Guest Facebook"
-        className={classes.formField}
-      />
-
-      <TextField
-        fullWidth
-        name="social_tw"
-        variant="outlined"
-        label="Guest Twitter"
-        className={classes.formField}
-      />
-
-      <TextField
-        fullWidth
-        name="social_ig"
-        variant="outlined"
-        label="Guest Instagram"
+        label="Event Type Name"
         className={classes.formField}
       />
 
@@ -101,4 +58,4 @@ const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
   );
 };
 
-export default FormGuestAdd;
+export default FormEventTypeAdd;

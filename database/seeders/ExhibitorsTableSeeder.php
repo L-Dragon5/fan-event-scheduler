@@ -15,23 +15,27 @@ class ExhibitorsTableSeeder extends Seeder
     public function run()
     {
         DB::table('exhibitors')->insert([
+            'schedule_id' => 1,
             'name' => 'Vendor A',
-            'category' => 'Vendor'
+            'category' => 'Vendor',
         ]);
 
         DB::table('exhibitors')->insert([
+            'schedule_id' => 1,
             'name' => 'Artist A',
-            'category' => 'Artist'
+            'category' => 'Artist',
         ]);
 
         DB::table('exhibitors')->insert([
+            'schedule_id' => 1,
             'name' => 'Artist B',
-            'category' => 'Artist'
+            'category' => 'Artist',
         ]);
 
         DB::table('exhibitors')->insert([
+            'schedule_id' => 1,
             'name' => 'Artist C',
-            'category' => 'Artist'
+            'category' => 'Artist',
         ]);
     }
 }

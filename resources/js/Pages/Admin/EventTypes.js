@@ -19,6 +19,9 @@ import AdminScheduleLayout from './AdminScheduleLayout';
 import ButtonAdd from './components/buttons/ButtonAdd';
 import ButtonEdit from './components/buttons/ButtonEdit';
 import ButtonDelete from './components/buttons/ButtonDelete';
+import FormEventTypeAdd from './components/forms/FormEventTypeAdd';
+import FormEventTypeEdit from './components/forms/FormEventTypeEdit';
+import FormEventTypeDelete from './components/forms/FormEventTypeDelete';
 
 const useStyles = makeStyles((theme) => ({
   contentRoot: {
@@ -43,44 +46,38 @@ const EventTypes = ({ scheduleId, eventTypes }) => {
   };
 
   const handleAdd = () => {
-    /*
     setDrawerContent(
-      <FormGuestAdd
+      <FormEventTypeAdd
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 
   const handleEdit = (eventType) => {
-    /*
     setDrawerContent(
-      <FormGuestEdit
+      <FormEventTypeEdit
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
-        guest={guest}
+        eventType={eventType}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 
   const handleDelete = (eventTypeId, eventTypeName) => {
-    /*
     setDrawerContent(
-      <FormGuestDelete
+      <FormEventTypeDelete
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
-        guestId={guestId}
-        guestName={guestName}
+        eventTypeId={eventTypeId}
+        eventTypeName={eventTypeName}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 

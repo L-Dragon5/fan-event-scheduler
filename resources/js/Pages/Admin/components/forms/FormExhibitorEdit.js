@@ -13,16 +13,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
+const FormExhibitorEdit = ({
+  closeDrawer,
+  reloadPage,
+  scheduleId,
+  exhibitor,
+}) => {
   const classes = useStyles();
 
-  const handleAddSubmit = (e) => {
+  const handleEditSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    formData.set('id', exhibitor.id);
     formData.set('scheduleId', scheduleId);
 
-    Inertia.post(`/schedule/${scheduleId}/guests/store`, formData, {
+    Inertia.post(`/schedule/${scheduleId}/exhibitors/update`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();
@@ -31,62 +37,39 @@ const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
   };
 
   return (
-    <form className={classes.form} onSubmit={handleAddSubmit}>
+    <form className={classes.form} onSubmit={handleEditSubmit}>
       <TextField
         required
         fullWidth
+        defaultValue={exhibitor.name}
         name="name"
         variant="outlined"
-        label="Guest Name"
+        label="Exhibitor Name"
         className={classes.formField}
       />
 
       <TextField
-        required
         fullWidth
+        defaultValue={exhibitor.category}
         name="category"
         variant="outlined"
-        label="Guest Category"
+        label="Exhibitor Category"
         className={classes.formField}
       />
 
       <TextField
         fullWidth
-        multiline
-        rows={5}
-        name="description"
+        defaultValue={exhibitor.url}
+        type="url"
+        name="url"
         variant="outlined"
-        label="Guest Description"
-        className={classes.formField}
-      />
-
-      <TextField
-        fullWidth
-        name="social_fb"
-        variant="outlined"
-        label="Guest Facebook"
-        className={classes.formField}
-      />
-
-      <TextField
-        fullWidth
-        name="social_tw"
-        variant="outlined"
-        label="Guest Twitter"
-        className={classes.formField}
-      />
-
-      <TextField
-        fullWidth
-        name="social_ig"
-        variant="outlined"
-        label="Guest Instagram"
+        label="Exhibito Portfolio URL"
         className={classes.formField}
       />
 
       <ButtonGroup aria-label="add form buttons">
         <Button type="submit" variant="contained" color="primary">
-          Submit
+          Update
         </Button>
         <Button
           type="reset"
@@ -101,4 +84,4 @@ const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
   );
 };
 
-export default FormGuestAdd;
+export default FormExhibitorEdit;

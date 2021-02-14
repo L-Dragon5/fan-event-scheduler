@@ -15,23 +15,28 @@ class EventTypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('event_types')->insert([
-            'name' => 'Main Event'
+            'schedule_id' => 1,
+            'name' => 'Main Event',
         ]);
 
         DB::table('event_types')->insert([
-            'name' => 'Q&A Panel'
+            'schedule_id' => 1,
+            'name' => 'Q&A Panel',
         ]);
 
         DB::table('event_types')->insert([
-            'name' => 'Instructional Panel'
+            'schedule_id' => 1,
+            'name' => 'Instructional Panel',
         ]);
 
         DB::table('event_types')->insert([
-            'name' => 'Game Show Panel'
+            'schedule_id' => 1,
+            'name' => 'Game Show Panel',
         ]);
 
         DB::table('event_types')->insert([
-            'name' => 'Guest Event'
+            'schedule_id' => 1,
+            'name' => 'Guest Event',
         ]);
     }
 }

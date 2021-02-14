@@ -19,6 +19,9 @@ import AdminScheduleLayout from './AdminScheduleLayout';
 import ButtonAdd from './components/buttons/ButtonAdd';
 import ButtonEdit from './components/buttons/ButtonEdit';
 import ButtonDelete from './components/buttons/ButtonDelete';
+import FormExhibitorAdd from './components/forms/FormExhibitorAdd';
+import FormExhibitorEdit from './components/forms/FormExhibitorEdit';
+import FormExhibitorDelete from './components/forms/FormExhibitorDelete';
 
 const useStyles = makeStyles((theme) => ({
   contentRoot: {
@@ -43,44 +46,38 @@ const Exhibitors = ({ scheduleId, exhibitors }) => {
   };
 
   const handleAdd = () => {
-    /*
     setDrawerContent(
-      <FormGuestAdd
+      <FormExhibitorAdd
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 
   const handleEdit = (exhibitor) => {
-    /*
     setDrawerContent(
-      <FormGuestEdit
+      <FormExhibitorEdit
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
-        guest={guest}
+        exhibitor={exhibitor}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 
   const handleDelete = (exhibitorId, exhibitorName) => {
-    /*
     setDrawerContent(
-      <FormGuestDelete
+      <FormExhibitorDelete
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
-        guestId={guestId}
-        guestName={guestName}
+        exhibitorId={exhibitorId}
+        exhibitorName={exhibitorName}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 
