@@ -5,6 +5,8 @@ namespace App\Http\Controllers\web;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Event;
+use App\Location;
+use App\Schedule;
 
 class EventController extends Controller
 {
@@ -16,15 +18,26 @@ class EventController extends Controller
      */
     public function index($scheduleId) {
         $events = Event::where('schedule_id', $scheduleId)->orderBy('created_at', 'DESC')->get();
+        $schedule = Schedule::find($scheduleId);
+        $available_locations = [];
+
+        foreach (Location::where('schedule_id', $scheduleId)->get() as $location) {
+            $available_locations[] = ['id' => $location->id, 'name' => $location->name];
+        }
 
         // Set all events to location
         foreach ($events as $event) {
             $event->location_name = $event->location->name;
+            $event->min_date = $event->schedule->start_date;
+            $event->max_date = $event->schedule->end_date;
         }
 
         return Inertia::render('Admin/Events', [
-            'events' => $events,
             'scheduleId' => $scheduleId,
+            'availableLocations' => $available_locations,
+            'minDate' => $schedule->start_date,
+            'maxDate' => $schedule->end_date,
+            'events' => $events,
         ])->withViewData(['title' => 'Events']);
     }
 
@@ -61,13 +74,23 @@ class EventController extends Controller
      */
     public function store(Request $request) {
         $request->validate([
-            'schedule_id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
             'name' => 'string|required',
             'date' => 'date|required',
+            'location_id' => 'numeric|nullable',
+            'description' => 'string|nullable',
+        ]);
+
+        if (strlen($request->time_start) <= 5) { 
+            $request->merge(['time_start' => $request->time_start . ':00']);
+        }
+        if (strlen($request->time_end) <= 5) {
+            $request->merge(['time_end' => $request->time_end . ':00']);
+        }
+
+        $request->validate([
             'time_start' => 'date_format:H:i:s|required',
             'time_end' => 'date_format:H:i:s|after:time_start|required',
-            'location_id' => 'numeric|required',
-            'description' => 'string|nullable',
         ]);
 
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'events', 'name')) {
@@ -80,7 +103,7 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->time_start = $request->time_start;
         $event->time_end = $request->time_end;
-        $event->location_id = $request->location_id;
+        if ($request->location_id !== 0) { $event->location_id = $request->location_id; }
         $event->description = $request->description;
         $success = $event->save();
 
@@ -101,14 +124,24 @@ class EventController extends Controller
     {
         $request->validate([
             'id' => 'numeric|required',
-            'schedule_id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
             'name' => 'string|required',
             'date' => 'date|required',
-            'time_start' => 'date_format:H:i:s|required',
-            'time_end' => 'date_format:H:i:s|after:time_start|required',
-            'location_id' => 'numeric|required',
+            'location_id' => 'numeric|nullable',
             'description' => 'string|nullable',
             'is_cancelled' => 'boolean|required',
+        ]);
+
+        if (strlen($request->time_start) <= 5) { 
+            $request->merge(['time_start' => $request->time_start . ':00']);
+        }
+        if (strlen($request->time_end) <= 5) {
+            $request->merge(['time_end' => $request->time_end . ':00']);
+        }
+
+        $request->validate([
+            'time_start' => 'date_format:H:i:s|required',
+            'time_end' => 'date_format:H:i:s|after:time_start|required',
         ]);
 
         try {
@@ -127,7 +160,7 @@ class EventController extends Controller
             $event->date = $request->date;
             $event->time_start = $request->time_start;
             $event->time_end = $request->time_end;
-            $event->location_id = $request->location_id;
+            if ($request->location_id !== 0) { $event->location_id = $request->location_id; }
             $event->description = $request->description;
             $event->is_cancelled = $request->is_cancelled;
             $success = $event->save();

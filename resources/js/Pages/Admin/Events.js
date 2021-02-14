@@ -19,6 +19,9 @@ import AdminScheduleLayout from './AdminScheduleLayout';
 import ButtonAdd from './components/buttons/ButtonAdd';
 import ButtonEdit from './components/buttons/ButtonEdit';
 import ButtonDelete from './components/buttons/ButtonDelete';
+import FormEventAdd from './components/forms/FormEventAdd';
+import FormEventEdit from './components/forms/FormEventEdit';
+import FormEventDelete from './components/forms/FormEventDelete';
 
 const useStyles = makeStyles((theme) => ({
   contentRoot: {
@@ -27,7 +30,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Events = ({ scheduleId, events }) => {
+const Events = ({
+  scheduleId,
+  availableLocations,
+  minDate,
+  maxDate,
+  events,
+}) => {
   const classes = useStyles();
 
   const [drawerStatus, setDrawerStatus] = useState(false);
@@ -39,48 +48,48 @@ const Events = ({ scheduleId, events }) => {
   };
 
   const handleReload = () => {
-    Inertia.reload({ only: ['events'] });
+    Inertia.reload({
+      only: ['events', 'minDate', 'maxDate', 'availableLocations'],
+    });
   };
 
   const handleAdd = () => {
-    /*
     setDrawerContent(
-      <FormGuestAdd
+      <FormEventAdd
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
+        availableLocations={availableLocations}
+        minDate={minDate}
+        maxDate={maxDate}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 
   const handleEdit = (event) => {
-    /*
     setDrawerContent(
-      <FormGuestEdit
+      <FormEventEdit
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
-        guest={guest}
+        availableLocations={availableLocations}
+        event={event}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 
   const handleDelete = (eventId, eventName) => {
-    /*
     setDrawerContent(
-      <FormGuestDelete
+      <FormEventDelete
         closeDrawer={handleClose}
         reloadPage={handleReload}
         scheduleId={scheduleId}
-        guestId={guestId}
-        guestName={guestName}
+        eventId={eventId}
+        eventName={eventName}
       />,
     );
-    */
     setDrawerStatus(true);
   };
 

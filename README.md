@@ -6,13 +6,11 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 
 ## Minimium Viable Product To-Do
 - Main Site
-  - Front Page: AppName, Description
-  - Account Creation w/ Settings
-  - Account Roles
+  - Front Page: Re-do to make it look cooler
+  - Account Creation w/ Basic Account Settings
 - Event Pages (Admin)
-  - Events
-  - Event Types
-  - Exhibitors
+  - [View] icon on Actions to pull drawer to show full information on item
+  - Events (adding Event Types to it)
   - Maps (Image upload)
 - Event Pages (Public)
   - Display grid/list schedule

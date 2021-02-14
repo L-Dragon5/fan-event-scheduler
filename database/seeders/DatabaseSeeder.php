@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
             RulesTableSeeder::class,
             ExhibitorsTableSeeder::class,
             EventTypesTableSeeder::class,
+            EventsTableSeeder::class,
         ]);
 
         /*
         $this->call([
             PartnersTableSeeder::class,
-            EventsTableSeeder::class,
             HomeTableSeeder::class,
         ]);
         */
