@@ -16,8 +16,8 @@ class CreateMapsTable extends Migration
         Schema::create('maps', function (Blueprint $table) {
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
-            $table->string('title', 255);
-            $table->mediumText('image')->nullable();
+            $table->string('name', 255);
+            $table->string('image', 255)->nullable();
         });
     }
 

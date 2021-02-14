@@ -42,8 +42,8 @@ class LocationController extends Controller
 
         $location = new Location;
         $location->schedule_id = $request->scheduleId;
-        $location->name = trim($request->name);
-        $location->url = trim($request->url);
+        $location->name = $request->name;
+        $location->url = $request->url;
 
         $success = $location->save();
 
@@ -73,15 +73,15 @@ class LocationController extends Controller
                 ->where('schedule_id', '=', $request->scheduleId)
                 ->firstOrFail();
             
-            if (strcmp(trim($request->name), $location->name) !== 0) {
+            if (strcmp($request->name, $location->name) !== 0) {
                 if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'locations', 'name')) {
                     return back()->withErrors('Location already exists with this name');
                 } else {
-                    $location->name = trim($request->name);
+                    $location->name = $request->name;
                 }
             }
-            
-            $location->url = trim($request->url);
+        
+            $location->url = $request->url;
             $success = $location->save();
 
             if ($success) {

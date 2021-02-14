@@ -4,10 +4,7 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Event;
-use App\Location;
-use App\EventType;
 
 class EventController extends Controller
 {
@@ -22,8 +19,7 @@ class EventController extends Controller
 
         // Set all events to location
         foreach ($events as $event) {
-            $location = Location::find($event->location_id);
-            $event->location = $location->name;
+            $event->location_name = $event->location->name;
         }
 
         return Inertia::render('Admin/Events', [
@@ -32,7 +28,6 @@ class EventController extends Controller
         ])->withViewData(['title' => 'Events']);
     }
 
-    
     /**
      * Get event by id.
      * 
@@ -43,25 +38,16 @@ class EventController extends Controller
     public function view($id) {
         try {
             $event = Event::findOrFail($id);
-            $location = Location::find($event->location_id);
-    
-            $event_types = explode(',', $event->event_types);
-            
-            if(!empty($event_types)) {
-                $event_type_names = [];
-                foreach ($event_types as $id) {
-                    $e = EventType::find($id);
-                    
-                    if(isset($e->name)) {
-                        $event_type_names[] = ['id' => $id, 'name' => $e->name];
-                    }
-                }
+            $event_type_names = [];
+
+            foreach ($event->event_types as $event_type) {
+                $event_type_names[] = ['id' => $event_type->id, 'name' => $event_type->name];
             }
     
-            $event->location = $location->name;
+            $event->location_name = $event->location->name;
             $event->event_type_names = $event_type_names;
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid event id', self::STATUS_NOT_FOUND);
+            return back()->withErrors('Could not find event');
         }
 
         return $event;
@@ -74,21 +60,23 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'title' => 'string|required',
-            'date' => 'date_format:Y-m-d|required',
+        $request->validate([
+            'schedule_id' => 'numeric|required',
+            'name' => 'string|required',
+            'date' => 'date|required',
             'time_start' => 'date_format:H:i:s|required',
             'time_end' => 'date_format:H:i:s|after:time_start|required',
             'location_id' => 'numeric|required',
             'description' => 'string|nullable',
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
+        if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'events', 'name')) {
+            return back()->withErrors('Event already exists with this name');
         }
 
         $event = new Event;
-        $event->title = $request->title;
+        $event->schedule_id = $request->scheduleId;
+        $event->name = $request->name;
         $event->date = $request->date;
         $event->time_start = $request->time_start;
         $event->time_end = $request->time_end;
@@ -97,9 +85,9 @@ class EventController extends Controller
         $success = $event->save();
 
         if ($success) {
-            return return_json_message('Created new event succesfully', self::STATUS_CREATED);
+            return back()->with('message', 'Created new event');
         } else {
-            return return_json_message('Something went wrong while trying to create a new event', self::STATUS_UNPROCESSABLE);
+            return back()->withErrors('Something went wrong while trying to create a new event');
         }
     }
 
@@ -107,28 +95,35 @@ class EventController extends Controller
      * Update the event content.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'string|required',
-            'date' => 'date_format:Y-m-d|required',
+        $request->validate([
+            'id' => 'numeric|required',
+            'schedule_id' => 'numeric|required',
+            'name' => 'string|required',
+            'date' => 'date|required',
             'time_start' => 'date_format:H:i:s|required',
             'time_end' => 'date_format:H:i:s|after:time_start|required',
             'location_id' => 'numeric|required',
             'description' => 'string|nullable',
-            'is_cancelled' => 'boolean'
+            'is_cancelled' => 'boolean|required',
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), self::STATUS_BAD_REQUEST);
-        }
-
         try {
-            $event = Event::findOrFail($id);
-            $event->title = $request->title;
+            $event = Event::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            
+            if (strcmp($request->name, $event->name) !== 0) {
+                if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'events', 'name')) {
+                    return back()->withErrors('Event already exists with this name');
+                } else {
+                    $event->name = $request->name;
+                }
+            }
+            
             $event->date = $request->date;
             $event->time_start = $request->time_start;
             $event->time_end = $request->time_end;
@@ -138,12 +133,12 @@ class EventController extends Controller
             $success = $event->save();
 
             if ($success) {
-                return return_json_message('Updated succesfully', self::STATUS_SUCCESS);
+                return back()->with('message', 'Updated event');
             } else {
-                return return_json_message('Something went wrong while trying to update', self::STATUS_UNPROCESSABLE);
+                return back()->withErrors('Something went wrong while trying to update event');
             }
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid event id', self::STATUS_NOT_FOUND);
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors('Could not find event');
         }
     }
 
@@ -151,16 +146,23 @@ class EventController extends Controller
      * Remove event by id.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id) {
-        $success = Event::destroy($id);
+    public function destroy(Request $request) {
+        $request->validate([
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
+        ]);
 
-        if ($success) {
-            return return_json_message('Deleted succesfully', self::STATUS_SUCCESS);
-        } else {
-            return return_json_message('Did not find a event to remove', self::STATUS_NOT_FOUND);
+        try {
+            $event = Event::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            $event->delete();
+            
+            return back()->with('message', 'Removed event');
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors('Could not find event');
         }
     }
 }

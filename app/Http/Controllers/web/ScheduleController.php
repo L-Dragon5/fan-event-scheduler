@@ -123,13 +123,13 @@ class ScheduleController extends Controller
 
         $schedule = new Schedule;
         $schedule->user_id = $user_id;
-        $schedule->name = trim($request->name);
-        $schedule->start_date = trim($request->start_date);
-        $schedule->end_date = trim($request->end_date);
-        $schedule->social_fb = trim($request->social_fb);
-        $schedule->social_tw = trim($request->social_tw);
-        $schedule->social_ig = trim($request->social_ig);
-        $schedule->social_web = trim($request->social_web);
+        $schedule->name = $request->name;
+        $schedule->start_date = $request->start_date;
+        $schedule->end_date = $request->end_date;
+        $schedule->social_fb = $request->social_fb;
+        $schedule->social_tw = $request->social_tw;
+        $schedule->social_ig = $request->social_ig;
+        $schedule->social_web = $request->social_web;
 
         $success = $schedule->save();
 
@@ -168,7 +168,7 @@ class ScheduleController extends Controller
 
             // If they want to change name
             if ($request->has('name')) {
-                $trimmed_name = trim($request->name);
+                $trimmed_name = $request->name;
 
                 // Check if new title is same as old title
                 if(check_for_duplicate(['user_id' => $user_id], $request->title, 'schedules', 'name')) {
@@ -178,13 +178,13 @@ class ScheduleController extends Controller
                 }
             }
 
-            $schedule->start_date = trim($request->start_date);
-            $schedule->end_date = trim($request->end_date);
-            $schedule->social_fb = trim($request->social_fb);
-            $schedule->social_tw = trim($request->social_tw);
-            $schedule->social_ig = trim($request->social_ig);
-            $schedule->social_web = trim($request->social_web);
-            $schedule->is_live = trim($request->is_live);
+            $schedule->start_date = $request->start_date;
+            $schedule->end_date = $request->end_date;
+            $schedule->social_fb = $request->social_fb;
+            $schedule->social_tw = $request->social_tw;
+            $schedule->social_ig = $request->social_ig;
+            $schedule->social_web = $request->social_web;
+            $schedule->is_live = $request->is_live;
 
             // If the schedule is set to be publically visible, but there's no public identifier, create one.
             // If the schedule is set to be hidden, but there's an identifier, remove it.

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\web;
 use App\Map;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class MapController extends Controller
 {
@@ -15,25 +14,12 @@ class MapController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($scheduleId) {
-        $maps = Map::where('schedule_id', $scheduleId)->orderBy('title', 'ASC')->get();
+        $maps = Map::where('schedule_id', $scheduleId)->orderBy('name', 'ASC')->get();
 
         return Inertia::render('Admin/Maps', [
             'maps' => $maps,
             'scheduleId' => $scheduleId,
         ])->withViewData(['title' => 'Maps']);
-    }
-
-    /**
-     * Get map by id.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function view(Request $request, $id) {
-        $map = Map::find($id);
-
-        return $map;
     }
 
     /**
@@ -43,24 +29,29 @@ class MapController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'title' => 'string|required',
-            'image' => 'image|nullable',
+        $request->validate([
+            'scheduleId' => 'numeric|required',
+            'name' => 'string|required',
+            'image' => 'string|nullable',
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
+        if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'maps', 'name')) {
+            return back()->withErrors('Map already exists with this name');
         }
 
         $map = new Map;
-        $map->title = $request->title;
+        $map->name = $request->name;
 
+        // TODO: Image upload and save (save_image_uploaded function)
+        /*
         $image = file_get_contents($request->image);
         $image_data = base64_encode($image);
         
         $final_img = 'data:image/' . $request->image->extension() . ';base64,' . $image_data;
 
         $map->image = $final_img;
+        */
+
         $success = $map->save();
 
         if ($success) {
@@ -79,22 +70,34 @@ class MapController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'string|required',
+        $request->validate([
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
+            'name' => 'string|required',
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
-        }
+        try {
+            $map = Map::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            
+            if (strcmp($request->name, $map->name) !== 0) {
+                if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'maps', 'name')) {
+                    return back()->withErrors('Map already exists with this name');
+                } else {
+                    $map->name = $request->name;
+                }
+            }
+            
+            $success = $map->save();
 
-        $map = Map::find($id);
-        $map->title = $request->title;
-        $success = $map->save();
-
-        if ($success) {
-            return return_json_message('Updated succesfully', $this->successStatus);
-        } else {
-            return return_json_message('Something went wrong while trying to update', 401);
+            if ($success) {
+                return back()->with('message', 'Updated map');
+            } else {
+                return back()->withErrors('Something went wrong while trying to update map');
+            }
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors('Could not find map');
         }
     }
 
@@ -102,16 +105,23 @@ class MapController extends Controller
      * Remove map by id.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id) {
-        $success = Map::destroy($id);
+    public function destroy(Request $request) {
+        $request->validate([
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
+        ]);
 
-        if ($success) {
-            return return_json_message('Delete succesfully', $this->successStatus);
-        } else {
-            return return_json_message('Did not find a map to remove', 401);
+        try {
+            $map = Map::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            $map->delete();
+            
+            return back()->with('message', 'Removed map');
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors('Could not find map');
         }
     }
 }

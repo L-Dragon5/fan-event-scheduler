@@ -4,7 +4,6 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Exhibitor;
 
 class ExhibitorController extends Controller
@@ -31,26 +30,28 @@ class ExhibitorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
+            'scheduleId' => 'numeric|required',
             'name' => 'string|required',
             'category' => 'string|nullable',
             'url' => 'url|nullable',
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
+        if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'exhibitors', 'name')) {
+            return back()->withErrors('Exhibitor already exists with this name');
         }
 
         $exhibitor = new Exhibitor;
+        $exhibitor->schedule_id = $request->scheduleId;
         $exhibitor->name = $request->name;
         $exhibitor->category = $request->category;
         $exhibitor->url = $request->url;
         $success = $exhibitor->save();
 
         if ($success) {
-            return return_json_message('Created new exhibitor succesfully', $this->successStatus);
+            return back()->with('message', 'Created new exhibitor');
         } else {
-            return return_json_message('Something went wrong while trying to create a new exhibitor', 401);
+            return back()->withErrors('Something went wrong while trying to create a new exhibitor');
         }
     }
 
@@ -58,35 +59,42 @@ class ExhibitorController extends Controller
      * Update the exhibitor content.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
             'name' => 'string|required',
             'category' => 'string|nullable',
             'url' => 'url|nullable',
         ]);
 
-        if($validator->fails()) {
-            return return_json_message($validator->errors(), $this->errorStatus);
-        }
-
         try {
-            $exhibitor = Exhibitor::findOrFail($id);
-            $exhibitor->name = $request->name;
+            $exhibitor = Exhibitor::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            
+            if (strcmp($request->name, $exhibitor->name) !== 0) {
+                if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'exhibitors', 'name')) {
+                    return back()->withErrors('Exhibitor already exists with this name');
+                } else {
+                    $exhibitor->name = $request->name;
+                }
+            }
+            
             $exhibitor->category = $request->category;
             $exhibitor->url = $request->url;
             $success = $exhibitor->save();
 
             if ($success) {
-                return return_json_message('Updated succesfully', $this->successStatus);
+                return back()->with('message', 'Updated exhibitor');
             } else {
-                return return_json_message('Something went wrong while trying to update', 401);
+                return back()->withErrors('Something went wrong while trying to update exhibitor');
             }
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return return_json_message('Invalid exhibitor id', 401);
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors('Could not find exhibitor');
         }
     }
 
@@ -94,16 +102,23 @@ class ExhibitorController extends Controller
      * Remove exhibitor by id.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id) {
-        $success = Exhibitor::destroy($id);
+    public function destroy(Request $request) {
+        $request->validate([
+            'id' => 'numeric|required',
+            'scheduleId' => 'numeric|required',
+        ]);
 
-        if ($success) {
-            return return_json_message('Deleted succesfully', $this->successStatus);
-        } else {
-            return return_json_message('Did not find a exhibitor to remove', 401);
+        try {
+            $exhibitor = Exhibitor::where('id', '=', $request->id)
+                ->where('schedule_id', '=', $request->scheduleId)
+                ->firstOrFail();
+            $exhibitor->delete();
+            
+            return back()->with('message', 'Removed exhibitor');
+        } catch (\Illuminate\Database\Eloqeunt\ModelNotFoundException $e) {
+            return back()->withErrors('Could not find exhibitor');
         }
     }
 }

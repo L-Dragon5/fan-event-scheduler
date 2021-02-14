@@ -18,7 +18,7 @@ class CreateGuestsTable extends Migration
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->string('name', 255);
             $table->string('category', 255)->nullable();
-            $table->longText('description')->nullable();
+            $table->mediumText('description')->nullable();
             $table->string('social_fb', 255)->nullable();
             $table->string('social_tw', 255)->nullable();
             $table->string('social_ig', 255)->nullable();

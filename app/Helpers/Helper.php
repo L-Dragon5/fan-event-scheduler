@@ -55,7 +55,7 @@ if (!function_exists('check_for_duplicate')) {
    * @return bool
    */
   function check_for_duplicate($id_array, $title, $db_table, $column_name) {
-    $t = trim(strip_and_lower($title));
+    $t = strip_and_lower($title);
     $id_value = current($id_array);
     $id_name = key($id_array);
     $entries = DB::table($db_table)->where($id_name, $id_value)->pluck($column_name);

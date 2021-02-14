@@ -75,11 +75,11 @@ class RuleController extends Controller
                 ->where('schedule_id', '=', $request->scheduleId)
                 ->firstOrFail();
 
-            if (strcmp(trim($request->title), $location->title) !== 0) {
+            if (strcmp($request->title, $location->title) !== 0) {
                 if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->title, 'rules', 'title')) {
                     return back()->withErrors('Rule already exists with this title');
                 } else {
-                    $rule->name = trim($request->title);
+                    $rule->name = $request->title;
                 }
             }
 

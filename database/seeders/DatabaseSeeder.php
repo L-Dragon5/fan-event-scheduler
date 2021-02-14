@@ -24,12 +24,8 @@ class DatabaseSeeder extends Seeder
         /*
         $this->call([
             EventTypesTableSeeder::class,
-            SettingsTableSeeder::class,
-            LocationsTableSeeder::class,
             ExhibitorsTableSeeder::class,
-            RulesTableSeeder::class,
             PartnersTableSeeder::class,
-            GuestsTableSeeder::class,
             EventsTableSeeder::class,
             HomeTableSeeder::class,
         ]);

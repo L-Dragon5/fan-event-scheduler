@@ -17,11 +17,11 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->foreignId('location_id')->nullable()->constrained('locations')->onDelete('set null');
-            $table->string('title', 255);
+            $table->string('name', 255);
             $table->date('date');
             $table->time('time_start');
             $table->time('time_end');
-            $table->longText('description')->nullable();
+            $table->mediumText('description')->nullable();
             $table->boolean('is_cancelled')->default(FALSE);
             $table->timestamps();
         });

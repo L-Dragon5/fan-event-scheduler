@@ -51,7 +51,7 @@ class ScheduleController extends Controller
 
         $schedule = new Schedule;
         $schedule->user_id = $user_id;
-        $schedule->name = trim($request->name);
+        $schedule->name = $request->name;
 
         $success = $schedule->save();
 
@@ -106,7 +106,7 @@ class ScheduleController extends Controller
             if ($schedule->user_id === $user_id) {
                 // If they want to change title
                 if ($request->has('name')) {
-                    $trimmed_name = trim($request->name);
+                    $trimmed_name = $request->name;
 
                     // Check if new title is same as old title
                     if ($trimmed_name === $schedule->name) {

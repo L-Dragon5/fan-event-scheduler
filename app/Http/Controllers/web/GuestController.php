@@ -85,11 +85,11 @@ class GuestController extends Controller
                 ->where('schedule_id', '=', $request->scheduleId)
                 ->firstOrFail();
 
-            if (strcmp(trim($request->name), $guest->name) !== 0) {
+            if (strcmp($request->name, $guest->name) !== 0) {
                 if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'guests', 'name')) {
                     return back()->withErrors('Guest already exists with this name');
                 } else {
-                    $guest->name = trim($request->name);
+                    $guest->name = $request->name;
                 }
             }
             

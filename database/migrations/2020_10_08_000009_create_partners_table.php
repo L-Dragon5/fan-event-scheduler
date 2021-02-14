@@ -17,7 +17,7 @@ class CreatePartnersTable extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->string('name', 255);
-            $table->mediumText('image')->nullable();
+            $table->string('image', 255)->nullable();
             $table->string('url', 255)->nullable();
         });
     }

@@ -8,8 +8,7 @@ class Event extends Model
 {
     protected $fillable = [
         'schedule_id',
-        'title',
-        'event_type',
+        'name',
         'date',
         'time_start',
         'time_end',
@@ -23,7 +22,7 @@ class Event extends Model
     }
 
     public function location() {
-        return $this->hasOne(Location::class);
+        return $this->belongsTo(Location::class);
     }
 
     public function event_types() {
