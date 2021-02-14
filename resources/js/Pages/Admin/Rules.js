@@ -102,7 +102,6 @@ const Rules = ({ scheduleId, rules }) => {
               <TableHead>
                 <TableRow>
                   <TableCell>Title</TableCell>
-                  <TableCell>Description</TableCell>
                   <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
@@ -110,7 +109,6 @@ const Rules = ({ scheduleId, rules }) => {
                 {rules?.map((rule) => (
                   <TableRow key={rule.id}>
                     <TableCell>{rule.title}</TableCell>
-                    <TableCell>{rule.description}</TableCell>
                     <TableCell align="right">
                       <ButtonEdit onClick={() => handleEdit(rule)} />
                       <ButtonDelete

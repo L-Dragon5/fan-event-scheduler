@@ -102,7 +102,6 @@ const Locations = ({ scheduleId, locations }) => {
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
-                  <TableCell>Link</TableCell>
                   <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
@@ -110,7 +109,6 @@ const Locations = ({ scheduleId, locations }) => {
                 {locations?.map((location) => (
                   <TableRow key={location.id}>
                     <TableCell>{location.name}</TableCell>
-                    <TableCell>{location.url}</TableCell>
                     <TableCell align="right">
                       <ButtonEdit onClick={() => handleEdit(location)} />
                       <ButtonDelete

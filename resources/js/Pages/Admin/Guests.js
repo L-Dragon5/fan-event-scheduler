@@ -103,8 +103,6 @@ const Guests = ({ scheduleId, guests }) => {
                 <TableRow>
                   <TableCell>Name</TableCell>
                   <TableCell>Category</TableCell>
-                  <TableCell scope="small">Description</TableCell>
-                  <TableCell>Social Media</TableCell>
                   <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
@@ -113,10 +111,6 @@ const Guests = ({ scheduleId, guests }) => {
                   <TableRow key={guest.id}>
                     <TableCell>{guest.name}</TableCell>
                     <TableCell>{guest.category}</TableCell>
-                    <TableCell scope="small">{guest.description}</TableCell>
-                    <TableCell>
-                      {guest.social_tw} {guest.social_fb} {guest.social_ig}
-                    </TableCell>
                     <TableCell align="right">
                       <ButtonEdit onClick={() => handleEdit(guest)} />
                       <ButtonDelete

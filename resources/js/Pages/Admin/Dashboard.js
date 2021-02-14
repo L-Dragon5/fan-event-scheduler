@@ -22,6 +22,11 @@ const Dashboard = ({ scheduleId }) => {
           <Typography component="span" variant="h4">
             Dashboard
           </Typography>
+
+          <Typography>
+            Not sure what to put here yet. Maybe some graphs? Somehow figure out
+            a way to combine with Google Analytics?
+          </Typography>
         </Box>
       </Box>
     </AdminScheduleLayout>
