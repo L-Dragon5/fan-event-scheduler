@@ -4,7 +4,9 @@ import { Inertia } from '@inertiajs/inertia';
 import {
   Button,
   ButtonGroup,
+  Chip,
   FormControl,
+  Input,
   InputLabel,
   MenuItem,
   Select,
@@ -19,22 +21,50 @@ const useStyles = makeStyles((theme) => ({
   formField: {
     marginBottom: theme.spacing(1),
   },
+  fullWidthSelect: {
+    width: '100%',
+    marginBottom: theme.spacing(4),
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  },
 }));
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 const FormEventAdd = ({
   closeDrawer,
   reloadPage,
   scheduleId,
   availableLocations,
+  availableEventTypes,
   minDate,
   maxDate,
 }) => {
   const classes = useStyles();
 
   const [locationId, setLocationId] = useState(0);
+  const [eventTypes, setEventTypes] = useState([]);
 
   const handleLocationSelect = (e) => {
     setLocationId(e.target.value);
+  };
+
+  const handleEventTypeSelect = (e) => {
+    setEventTypes(e.target.value);
   };
 
   const handleAddSubmit = (e) => {
@@ -43,6 +73,7 @@ const FormEventAdd = ({
     const formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
     formData.set('location_id', locationId);
+    formData.set('event_types', eventTypes);
 
     Inertia.post(`/schedule/${scheduleId}/events/store`, formData, {
       onSuccess: (page) => {
@@ -134,6 +165,37 @@ const FormEventAdd = ({
         label="Event Description"
         className={classes.formField}
       />
+
+      <FormControl className={(classes.formField, classes.fullWidthSelect)}>
+        <InputLabel id="event-edit-form-event-type-label">
+          Event Types
+        </InputLabel>
+        <Select
+          labelId="event-edit-form-event-type-label"
+          multiple
+          value={eventTypes}
+          onChange={handleEventTypeSelect}
+          input={<Input id="select-multiple-event-type" />}
+          renderValue={(selected) => (
+            <div className={classes.chips}>
+              {selected.map((value) => (
+                <Chip
+                  key={value}
+                  label={availableEventTypes[value - 1].name}
+                  className={classes.chip}
+                />
+              ))}
+            </div>
+          )}
+          MenuProps={MenuProps}
+        >
+          {availableEventTypes.map((eventType) => (
+            <MenuItem key={eventType.id} value={eventType.id}>
+              {eventType.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
       <ButtonGroup aria-label="add form buttons">
         <Button type="submit" variant="contained" color="primary">

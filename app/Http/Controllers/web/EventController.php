@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Event;
+use App\EventType;
 use App\Location;
 use App\Schedule;
 
@@ -17,12 +18,17 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($scheduleId) {
-        $events = Event::where('schedule_id', $scheduleId)->with('location')->orderBy('created_at', 'DESC')->get();
+        $events = Event::where('schedule_id', $scheduleId)->with(['location', 'event_types'])->orderBy('created_at', 'DESC')->get();
         $schedule = Schedule::find($scheduleId);
         $available_locations = [];
+        $available_event_types = [];
 
         foreach (Location::where('schedule_id', $scheduleId)->get() as $location) {
             $available_locations[] = ['id' => $location->id, 'name' => $location->name];
+        }
+
+        foreach (EventType::where('schedule_id', $scheduleId)->get() as $event_type) {
+            $available_event_types[] = ['id' => $event_type->id, 'name' => $event_type->name];
         }
 
         // Set all events to location
@@ -30,11 +36,19 @@ class EventController extends Controller
             $event->location_name = $event->location->name;
             $event->min_date = $event->schedule->start_date;
             $event->max_date = $event->schedule->end_date;
+
+            $event_type_list = [];
+            foreach ($event->event_types as $event_type) {
+                $event_type_list[] = $event_type->id;
+            }
+
+            $event->event_type_list = $event_type_list;
         }
 
         return Inertia::render('Admin/Events', [
             'scheduleId' => $scheduleId,
             'availableLocations' => $available_locations,
+            'availableEventTypes' => $available_event_types,
             'minDate' => $schedule->start_date,
             'maxDate' => $schedule->end_date,
             'events' => $events,
@@ -105,6 +119,11 @@ class EventController extends Controller
         $event->time_end = $request->time_end;
         if ($request->location_id !== 0) { $event->location_id = $request->location_id; }
         $event->description = $request->description;
+
+        // Saving event types
+        $request->merge(['event_types' => explode(',', $request->event_types)]);
+        $event->event_types()->attach($request->event_types);
+
         $success = $event->save();
 
         if ($success) {
@@ -163,6 +182,11 @@ class EventController extends Controller
             if ($request->location_id !== 0) { $event->location_id = $request->location_id; }
             $event->description = $request->description;
             $event->is_cancelled = $request->is_cancelled;
+
+            // Saving event types
+            $request->merge(['event_types' => explode(',', $request->event_types)]);
+            $event->event_types()->sync($request->event_types);
+
             $success = $event->save();
 
             if ($success) {

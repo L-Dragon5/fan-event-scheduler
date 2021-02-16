@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 const Events = ({
   scheduleId,
   availableLocations,
+  availableEventTypes,
   minDate,
   maxDate,
   events,
@@ -60,6 +61,7 @@ const Events = ({
         reloadPage={handleReload}
         scheduleId={scheduleId}
         availableLocations={availableLocations}
+        availableEventTypes={availableEventTypes}
         minDate={minDate}
         maxDate={maxDate}
       />,
@@ -74,6 +76,7 @@ const Events = ({
         reloadPage={handleReload}
         scheduleId={scheduleId}
         availableLocations={availableLocations}
+        availableEventTypes={availableEventTypes}
         event={event}
       />,
     );

@@ -14,6 +14,6 @@ class Location extends Model
     }
     
     public function event() {
-        return $this->belongsToMany(Event::class);
+        return $this->hasMany(Event::class);
     }
 }

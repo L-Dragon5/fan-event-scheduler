@@ -10,7 +10,6 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
   - Account Creation w/ Basic Account Settings
 - Event Pages (Admin)
   - [View] icon on Actions to pull drawer to show full information on item
-  - Events (adding Event Types to it)
   - Maps (Image upload)
 - Event Pages (Public)
   - Display grid/list schedule

@@ -26,6 +26,6 @@ class Event extends Model
     }
 
     public function event_types() {
-        return $this->hasMany(EventType::class);
+        return $this->belongsToMany(EventType::class, 'pivot_events_types', 'event_id', 'event_type_id');
     }
 }

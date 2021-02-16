@@ -5,8 +5,10 @@ import {
   Button,
   ButtonGroup,
   Checkbox,
+  Chip,
   FormControl,
   FormControlLabel,
+  Input,
   InputLabel,
   MenuItem,
   Select,
@@ -21,22 +23,50 @@ const useStyles = makeStyles((theme) => ({
   formField: {
     marginBottom: theme.spacing(1),
   },
+  fullWidthSelect: {
+    width: '100%',
+    marginBottom: theme.spacing(4),
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  },
 }));
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 const FormEventEdit = ({
   closeDrawer,
   reloadPage,
   scheduleId,
   availableLocations,
+  availableEventTypes,
   event,
 }) => {
   const classes = useStyles();
 
   const [locationId, setLocationId] = useState(event.location_id ?? 0);
+  const [eventTypes, setEventTypes] = useState(event.event_type_list);
   const [isCancelled, setIsCancelled] = useState(!!event.is_cancelled);
 
   const handleLocationSelect = (e) => {
     setLocationId(e.target.value);
+  };
+
+  const handleEventTypeSelect = (e) => {
+    setEventTypes(e.target.value);
   };
 
   const handleCancelCheck = (e) => {
@@ -50,6 +80,7 @@ const FormEventEdit = ({
     formData.set('id', event.id);
     formData.set('scheduleId', scheduleId);
     formData.set('location_id', locationId);
+    formData.set('event_types', eventTypes);
     formData.set('is_cancelled', isCancelled ? 1 : 0);
 
     Inertia.post(`/schedule/${scheduleId}/events/update`, formData, {
@@ -137,6 +168,37 @@ const FormEventEdit = ({
         label="Event Description"
         className={classes.formField}
       />
+
+      <FormControl className={(classes.formField, classes.fullWidthSelect)}>
+        <InputLabel id="event-edit-form-event-type-label">
+          Event Types
+        </InputLabel>
+        <Select
+          labelId="event-edit-form-event-type-label"
+          multiple
+          value={eventTypes}
+          onChange={handleEventTypeSelect}
+          input={<Input id="select-multiple-event-type" />}
+          renderValue={(selected) => (
+            <div className={classes.chips}>
+              {selected.map((value) => (
+                <Chip
+                  key={value}
+                  label={availableEventTypes[value - 1].name}
+                  className={classes.chip}
+                />
+              ))}
+            </div>
+          )}
+          MenuProps={MenuProps}
+        >
+          {availableEventTypes.map((eventType) => (
+            <MenuItem key={eventType.id} value={eventType.id}>
+              {eventType.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
       <FormControlLabel
         control={
