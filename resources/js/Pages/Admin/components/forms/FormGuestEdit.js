@@ -23,7 +23,7 @@ const FormGuestEdit = ({ closeDrawer, reloadPage, scheduleId, guest }) => {
     formData.set('id', guest.id);
     formData.set('scheduleId', scheduleId);
 
-    Inertia.post(`/schedule/${scheduleId}/guests/update`, formData, {
+    Inertia.post(`/admin/schedule/${scheduleId}/guests/update`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

@@ -24,7 +24,7 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
 
     const formData = new FormData(e.target);
 
-    Inertia.post('admin/schedules/create', formData, {
+    Inertia.post('/admin/schedules/create', formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

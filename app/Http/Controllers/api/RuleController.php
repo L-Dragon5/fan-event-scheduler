@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use Validator;
-use App\Rule;
+use App\Models\Rule;
 
 class RuleController extends Controller
 {

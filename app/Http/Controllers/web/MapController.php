@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Map;
+use App\Models\Map;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 

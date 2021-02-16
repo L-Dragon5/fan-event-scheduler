@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\api;
 
-use App\User;
-use App\Mail\ResetPassword;
+use App\Models\User;
+use App\Models\Mail\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;

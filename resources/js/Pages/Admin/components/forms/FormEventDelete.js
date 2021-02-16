@@ -26,7 +26,7 @@ const FormEventDelete = ({
     e.preventDefault();
 
     Inertia.post(
-      `/schedule/${scheduleId}/events/destroy`,
+      `/admin/schedule/${scheduleId}/events/destroy`,
       {
         id: eventId,
         scheduleId,

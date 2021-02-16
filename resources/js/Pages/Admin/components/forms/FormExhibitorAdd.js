@@ -22,7 +22,7 @@ const FormExhibitorAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
     const formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
 
-    Inertia.post(`/schedule/${scheduleId}/exhibitors/store`, formData, {
+    Inertia.post(`/admin/schedule/${scheduleId}/exhibitors/store`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

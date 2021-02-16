@@ -28,7 +28,7 @@ const FormEventTypeEdit = ({
     formData.set('id', eventType.id);
     formData.set('scheduleId', scheduleId);
 
-    Inertia.post(`/schedule/${scheduleId}/eventTypes/update`, formData, {
+    Inertia.post(`/admin/schedule/${scheduleId}/eventTypes/update`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

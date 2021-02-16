@@ -23,7 +23,7 @@ const FormRuleEdit = ({ closeDrawer, reloadPage, scheduleId, rule }) => {
     formData.set('id', location.id);
     formData.set('scheduleId', scheduleId);
 
-    Inertia.post(`/schedule/${scheduleId}/rules/update`, formData, {
+    Inertia.post(`/admin/schedule/${scheduleId}/rules/update`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

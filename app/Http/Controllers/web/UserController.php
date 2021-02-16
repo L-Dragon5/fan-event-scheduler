@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
-use App\User;
+use App\Models\User;
 use App\Mail\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

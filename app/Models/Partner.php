@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Home extends Model
+class Partner extends Model
 {
-    protected $table = 'home';
-    protected $fillable = ['content'];
+    protected $fillable = ['name', 'image', 'url'];
+    public $timestamps = false;
 
     public function schedule() {
         return $this->belongsTo(Schedule::class);

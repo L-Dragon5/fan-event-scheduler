@@ -85,49 +85,49 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
             </ListSubheader>
           }
         >
-          <InertiaLink href={`/schedule/${scheduleId}`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}`}>
             <ListItem button>
               <ListItemText primary="Dashboard" />
             </ListItem>
           </InertiaLink>
 
-          <InertiaLink href={`/schedule/${scheduleId}/events`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}/events`}>
             <ListItem button>
               <ListItemText primary="Events" />
             </ListItem>
           </InertiaLink>
 
-          <InertiaLink href={`/schedule/${scheduleId}/eventTypes`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}/eventTypes`}>
             <ListItem button>
               <ListItemText primary="Event Types" />
             </ListItem>
           </InertiaLink>
 
-          <InertiaLink href={`/schedule/${scheduleId}/exhibitors`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}/exhibitors`}>
             <ListItem button>
               <ListItemText primary="Exhibitors" />
             </ListItem>
           </InertiaLink>
 
-          <InertiaLink href={`/schedule/${scheduleId}/guests`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}/guests`}>
             <ListItem button>
               <ListItemText primary="Guests" />
             </ListItem>
           </InertiaLink>
 
-          <InertiaLink href={`/schedule/${scheduleId}/locations`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}/locations`}>
             <ListItem button>
               <ListItemText primary="Locations" />
             </ListItem>
           </InertiaLink>
 
-          <InertiaLink href={`/schedule/${scheduleId}/maps`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}/maps`}>
             <ListItem button>
               <ListItemText primary="Maps" />
             </ListItem>
           </InertiaLink>
 
-          <InertiaLink href={`/schedule/${scheduleId}/rules`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}/rules`}>
             <ListItem button>
               <ListItemText primary="Rules" />
             </ListItem>
@@ -143,7 +143,7 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
             </ListSubheader>
           }
         >
-          <InertiaLink href={`/schedule/${scheduleId}/settings`}>
+          <InertiaLink href={`/admin/schedule/${scheduleId}/settings`}>
             <ListItem button>
               <ListItemText primary="Schedule Settings" />
             </ListItem>
@@ -169,7 +169,7 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
             </IconButton>
 
             <Typography variant="h6" className={classes.title}>
-              <InertiaLink href={`/schedule/${scheduleId}`}>
+              <InertiaLink href={`/admin/schedule/${scheduleId}`}>
                 Schedule Admin
               </InertiaLink>
             </Typography>

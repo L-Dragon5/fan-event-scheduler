@@ -83,7 +83,7 @@ const FormEventEdit = ({
     formData.set('event_types', eventTypes);
     formData.set('is_cancelled', isCancelled ? 1 : 0);
 
-    Inertia.post(`/schedule/${scheduleId}/events/update`, formData, {
+    Inertia.post(`/admin/schedule/${scheduleId}/events/update`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

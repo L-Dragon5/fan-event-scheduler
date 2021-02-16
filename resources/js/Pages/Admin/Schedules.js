@@ -54,7 +54,7 @@ const Schedules = ({ schedules }) => {
         focusRipple
         key={`${text}-button`}
         className={classes.scheduleButton}
-        onClick={() => Inertia.visit(`/schedule/${id}`)}
+        onClick={() => Inertia.visit(`/admin/schedule/${id}`)}
       >
         <Box>
           <Box className={classes.scheduleButtonImage}>

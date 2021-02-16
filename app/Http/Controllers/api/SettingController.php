@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
-use App\Setting;
+use App\Models\Setting;
 
 class SettingController extends Controller
 {

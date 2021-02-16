@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Schedule;
+use App\Models\Schedule;
 
 class CheckUserOwnsSchedule
 {

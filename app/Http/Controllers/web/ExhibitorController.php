@@ -4,7 +4,7 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Exhibitor;
+use App\Models\Exhibitor;
 
 class ExhibitorController extends Controller
 {

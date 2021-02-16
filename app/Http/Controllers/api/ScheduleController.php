@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Schedule;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;

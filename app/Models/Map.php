@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rule extends Model
+class Map extends Model
 {
-    protected $fillable = ['schedule_id', 'title', 'description'];
+    protected $fillable = ['name', 'image'];
     public $timestamps = false;
 
     public function schedule() {

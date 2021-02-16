@@ -4,7 +4,7 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Rule;
+use App\Models\Rule;
 
 class RuleController extends Controller
 {

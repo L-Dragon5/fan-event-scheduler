@@ -4,7 +4,7 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Guest;
+use App\Models\Guest;
 
 class GuestController extends Controller
 {

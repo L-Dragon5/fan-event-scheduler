@@ -51,7 +51,7 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
     formData.set('id', schedule.id);
     formData.set('is_live', isLiveCheck ? 1 : 0);
 
-    Inertia.post(`/schedule/${schedule.id}/update`, formData, {
+    Inertia.post(`/admin/schedule/${schedule.id}/update`, formData, {
       onSuccess: (page) => {
         reloadPage();
       },

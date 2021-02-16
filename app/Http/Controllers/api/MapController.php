@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Map;
+use App\Models\Map;
 use Validator;
 use Illuminate\Http\Request;
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
-use App\Guest;
+use App\Models\Guest;
 use Validator;
 
 class GuestController extends Controller

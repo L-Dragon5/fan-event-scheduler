@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use Validator;
-use App\Exhibitor;
+use App\Models\Exhibitor;
 
 class ExhibitorController extends Controller
 {

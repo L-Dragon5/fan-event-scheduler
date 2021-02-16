@@ -26,7 +26,7 @@ const FormLocationDelete = ({
     e.preventDefault();
 
     Inertia.post(
-      `/schedule/${scheduleId}/locations/destroy`,
+      `/admin/schedule/${scheduleId}/locations/destroy`,
       {
         id: locationId,
         scheduleId,

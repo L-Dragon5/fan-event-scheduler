@@ -93,7 +93,7 @@ const AdminUserNavbar = () => {
               </ListSubheader>
             }
           >
-            <InertiaLink href="/">
+            <InertiaLink href="/admin">
               <ListItem button>
                 <ListItemText primary="Schedules" />
               </ListItem>
@@ -109,11 +109,11 @@ const AdminUserNavbar = () => {
               </ListSubheader>
             }
           >
-            <InertiaLink href="/user-settings">
+            <a href="/admin/billing">
               <ListItem button>
-                <ListItemText primary="User Settings" />
+                <ListItemText primary="Billing" />
               </ListItem>
-            </InertiaLink>
+            </a>
           </List>
         </SwipeableDrawer>
       </Hidden>
@@ -133,13 +133,13 @@ const AdminUserNavbar = () => {
           </Hidden>
 
           <Typography variant="h6" className={classes.title}>
-            <InertiaLink href="/">Admin - Saas Event Schedule</InertiaLink>
+            <InertiaLink href="/admin">Admin - Saas Event Schedule</InertiaLink>
           </Typography>
           <nav className={classes.desktopNav}>
             <Hidden smDown>
-              <InertiaLink href="/">Schedules</InertiaLink>
+              <InertiaLink href="/admin">Schedules</InertiaLink>
 
-              <InertiaLink href="/user-settings">User Settings</InertiaLink>
+              <a href="/admin/billing">Billing</a>
             </Hidden>
           </nav>
         </Toolbar>

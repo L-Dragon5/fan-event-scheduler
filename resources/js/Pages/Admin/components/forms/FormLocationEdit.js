@@ -28,7 +28,7 @@ const FormLocationEdit = ({
     formData.set('id', location.id);
     formData.set('scheduleId', scheduleId);
 
-    Inertia.post(`/schedule/${scheduleId}/locations/update`, formData, {
+    Inertia.post(`/admin/schedule/${scheduleId}/locations/update`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

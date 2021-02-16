@@ -26,7 +26,7 @@ const FormExhibitorDelete = ({
     e.preventDefault();
 
     Inertia.post(
-      `/schedule/${scheduleId}/exhibitors/destroy`,
+      `/admin/schedule/${scheduleId}/exhibitors/destroy`,
       {
         id: exhibitorId,
         scheduleId,

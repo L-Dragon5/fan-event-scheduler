@@ -4,8 +4,7 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\EventType;
+use App\Models\EventType;
 
 class EventTypeController extends Controller
 {
@@ -101,7 +100,7 @@ class EventTypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request) {
-        $event_type->validate([
+        $request->validate([
             'id' => 'numeric|required',
             'scheduleId' => 'numeric|required',
         ]);

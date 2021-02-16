@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Location extends Model
+class EventType extends Model
 {
-    protected $fillable = ['scheduleId', 'name', 'url'];
+    protected $fillable = ['schedule_id', 'name'];
     public $timestamps = false;
 
     public function schedule() {
@@ -14,6 +14,6 @@ class Location extends Model
     }
     
     public function event() {
-        return $this->hasMany(Event::class);
+        return $this->belongsToMany(Event::class, 'pivot_events_types', 'event_type_id', 'event_id');
     }
 }

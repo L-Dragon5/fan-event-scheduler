@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spark\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Billable, Notifiable;
 
     /**
      * The attributes that are mass assignable.

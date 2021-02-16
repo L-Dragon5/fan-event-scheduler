@@ -26,7 +26,7 @@ const FormGuestDelete = ({
     e.preventDefault();
 
     Inertia.post(
-      `/schedule/${scheduleId}/guests/destroy`,
+      `/admin/schedule/${scheduleId}/guests/destroy`,
       {
         id: guestId,
         scheduleId,

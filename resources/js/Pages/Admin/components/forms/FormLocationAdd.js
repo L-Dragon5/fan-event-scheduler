@@ -22,7 +22,7 @@ const FormLocationAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
     const formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
 
-    Inertia.post(`/schedule/${scheduleId}/locations/store`, formData, {
+    Inertia.post(`/admin/schedule/${scheduleId}/locations/store`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

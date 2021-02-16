@@ -75,7 +75,7 @@ const FormEventAdd = ({
     formData.set('location_id', locationId);
     formData.set('event_types', eventTypes);
 
-    Inertia.post(`/schedule/${scheduleId}/events/store`, formData, {
+    Inertia.post(`/admin/schedule/${scheduleId}/events/store`, formData, {
       onSuccess: (page) => {
         reloadPage();
         closeDrawer();

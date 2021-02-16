@@ -4,10 +4,10 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Event;
-use App\EventType;
-use App\Location;
-use App\Schedule;
+use App\Models\Event;
+use App\Models\EventType;
+use App\Models\Location;
+use App\Models\Schedule;
 
 class EventController extends Controller
 {
@@ -121,8 +121,10 @@ class EventController extends Controller
         $event->description = $request->description;
 
         // Saving event types
-        $request->merge(['event_types' => explode(',', $request->event_types)]);
-        $event->event_types()->attach($request->event_types);
+        if (!empty($request->event_types)) {
+            $request->merge(['event_types' => explode(',', $request->event_types)]);
+            $event->event_types()->attach($request->event_types);
+        }
 
         $success = $event->save();
 
@@ -184,8 +186,12 @@ class EventController extends Controller
             $event->is_cancelled = $request->is_cancelled;
 
             // Saving event types
-            $request->merge(['event_types' => explode(',', $request->event_types)]);
-            $event->event_types()->sync($request->event_types);
+            if (empty($request->event_types)) {
+                $event->event_types()->detach();
+            } else {
+                $request->merge(['event_types' => explode(',', $request->event_types)]);
+                $event->event_types()->sync($request->event_types);
+            }
 
             $success = $event->save();
 

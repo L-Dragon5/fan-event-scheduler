@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
-use App\Schedule;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;

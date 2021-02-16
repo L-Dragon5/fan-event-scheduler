@@ -4,7 +4,7 @@ namespace App\Http\Controllers\web;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Location;
+use App\Models\Location;
 
 class LocationController extends Controller
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Exhibitor extends Model
+class Guest extends Model
 {
-    protected $fillable = ['schedule_id', 'name', 'category', 'url'];
+    protected $fillable = ['schedule_id', 'name', 'category', 'description', 'social_fb', 'social_tw', 'social_ig'];
     public $timestamps = false;
 
     public function schedule() {

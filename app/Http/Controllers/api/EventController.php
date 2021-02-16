@@ -5,9 +5,9 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Event;
-use App\Location;
-use App\EventType;
+use App\Models\Event;
+use App\Models\Location;
+use App\Models\EventType;
 
 class EventController extends Controller
 {

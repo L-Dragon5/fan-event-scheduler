@@ -29080,7 +29080,7 @@ var Schedules = function Schedules(_ref) {
       focusRipple: true,
       className: classes.scheduleButton,
       onClick: function onClick() {
-        return _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.visit("/schedule/".concat(id));
+        return _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.visit("/admin/schedule/".concat(id));
       },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29461,7 +29461,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
           children: "Main Options"
         }),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId),
+          href: "/admin/schedule/".concat(scheduleId),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29469,7 +29469,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId, "/events"),
+          href: "/admin/schedule/".concat(scheduleId, "/events"),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29477,7 +29477,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId, "/eventTypes"),
+          href: "/admin/schedule/".concat(scheduleId, "/eventTypes"),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29485,7 +29485,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId, "/exhibitors"),
+          href: "/admin/schedule/".concat(scheduleId, "/exhibitors"),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29493,7 +29493,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId, "/guests"),
+          href: "/admin/schedule/".concat(scheduleId, "/guests"),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29501,7 +29501,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId, "/locations"),
+          href: "/admin/schedule/".concat(scheduleId, "/locations"),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29509,7 +29509,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId, "/maps"),
+          href: "/admin/schedule/".concat(scheduleId, "/maps"),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29517,7 +29517,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
             })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId, "/rules"),
+          href: "/admin/schedule/".concat(scheduleId, "/rules"),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29535,7 +29535,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
           children: "Settings"
         }),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-          href: "/schedule/".concat(scheduleId, "/settings"),
+          href: "/admin/schedule/".concat(scheduleId, "/settings"),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
             button: true,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -29565,7 +29565,7 @@ var AdminScheduleNavbar = function AdminScheduleNavbar(_ref) {
             variant: "h6",
             className: classes.title,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-              href: "/schedule/".concat(scheduleId),
+              href: "/admin/schedule/".concat(scheduleId),
               children: "Schedule Admin"
             })
           })]
@@ -29724,7 +29724,7 @@ var AdminUserNavbar = function AdminUserNavbar() {
             children: "Main Options"
           }),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-            href: "/",
+            href: "/admin",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
               button: true,
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -29741,12 +29741,12 @@ var AdminUserNavbar = function AdminUserNavbar() {
             id: "settings-mobile-header",
             children: "Settings"
           }),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-            href: "/user-settings",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+            href: "/admin/billing",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
               button: true,
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
-                primary: "User Settings"
+                primary: "Billing"
               })
             })
           })
@@ -29769,7 +29769,7 @@ var AdminUserNavbar = function AdminUserNavbar() {
           variant: "h6",
           className: classes.title,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-            href: "/",
+            href: "/admin",
             children: "Admin - Saas Event Schedule"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("nav", {
@@ -29777,11 +29777,11 @@ var AdminUserNavbar = function AdminUserNavbar() {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
             smDown: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-              href: "/",
+              href: "/admin",
               children: "Schedules"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
-              href: "/user-settings",
-              children: "User Settings"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+              href: "/admin/billing",
+              children: "Billing"
             })]
           })
         })]
@@ -30035,7 +30035,7 @@ var FormEventAdd = function FormEventAdd(_ref) {
     formData.set('scheduleId', scheduleId);
     formData.set('location_id', locationId);
     formData.set('event_types', eventTypes);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/events/store"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/events/store"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -30219,7 +30219,7 @@ var FormEventDelete = function FormEventDelete(_ref) {
 
   var handleDeleteSubmit = function handleDeleteSubmit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/events/destroy"), {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/events/destroy"), {
       id: eventId,
       scheduleId: scheduleId
     }, {
@@ -30381,7 +30381,7 @@ var FormEventEdit = function FormEventEdit(_ref) {
     formData.set('location_id', locationId);
     formData.set('event_types', eventTypes);
     formData.set('is_cancelled', isCancelled ? 1 : 0);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/events/update"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/events/update"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -30567,7 +30567,7 @@ var FormEventTypeAdd = function FormEventTypeAdd(_ref) {
     e.preventDefault();
     var formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/eventTypes/store"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/eventTypes/store"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -30652,7 +30652,7 @@ var FormEventTypeDelete = function FormEventTypeDelete(_ref) {
 
   var handleDeleteSubmit = function handleDeleteSubmit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/eventTypes/destroy"), {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/eventTypes/destroy"), {
       id: eventTypeId,
       scheduleId: scheduleId
     }, {
@@ -30739,7 +30739,7 @@ var FormEventTypeEdit = function FormEventTypeEdit(_ref) {
     var formData = new FormData(e.target);
     formData.set('id', eventType.id);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/eventTypes/update"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/eventTypes/update"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -30825,7 +30825,7 @@ var FormExhibitorAdd = function FormExhibitorAdd(_ref) {
     e.preventDefault();
     var formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/exhibitors/store"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/exhibitors/store"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -30923,7 +30923,7 @@ var FormExhibitorDelete = function FormExhibitorDelete(_ref) {
 
   var handleDeleteSubmit = function handleDeleteSubmit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/exhibitors/destroy"), {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/exhibitors/destroy"), {
       id: exhibitorId,
       scheduleId: scheduleId
     }, {
@@ -31010,7 +31010,7 @@ var FormExhibitorEdit = function FormExhibitorEdit(_ref) {
     var formData = new FormData(e.target);
     formData.set('id', exhibitor.id);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/exhibitors/update"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/exhibitors/update"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -31111,7 +31111,7 @@ var FormGuestAdd = function FormGuestAdd(_ref) {
     e.preventDefault();
     var formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/guests/store"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/guests/store"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -31229,7 +31229,7 @@ var FormGuestDelete = function FormGuestDelete(_ref) {
 
   var handleDeleteSubmit = function handleDeleteSubmit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/guests/destroy"), {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/guests/destroy"), {
       id: guestId,
       scheduleId: scheduleId
     }, {
@@ -31316,7 +31316,7 @@ var FormGuestEdit = function FormGuestEdit(_ref) {
     var formData = new FormData(e.target);
     formData.set('id', guest.id);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/guests/update"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/guests/update"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -31440,7 +31440,7 @@ var FormLocationAdd = function FormLocationAdd(_ref) {
     e.preventDefault();
     var formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/locations/store"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/locations/store"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -31532,7 +31532,7 @@ var FormLocationDelete = function FormLocationDelete(_ref) {
 
   var handleDeleteSubmit = function handleDeleteSubmit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/locations/destroy"), {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/locations/destroy"), {
       id: locationId,
       scheduleId: scheduleId
     }, {
@@ -31619,7 +31619,7 @@ var FormLocationEdit = function FormLocationEdit(_ref) {
     var formData = new FormData(e.target);
     formData.set('id', location.id);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/locations/update"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/locations/update"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -31713,7 +31713,7 @@ var FormRuleAdd = function FormRuleAdd(_ref) {
     e.preventDefault();
     var formData = new FormData(e.target);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/rules/store"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/rules/store"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -31806,7 +31806,7 @@ var FormRuleDelete = function FormRuleDelete(_ref) {
 
   var handleDeleteSubmit = function handleDeleteSubmit(e) {
     e.preventDefault();
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/rules/destroy"), {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/rules/destroy"), {
       id: ruleId,
       scheduleId: scheduleId
     }, {
@@ -31893,7 +31893,7 @@ var FormRuleEdit = function FormRuleEdit(_ref) {
     var formData = new FormData(e.target);
     formData.set('id', location.id);
     formData.set('scheduleId', scheduleId);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(scheduleId, "/rules/update"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/rules/update"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -31989,7 +31989,7 @@ var FormScheduleAdd = function FormScheduleAdd(_ref) {
   var handleAddSubmit = function handleAddSubmit(e) {
     e.preventDefault();
     var formData = new FormData(e.target);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post('admin/schedules/create', formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post('/admin/schedules/create', formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
         closeDrawer();
@@ -32163,7 +32163,7 @@ var FormScheduleEdit = function FormScheduleEdit(_ref) {
     var formData = new FormData(e.target);
     formData.set('id', schedule.id);
     formData.set('is_live', isLiveCheck ? 1 : 0);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/schedule/".concat(schedule.id, "/update"), formData, {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(schedule.id, "/update"), formData, {
       onSuccess: function onSuccess(page) {
         reloadPage();
       }
