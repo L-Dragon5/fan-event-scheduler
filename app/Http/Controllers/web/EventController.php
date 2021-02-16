@@ -17,7 +17,7 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($scheduleId) {
-        $events = Event::where('schedule_id', $scheduleId)->orderBy('created_at', 'DESC')->get();
+        $events = Event::where('schedule_id', $scheduleId)->with('location')->orderBy('created_at', 'DESC')->get();
         $schedule = Schedule::find($scheduleId);
         $available_locations = [];
 
