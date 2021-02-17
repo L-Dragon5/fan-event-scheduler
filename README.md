@@ -16,6 +16,6 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 ## Requirements
 * MySQL/MariaDB Server
 * PHP >= 7.3.0
-* PHP Extensions: BCMath, Ctype, JSON, Mbstring, OpenSSL, PDO, XML
+* PHP Extensions: BCMath, Ctype, JSON, Mbstring, OpenSSL, PDO, XML, SOAP
 * Composer
 * NodeJS
