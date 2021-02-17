@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>
-        @if ($title !== '')
+        @if ($title !== '' && isset($schedule_name))
+            {{ $title }} | {{ $schedule_name }}
+        @elseif ($title !== '')
             {{ $title }} | {{ config('app.name', 'Laravel') }}
         @else
             {{ config('app.name', 'Laravel') }}

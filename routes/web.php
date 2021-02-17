@@ -10,6 +10,7 @@ use App\Http\Controllers\web\LocationController;
 use App\Http\Controllers\web\MapController;
 use App\Http\Controllers\web\RuleController;
 use App\Http\Controllers\web\ScheduleController;
+use App\Http\Controllers\web\PublicScheduleController;
 use App\Http\Controllers\web\UserController;
 use App\Http\Middleware\CheckUserOwnsSchedule;
 use Inertia\Inertia;
@@ -103,4 +104,10 @@ Route::get('/forgot-password', fn() => Inertia::render('Public/ForgotPassword')-
 Route::get('/', fn() => Inertia::render('Public/Index')->withViewData(['title' => 'Home']));
 
 // Public Schedule Routes
-Route::get('/s/{uuid}', [ScheduleController::class, 'showPublic']);
+Route::group(['prefix' => 's/{uuid}'], function () {
+    Route::get('/', [PublicScheduleController::class, 'showEvents']);
+    Route::get('/exhibitors', [PublicScheduleController::class, 'showExhibitors']);
+    Route::get('/guests', [PublicScheduleController::class, 'showGuests']);
+    Route::get('/maps', [PublicScheduleController::class, 'showMaps']);
+    Route::get('/rules', [PublicScheduleController::class, 'showRules']);
+});

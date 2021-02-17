@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import { SnackbarProvider } from 'notistack';
 
-import { CssBaseline } from '@material-ui/core';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { Box, CssBaseline } from '@material-ui/core';
+import {
+  createMuiTheme,
+  makeStyles,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 import { blue, pink } from '@material-ui/core/colors';
 
 import AdminScheduleNavbar from './components/AdminScheduleNavbar';
@@ -15,7 +19,22 @@ const theme = createMuiTheme({
   },
 });
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    [theme.breakpoints.up('md')]: {
+      flexWrap: 'nowrap',
+    },
+  },
+  main: {
+    flex: '1 1 0',
+  },
+}));
+
 const AdminScheduleLayout = ({ title, scheduleId, children }) => {
+  const classes = useStyles();
+
   useEffect(() => {
     document.title = `${title} | SaaS Event Schedule`;
   }, [title]);
@@ -30,10 +49,12 @@ const AdminScheduleLayout = ({ title, scheduleId, children }) => {
       >
         <SnackbarMessages />
         <CssBaseline />
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <Box className={classes.root}>
           <AdminScheduleNavbar scheduleId={scheduleId} />
-          <main style={{ flex: '1 1 0' }}>{children}</main>
-        </div>
+          <Box component="main" className={classes.main}>
+            {children}
+          </Box>
+        </Box>
       </SnackbarProvider>
     </ThemeProvider>
   );

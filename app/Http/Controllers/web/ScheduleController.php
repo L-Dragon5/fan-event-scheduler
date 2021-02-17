@@ -73,27 +73,6 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Display the Public Schedule area.
-     * 
-     * @param uuid  $uuid
-     * @return \Illuminate\Http\Response
-     */
-    public function showPublic($uuid) {
-        try {
-            $schedule = Schedule::where('public_string', '=', $uuid)
-                ->where('is_live', '=', 1)
-                ->with(['events', 'exhibitors', 'guests', 'locations', 'maps', 'rules'])
-                ->firstOrFail();
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect('/');
-        }
-
-        return Inertia::render('Public/PublicSchedule', [
-            'schedule' => $schedule
-        ])->withViewData(['title' => $schedule->name]);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

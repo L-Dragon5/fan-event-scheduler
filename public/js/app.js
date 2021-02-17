@@ -27578,14 +27578,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/dist/notistack.esm.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CssBaseline/CssBaseline.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CssBaseline/CssBaseline.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/createMuiTheme.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/styles/esm/ThemeProvider/ThemeProvider.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/styles/esm/ThemeProvider/ThemeProvider.js");
 /* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/colors */ "./node_modules/@material-ui/core/esm/colors/blue.js");
 /* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/colors */ "./node_modules/@material-ui/core/esm/colors/pink.js");
 /* harmony import */ var _components_AdminScheduleNavbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AdminScheduleNavbar */ "./resources/js/Pages/Admin/components/AdminScheduleNavbar.js");
 /* harmony import */ var _SnackbarMessages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../SnackbarMessages */ "./resources/js/Pages/SnackbarMessages.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -27601,15 +27605,29 @@ var theme = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)({
     secondary: _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_7__.default
   }
 });
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__.default)(function (theme) {
+  return {
+    root: _defineProperty({
+      display: 'flex',
+      flexWrap: 'wrap'
+    }, theme.breakpoints.up('md'), {
+      flexWrap: 'nowrap'
+    }),
+    main: {
+      flex: '1 1 0'
+    }
+  };
+});
 
 var AdminScheduleLayout = function AdminScheduleLayout(_ref) {
   var title = _ref.title,
       scheduleId = _ref.scheduleId,
       children = _ref.children;
+  var classes = useStyles();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     document.title = "".concat(title, " | SaaS Event Schedule");
   }, [title]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__.default, {
     theme: theme,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(notistack__WEBPACK_IMPORTED_MODULE_1__.SnackbarProvider, {
       maxSnack: 3,
@@ -27619,17 +27637,13 @@ var AdminScheduleLayout = function AdminScheduleLayout(_ref) {
         vertical: 'top'
       },
       autoHideDuration: 2000,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SnackbarMessages__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        style: {
-          display: 'flex',
-          flexWrap: 'wrap'
-        },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SnackbarMessages__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
+        className: classes.root,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_AdminScheduleNavbar__WEBPACK_IMPORTED_MODULE_2__.default, {
           scheduleId: scheduleId
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("main", {
-          style: {
-            flex: '1 1 0'
-          },
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
+          component: "main",
+          className: classes.main,
           children: children
         })]
       })]
@@ -32766,10 +32780,10 @@ var LoginPage = function LoginPage() {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Public/PublicSchedule.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/Pages/Public/PublicSchedule.js ***!
-  \*****************************************************/
+/***/ "./resources/js/Pages/Public/PublicScheduleLayout.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/Pages/Public/PublicScheduleLayout.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -32779,13 +32793,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CssBaseline/CssBaseline.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/createMuiTheme.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/styles/esm/ThemeProvider/ThemeProvider.js");
-/* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/colors */ "./node_modules/@material-ui/core/esm/colors/orange.js");
+/* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/colors */ "./node_modules/@material-ui/core/esm/colors/blue.js");
 /* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/colors */ "./node_modules/@material-ui/core/esm/colors/pink.js");
-/* harmony import */ var _views_EventsPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/EventsPage */ "./resources/js/Pages/Public/views/EventsPage.js");
+/* harmony import */ var _components_PublicScheduleNavbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/PublicScheduleNavbar */ "./resources/js/Pages/Public/components/PublicScheduleNavbar.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -32799,36 +32816,51 @@ var theme = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)({
     secondary: _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_5__.default
   }
 });
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__.default)(function () {
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__.default)(function (theme) {
   return {
-    root: {
-      padding: theme.spacing(2)
-    },
-    filters: {
-      margin: '16px 0 32px'
-    },
-    searchInput: {
-      paddingRight: '16px'
+    root: _defineProperty({
+      display: 'flex',
+      flexWrap: 'wrap'
+    }, theme.breakpoints.up('md'), {
+      flexWrap: 'nowrap'
+    }),
+    main: {
+      flex: '1 1 0'
     }
   };
 });
 
-var PublicSchedule = function PublicSchedule(_ref) {
-  var schedule = _ref.schedule;
+var PublicScheduleLayout = function PublicScheduleLayout(_ref) {
+  var title = _ref.title,
+      scheduleName = _ref.scheduleName,
+      uuid = _ref.uuid,
+      children = _ref.children;
   var classes = useStyles();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    document.title = schedule.name;
-  }, [schedule]);
+    document.title = "".concat(title, " | ").concat(scheduleName);
+  }, [title]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__.default, {
     theme: theme,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_views_EventsPage__WEBPACK_IMPORTED_MODULE_1__.default, {
-      events: schedule.events,
-      locations: schedule.locations
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+      className: classes.root,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_PublicScheduleNavbar__WEBPACK_IMPORTED_MODULE_1__.default, {
+        uuid: uuid,
+        scheduleName: scheduleName
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+        component: "main",
+        className: classes.main,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+          style: {
+            flexGrow: 1
+          },
+          children: children
+        })
+      })]
     })]
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PublicSchedule);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PublicScheduleLayout);
 
 /***/ }),
 
@@ -33070,6 +33102,220 @@ var ExternalLink = function ExternalLink(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Public/components/PublicScheduleNavbar.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Pages/Public/components/PublicScheduleNavbar.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/List/List.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ListSubheader/ListSubheader.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ListItem/ListItem.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ListItemText/ListItemText.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Hidden/Hidden.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/AppBar/AppBar.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Toolbar/Toolbar.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/IconButton/IconButton.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/SwipeableDrawer/SwipeableDrawer.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Drawer/Drawer.js");
+/* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/icons/Menu */ "./node_modules/@material-ui/icons/Menu.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var drawerWidth = 240;
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)(function (theme) {
+  return {
+    menuButton: {
+      marginRight: theme.spacing(2)
+    },
+    appBar: {
+      width: '100vw'
+    },
+    title: {
+      flexGrow: 1,
+      '& > a': {
+        color: '#FFFFFF',
+        textDecoration: 'none'
+      }
+    },
+    nav: {
+      '& > a': {
+        color: 'rgba(0, 0, 0, 0.87)',
+        textDecoration: 'none'
+      }
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0
+    },
+    drawerPaper: {
+      width: drawerWidth
+    },
+    paper: {
+      position: 'absolute',
+      width: '65%',
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)'
+    }
+  };
+});
+
+var PublicScheduleNavbar = function PublicScheduleNavbar(_ref) {
+  var uuid = _ref.uuid,
+      scheduleName = _ref.scheduleName;
+  var classes = useStyles();
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      drawerStatus = _useState2[0],
+      setDrawerStatus = _useState2[1];
+
+  var drawerOpen = function drawerOpen() {
+    setDrawerStatus(true);
+  };
+
+  var drawerClose = function drawerClose() {
+    setDrawerStatus(false);
+  };
+
+  var NavigationList = function NavigationList() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        component: "nav",
+        className: classes.nav,
+        "aria-labelledby": "main-options-header",
+        subheader: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+          component: "div",
+          id: "main-options-header",
+          children: "Main Options"
+        }),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
+          href: "/s/".concat(uuid),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+            button: true,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+              primary: "Events"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
+          href: "/s/".concat(uuid, "/exhibitors"),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+            button: true,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+              primary: "Exhibitors"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
+          href: "/s/".concat(uuid, "/guests"),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+            button: true,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+              primary: "Guests"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
+          href: "/s/".concat(uuid, "/maps"),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+            button: true,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+              primary: "Maps"
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
+          href: "/s/".concat(uuid, "/rules"),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+            button: true,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+              primary: "Rules"
+            })
+          })
+        })]
+      })
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+      mdUp: true,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
+        position: "static",
+        className: classes.appBar,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+            edge: "start",
+            className: classes.menuButton,
+            color: "inherit",
+            "aria-label": "menu",
+            onClick: drawerOpen,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_13__.default, {})
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_14__.default, {
+            variant: "h6",
+            className: classes.title,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
+              href: "/s/".concat(uuid),
+              children: scheduleName
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_15__.default, {
+        anchor: "left",
+        open: drawerStatus,
+        onClose: drawerClose,
+        onOpen: drawerOpen,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(NavigationList, {})
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+      smDown: true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_16__.default, {
+        open: true,
+        variant: "permanent",
+        anchor: "left",
+        className: classes.drawer,
+        classes: {
+          paper: classes.drawerPaper
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(NavigationList, {})
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PublicScheduleNavbar);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Public/views/EventsPage.js":
 /*!*******************************************************!*\
   !*** ./resources/js/Pages/Public/views/EventsPage.js ***!
@@ -33082,29 +33328,216 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _schedule_grid_EventsGridView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./schedule/grid/EventsGridView */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/useMediaQuery/useMediaQuery.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/useTheme.js");
+/* harmony import */ var _PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PublicScheduleLayout */ "./resources/js/Pages/Public/PublicScheduleLayout.js");
+/* harmony import */ var _schedule_grid_EventsGridView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./schedule/grid/EventsGridView */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
 
 
 
 
 var EventsPage = function EventsPage(_ref) {
-  var events = _ref.events,
+  var uuid = _ref.uuid,
+      scheduleName = _ref.scheduleName,
+      events = _ref.events,
       locations = _ref.locations;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    style: {
-      height: '80vh',
-      width: '50vw',
-      overflow: 'auto'
-    },
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_schedule_grid_EventsGridView__WEBPACK_IMPORTED_MODULE_1__.default, {
-      events: events,
-      locations: locations
-    })
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      eventDisplay = _useState2[0],
+      setEventDisplay = _useState2[1];
+
+  var theme = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)();
+  var isDesktop = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default)(theme.breakpoints.up('md'));
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (isDesktop) {
+      setEventDisplay( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_schedule_grid_EventsGridView__WEBPACK_IMPORTED_MODULE_2__.default, {
+        events: events,
+        locations: locations
+      }));
+    } else {
+      setEventDisplay( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        children: "List view would go here once complete."
+      }));
+    }
+  }, [isDesktop]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
+    title: "Events",
+    scheduleName: scheduleName,
+    uuid: uuid,
+    children: eventDisplay
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsPage);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Public/views/ExhibitorsPage.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/Pages/Public/views/ExhibitorsPage.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PublicScheduleLayout */ "./resources/js/Pages/Public/PublicScheduleLayout.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var ExhibitorsPage = function ExhibitorsPage(_ref) {
+  var uuid = _ref.uuid,
+      scheduleName = _ref.scheduleName,
+      exhibitors = _ref.exhibitors;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
+    title: "Exhibitors",
+    scheduleName: scheduleName,
+    uuid: uuid,
+    children: exhibitors === null || exhibitors === void 0 ? void 0 : exhibitors.map(function (exhibitor) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: exhibitor.name
+      }, exhibitor.id);
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ExhibitorsPage);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Public/views/GuestsPage.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/Pages/Public/views/GuestsPage.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PublicScheduleLayout */ "./resources/js/Pages/Public/PublicScheduleLayout.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var GuestsPage = function GuestsPage(_ref) {
+  var uuid = _ref.uuid,
+      scheduleName = _ref.scheduleName,
+      guests = _ref.guests;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
+    title: "Guests",
+    scheduleName: scheduleName,
+    uuid: uuid,
+    children: guests === null || guests === void 0 ? void 0 : guests.map(function (guest) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: guest.name
+      }, guest.id);
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GuestsPage);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Public/views/MapsPage.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/Pages/Public/views/MapsPage.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PublicScheduleLayout */ "./resources/js/Pages/Public/PublicScheduleLayout.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var MapsPage = function MapsPage(_ref) {
+  var uuid = _ref.uuid,
+      scheduleName = _ref.scheduleName,
+      maps = _ref.maps;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
+    title: "Maps",
+    scheduleName: scheduleName,
+    uuid: uuid,
+    children: maps === null || maps === void 0 ? void 0 : maps.map(function (map) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: map.name
+      }, map.id);
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MapsPage);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Public/views/RulesPage.js":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/Public/views/RulesPage.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PublicScheduleLayout */ "./resources/js/Pages/Public/PublicScheduleLayout.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var RulesPage = function RulesPage(_ref) {
+  var uuid = _ref.uuid,
+      scheduleName = _ref.scheduleName,
+      rules = _ref.rules;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
+    title: "Rules",
+    scheduleName: scheduleName,
+    uuid: uuid,
+    children: rules === null || rules === void 0 ? void 0 : rules.map(function (rule) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: rule.title
+      }, rule.id);
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RulesPage);
 
 /***/ }),
 
@@ -33120,8 +33553,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Modal/Modal.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _EventsGridViewModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventsGridViewModal */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js");
+/* harmony import */ var _EventsGridViewEvent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EventsGridViewEvent */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js");
+/* harmony import */ var _components_ExternalLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/ExternalLink */ "./resources/js/Pages/Public/components/ExternalLink.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
 
 
 
@@ -33134,8 +33588,24 @@ var latestHour;
 var EventsGridView = function EventsGridView(_ref) {
   var events = _ref.events,
       locations = _ref.locations;
-  console.log(events);
-  console.log(locations); // Get earliest and latest event times.
+  var eventGridRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      timeSlots = _useState2[0],
+      setTimeSlots = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      open = _useState4[0],
+      setOpen = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {})),
+      _useState6 = _slicedToArray(_useState5, 2),
+      modalContent = _useState6[0],
+      setModalContent = _useState6[1];
+
+  var gridRowSpacing = '15px'; // Get earliest and latest event times.
 
   events.forEach(function (event) {
     if (earliestEvent === '' || earliestEvent > event.time_start) {
@@ -33157,41 +33627,53 @@ var EventsGridView = function EventsGridView(_ref) {
 
   var gridTemplateRowsCss = '[tracks] auto ';
 
-  for (var second = 0, hour = earliestHour; hour < latestHour; second += 5) {
-    if (second !== 0 && second === 60) {
+  for (var minute = 0, hour = earliestHour; hour < latestHour; minute += 5) {
+    if (minute !== 0 && minute === 60) {
       hour += 1;
-      second = 0;
+      minute = 0;
     }
 
     if (hour === 24) {
       break;
     }
 
-    gridTemplateRowsCss += "[time-".concat(zeroPad(hour, 2)).concat(zeroPad(second, 2), "] 2px ");
+    gridTemplateRowsCss += "[time-".concat(zeroPad(hour, 2)).concat(zeroPad(minute, 2), "] ").concat(gridRowSpacing, " ");
   } // Get grid sections for locations
 
 
-  var gridTemplateColumnsCss = '[times] auto [track-0-start] 1fr ';
+  var gridTemplateColumnsCss = '[times] .35fr [track-0-start] minmax(150px, 1fr) ';
 
   for (var k = 0; k < locations.length - 1; k += 1) {
-    gridTemplateColumnsCss += "[track-".concat(k, "-end track-").concat(k + 1, "-start] 1fr ");
+    gridTemplateColumnsCss += "[track-".concat(k, "-end track-").concat(k + 1, "-start] minmax(150px, 1fr) ");
   }
 
   gridTemplateColumnsCss += "[track-".concat(locations.length - 1, "-end]"); // CSS Classes
 
-  var classes = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__.default)(function () {
+  var classes = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__.default)(function (theme) {
     return {
       eventGrid: {
         display: 'grid',
-        gap: '.5rem',
+        gap: "0 .5rem",
         gridTemplateRows: gridTemplateRowsCss,
-        gridTemplateColumns: gridTemplateColumnsCss
+        gridTemplateColumns: gridTemplateColumnsCss,
+        backgroundColor: theme.palette.grey[200],
+        padding: theme.spacing(0, 2, 0, 0)
       },
       timeSlot: {
         gridColumn: 'times',
         whiteSpace: 'nowrap',
         margin: 0,
-        borderTop: '1px solid gray'
+        textAlign: 'right',
+        position: 'relative'
+      },
+      timeSlotLine: {
+        content: '""',
+        display: 'block',
+        backgroundColor: 'rgba(0,0,0,.3)',
+        top: '-1px',
+        height: '1px',
+        position: 'absolute',
+        width: '100%'
       },
       trackSlot: {
         display: 'block',
@@ -33199,77 +33681,352 @@ var EventsGridView = function EventsGridView(_ref) {
         position: 'sticky',
         top: 0,
         zIndex: 1000,
-        backgroundColor: 'rgba(255,255,255,.9)'
+        backgroundColor: theme.palette.primary.light,
+        opacity: 0.9,
+        fontWeight: 'bold',
+        textAlign: 'center'
       },
-      session: {
-        backgroundColor: 'green'
+      externalLink: {
+        display: 'block',
+        width: '100%',
+        height: '100%',
+        color: 'black'
+      },
+      modalContent: {
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        position: 'absolute',
+        width: 400,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3)
       }
     };
   })(); // Create time slot elements
 
-  var timeSlots = [];
+  var generateTimeSlots = function generateTimeSlots(gridWidth) {
+    var tempArray = [];
 
-  for (var _second = 0, _hour = earliestHour; _hour < latestHour; _second += 30) {
-    if (_second !== 0 && _second === 60) {
-      _hour += 1;
-      _second = 0;
-    }
+    for (var _minute = 0, _hour = earliestHour; _hour < latestHour; _minute += 30) {
+      if (_minute !== 0 && _minute === 60) {
+        _hour += 1;
+        _minute = 0;
+      }
 
-    if (_hour === 24) {
-      break;
-    }
+      if (_hour === 24) {
+        break;
+      }
 
-    var timeSlotName = "time-".concat(zeroPad(_hour, 2)).concat(zeroPad(_second, 2));
-    timeSlots.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h3", {
-      className: classes.timeSlot,
-      style: {
+      var timeSlotName = "time-".concat(zeroPad(_hour, 2)).concat(zeroPad(_minute, 2));
+      var timeSlotStyle = {
+        gridColumn: 'times',
+        whiteSpace: 'nowrap',
+        margin: 0,
+        textAlign: 'right',
+        position: 'relative',
         gridRow: timeSlotName
-      },
-      children: [zeroPad(_hour, 2), ":", zeroPad(_second, 2), " ", _hour >= 12 ? 'pm' : 'am']
-    }, timeSlotName));
-  }
+      };
+      var timeSlotLineStyle = {
+        content: '""',
+        display: 'block',
+        backgroundColor: 'rgba(0,0,0,.3)',
+        top: '-1px',
+        height: '1px',
+        position: 'absolute',
+        width: gridWidth
+      };
+      tempArray.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h3", {
+        style: timeSlotStyle,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          style: timeSlotLineStyle
+        }), _hour > 12 ? zeroPad(_hour - 12, 1) : zeroPad(_hour, 1), ":", zeroPad(_minute, 2), " ", _hour >= 12 ? 'pm' : 'am']
+      }, timeSlotName));
+    }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    setTimeSlots(tempArray);
+  };
+
+  var handleEventClick = function handleEventClick(event, location) {
+    setModalContent( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventsGridViewModal__WEBPACK_IMPORTED_MODULE_1__.default, {
+      event: event,
+      location: location
+    }));
+    setOpen(true);
+  };
+
+  var handleClose = function handleClose() {
+    setOpen(false);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(function () {
+    var current = eventGridRef.current;
+    var delayTimer;
+
+    var handleResize = function handleResize() {
+      clearTimeout(delayTimer);
+      delayTimer = setTimeout(function () {
+        generateTimeSlots(current.offsetWidth);
+      }, 250);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return function () {
+      return window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
     className: classes.eventGrid,
+    ref: eventGridRef,
     children: [locations.map(function (location, index) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
         className: classes.trackSlot,
         "aria-hidden": "true",
         style: {
           gridColumn: "track-".concat(index),
           gridRow: 'tracks'
         },
-        children: location.name
+        children: location.url !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ExternalLink__WEBPACK_IMPORTED_MODULE_3__.default, {
+          className: classes.externalLink,
+          href: location.url,
+          children: location.name
+        }) : location.name
       }, location.id);
     }), timeSlots, locations.map(function (location, locationIndex) {
       return events.map(function (event) {
-        var eventTrackNum = '';
-        var eventTimeRow = '';
-
         if (event.location_id === location.id) {
-          var eventTimeStart = event.time_start.replace(':', '').substr(0, 4);
-          var eventTimeEnd = event.time_end.replace(':', '').substr(0, 4);
-          eventTrackNum = "track-".concat(locationIndex);
-          eventTimeRow = "time-".concat(eventTimeStart, " / time-").concat(eventTimeEnd);
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: classes.session,
-            style: {
-              gridColumn: eventTrackNum,
-              gridRow: eventTimeRow
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventsGridViewEvent__WEBPACK_IMPORTED_MODULE_2__.default, {
+            onClick: function onClick() {
+              return handleEventClick(event, location);
             },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-              children: event.name
-            })
+            event: event,
+            locationIndex: locationIndex
           }, event.id);
         }
 
         return false;
       });
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+      open: open,
+      onClose: handleClose,
+      children: modalContent
     })]
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsGridView);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__.default)(function (theme) {
+  return {
+    event: {
+      display: 'flex',
+      flexDirection: 'column',
+      backgroundColor: theme.palette.background.paper,
+      padding: theme.spacing(1),
+      zIndex: 1,
+      cursor: 'pointer',
+      overflow: 'hidden'
+    },
+    eventTitle: {
+      margin: '0 0 4px',
+      fontSize: '1.25rem'
+    },
+    eventTime: {
+      margin: 0,
+      fontSize: '1rem'
+    }
+  };
+});
+
+var EventsGridViewEvent = function EventsGridViewEvent(_ref) {
+  var onClick = _ref.onClick,
+      event = _ref.event,
+      locationIndex = _ref.locationIndex;
+  var classes = useStyles();
+  var eventTrackNum = '';
+  var eventTimeRow = '';
+  var eventTimeStart = event.time_start.replace(':', '').substr(0, 4);
+  var eventTimeEnd = event.time_end.replace(':', '').substr(0, 4);
+  eventTrackNum = "track-".concat(locationIndex);
+  eventTimeRow = "time-".concat(eventTimeStart, " / time-").concat(eventTimeEnd);
+  var beginDate = luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_start));
+  var endDate = luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_end));
+  var timeEntry = "".concat(beginDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.TIME_SIMPLE), " - ").concat(endDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.TIME_SIMPLE));
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+    onClick: onClick,
+    component: _material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default,
+    elevation: 4,
+    className: classes.event,
+    style: {
+      gridColumn: eventTrackNum,
+      gridRow: eventTimeRow
+    },
+    children: event.is_cancelled === 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        component: "h2",
+        className: classes.eventTitle,
+        style: {
+          textDecoration: 'line-through'
+        },
+        children: event.name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        component: "h3",
+        className: classes.eventTime,
+        style: {
+          textDecoration: 'line-through'
+        },
+        children: timeEntry
+      })]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        component: "h2",
+        className: classes.eventTitle,
+        children: event.name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        component: "h3",
+        className: classes.eventTime,
+        children: timeEntry
+      })]
+    })
+  }, event.id);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsGridViewEvent);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__.default)(function (theme) {
+  var _modalContent;
+
+  return {
+    modalContent: (_modalContent = {
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      position: 'absolute',
+      width: '80vw',
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3)
+    }, _defineProperty(_modalContent, theme.breakpoints.up('md'), {
+      width: '50vw'
+    }), _defineProperty(_modalContent, theme.breakpoints.up('lg'), {
+      width: '30vw'
+    }), _modalContent),
+    eventTitle: {
+      margin: theme.spacing(0, 0, 0.5, 0)
+    },
+    eventSubtitle: {
+      margin: theme.spacing(0, 0, 1, 0)
+    }
+  };
+});
+
+var EventsGridViewModal = function EventsGridViewModal(_ref) {
+  var event = _ref.event,
+      location = _ref.location;
+  var classes = useStyles();
+  var beginDate = luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_start));
+  var endDate = luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_end));
+  var timeEntry = "".concat(beginDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.TIME_SIMPLE), " - ").concat(endDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.TIME_SIMPLE));
+
+  if (event.is_cancelled === 1) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+      className: classes.modalContent,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        variant: "h4",
+        children: "Cancelled"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        variant: "h4",
+        className: classes.eventTitle,
+        style: {
+          textDecoration: 'line-through'
+        },
+        children: event.name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        variant: "h5",
+        className: classes.eventSubtitle,
+        children: [location.name, " | ", timeEntry]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        variant: "body1",
+        children: event.description
+      })]
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+    className: classes.modalContent,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      variant: "h4",
+      className: classes.eventTitle,
+      children: event.name
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      variant: "h5",
+      className: classes.eventSubtitle,
+      children: [location.name, " | ", timeEntry]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      variant: "body1",
+      children: event.description
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsGridViewModal);
 
 /***/ }),
 
@@ -96405,18 +97162,32 @@ var map = {
 	"./Public/Index.js": "./resources/js/Pages/Public/Index.js",
 	"./Public/Login": "./resources/js/Pages/Public/Login.js",
 	"./Public/Login.js": "./resources/js/Pages/Public/Login.js",
-	"./Public/PublicSchedule": "./resources/js/Pages/Public/PublicSchedule.js",
-	"./Public/PublicSchedule.js": "./resources/js/Pages/Public/PublicSchedule.js",
+	"./Public/PublicScheduleLayout": "./resources/js/Pages/Public/PublicScheduleLayout.js",
+	"./Public/PublicScheduleLayout.js": "./resources/js/Pages/Public/PublicScheduleLayout.js",
 	"./Public/Register": "./resources/js/Pages/Public/Register.js",
 	"./Public/Register.js": "./resources/js/Pages/Public/Register.js",
 	"./Public/components/Copyright": "./resources/js/Pages/Public/components/Copyright.js",
 	"./Public/components/Copyright.js": "./resources/js/Pages/Public/components/Copyright.js",
 	"./Public/components/ExternalLink": "./resources/js/Pages/Public/components/ExternalLink.js",
 	"./Public/components/ExternalLink.js": "./resources/js/Pages/Public/components/ExternalLink.js",
+	"./Public/components/PublicScheduleNavbar": "./resources/js/Pages/Public/components/PublicScheduleNavbar.js",
+	"./Public/components/PublicScheduleNavbar.js": "./resources/js/Pages/Public/components/PublicScheduleNavbar.js",
 	"./Public/views/EventsPage": "./resources/js/Pages/Public/views/EventsPage.js",
 	"./Public/views/EventsPage.js": "./resources/js/Pages/Public/views/EventsPage.js",
+	"./Public/views/ExhibitorsPage": "./resources/js/Pages/Public/views/ExhibitorsPage.js",
+	"./Public/views/ExhibitorsPage.js": "./resources/js/Pages/Public/views/ExhibitorsPage.js",
+	"./Public/views/GuestsPage": "./resources/js/Pages/Public/views/GuestsPage.js",
+	"./Public/views/GuestsPage.js": "./resources/js/Pages/Public/views/GuestsPage.js",
+	"./Public/views/MapsPage": "./resources/js/Pages/Public/views/MapsPage.js",
+	"./Public/views/MapsPage.js": "./resources/js/Pages/Public/views/MapsPage.js",
+	"./Public/views/RulesPage": "./resources/js/Pages/Public/views/RulesPage.js",
+	"./Public/views/RulesPage.js": "./resources/js/Pages/Public/views/RulesPage.js",
 	"./Public/views/schedule/grid/EventsGridView": "./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js",
 	"./Public/views/schedule/grid/EventsGridView.js": "./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js",
+	"./Public/views/schedule/grid/EventsGridViewEvent": "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js",
+	"./Public/views/schedule/grid/EventsGridViewEvent.js": "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js",
+	"./Public/views/schedule/grid/EventsGridViewModal": "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js",
+	"./Public/views/schedule/grid/EventsGridViewModal.js": "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js",
 	"./Public/views/schedule/list/EventsListView": "./resources/js/Pages/Public/views/schedule/list/EventsListView.js",
 	"./Public/views/schedule/list/EventsListView.js": "./resources/js/Pages/Public/views/schedule/list/EventsListView.js",
 	"./SnackbarMessages": "./resources/js/Pages/SnackbarMessages.js",
