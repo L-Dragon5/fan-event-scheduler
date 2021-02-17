@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-import { Box, Grid, TextField, CssBaseline } from '@material-ui/core';
+import { Box, CssBaseline } from '@material-ui/core';
 
 import {
   createMuiTheme,
@@ -8,6 +8,8 @@ import {
   makeStyles,
 } from '@material-ui/core/styles';
 import { orange, pink } from '@material-ui/core/colors';
+
+import EventsPage from './views/EventsPage';
 
 const theme = createMuiTheme({
   palette: {
@@ -31,8 +33,6 @@ const useStyles = makeStyles(() => ({
 const PublicSchedule = ({ schedule }) => {
   const classes = useStyles();
 
-  console.log(schedule);
-
   useEffect(() => {
     document.title = schedule.name;
   }, [schedule]);
@@ -40,7 +40,7 @@ const PublicSchedule = ({ schedule }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box className={classes.root}>Hello</Box>
+      <EventsPage events={schedule.events} locations={schedule.locations} />
     </ThemeProvider>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
+import { DateTime } from 'luxon';
 
 import {
   Box,
@@ -117,21 +118,50 @@ const Events = ({
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
+                  <TableCell>Date/Time</TableCell>
                   <TableCell align="right">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {events?.map((event) => (
-                  <TableRow key={event.id}>
-                    <TableCell>{event.name}</TableCell>
-                    <TableCell align="right">
-                      <ButtonEdit onClick={() => handleEdit(event)} />
-                      <ButtonDelete
-                        onClick={() => handleDelete(event.id, event.name)}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {events?.map((event) => {
+                  const beginDate = DateTime.fromISO(
+                    `${event.date}T${event.time_start}`,
+                  );
+                  const endDate = DateTime.fromISO(
+                    `${event.date}T${event.time_end}`,
+                  );
+                  const dateEntry = `${beginDate.toLocaleString(
+                    DateTime.DATE_FULL,
+                  )}`;
+                  const timeEntry = `${beginDate.toLocaleString(
+                    DateTime.TIME_SIMPLE,
+                  )} - ${endDate.toLocaleString(DateTime.TIME_SIMPLE)}`;
+
+                  return (
+                    <TableRow key={event.id}>
+                      <TableCell>
+                        {event.is_cancelled === 1 ? (
+                          <span style={{ textDecoration: 'line-through' }}>
+                            {event.name}
+                          </span>
+                        ) : (
+                          event.name
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        {dateEntry}
+                        <br />
+                        {timeEntry}
+                      </TableCell>
+                      <TableCell align="right">
+                        <ButtonEdit onClick={() => handleEdit(event)} />
+                        <ButtonDelete
+                          onClick={() => handleDelete(event.id, event.name)}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </TableContainer>

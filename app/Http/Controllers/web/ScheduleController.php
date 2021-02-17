@@ -82,6 +82,7 @@ class ScheduleController extends Controller
         try {
             $schedule = Schedule::where('public_string', '=', $uuid)
                 ->where('is_live', '=', 1)
+                ->with(['events', 'exhibitors', 'guests', 'locations', 'maps', 'rules'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return redirect('/');
@@ -238,6 +239,6 @@ class ScheduleController extends Controller
             $protocol = 'http';
         }
       
-        return $protocol . '://' . preg_replace("/^(.*?)\.(.*)$/","$2",$_SERVER['HTTP_HOST']) . '/s/' . $uuid;
+        return $protocol . '://' . $_SERVER['HTTP_HOST'] . '/s/' . $uuid;
     }
 }

@@ -21,6 +21,30 @@ class Schedule extends Model
     public $timestamps = false;
 
     public function user() {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
+    }
+
+    public function events() {
+        return $this->hasMany(Event::class);
+    }
+
+    public function exhibitors() {
+        return $this->hasMany(Exhibitor::class);
+    }
+
+    public function guests() {
+        return $this->hasMany(Guest::class);
+    }
+
+    public function locations() {
+        return $this->hasMany(Location::class);
+    }
+
+    public function maps() {
+        return $this->hasMany(Map::class);
+    }
+
+    public function rules() {
+        return $this->hasMany(Rule::class);
     }
 }
