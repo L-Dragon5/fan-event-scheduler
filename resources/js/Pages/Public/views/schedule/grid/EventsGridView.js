@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
+import { DateTime } from 'luxon';
 
 import { Box, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,7 +19,7 @@ const EventsGridView = ({ events, locations }) => {
   const [timeSlots, setTimeSlots] = useState([]);
   const [open, setOpen] = useState(false);
   const [modalContent, setModalContent] = useState(<Box />);
-  const gridRowSpacing = '15px';
+  const gridRowSpacing = '3px';
 
   // Get earliest and latest event times.
   events.forEach((event) => {
@@ -44,7 +45,7 @@ const EventsGridView = ({ events, locations }) => {
 
   // Get grid sections for time
   let gridTemplateRowsCss = '[tracks] auto ';
-  for (let minute = 0, hour = earliestHour; hour < latestHour; minute += 5) {
+  for (let minute = 0, hour = earliestHour; hour < latestHour; minute += 1) {
     if (minute !== 0 && minute === 60) {
       hour += 1;
       minute = 0;
@@ -79,6 +80,7 @@ const EventsGridView = ({ events, locations }) => {
       gridTemplateColumns: gridTemplateColumnsCss,
       backgroundColor: theme.palette.grey[200],
       padding: theme.spacing(0, 2, 0, 0),
+      position: 'relative',
     },
     timeSlot: {
       gridColumn: 'times',
@@ -106,6 +108,15 @@ const EventsGridView = ({ events, locations }) => {
       opacity: 0.9,
       fontWeight: 'bold',
       textAlign: 'center',
+    },
+    currentTimeLine: {
+      content: '""',
+      display: 'block',
+      backgroundColor: 'rgba(255,0,0,.3)',
+      top: '-1px',
+      height: '1px',
+      position: 'absolute',
+      width: '100%',
     },
     externalLink: {
       display: 'block',
@@ -167,6 +178,25 @@ const EventsGridView = ({ events, locations }) => {
       );
     }
 
+    const currentTime = DateTime.now();
+    const currentTimeLineName = `time-${zeroPad(currentTime.hour, 2)}${zeroPad(
+      currentTime.minute,
+      2,
+    )}`;
+    const currentTimeLineStyle = {
+      content: '""',
+      display: 'block',
+      backgroundColor: 'rgba(255,0,0,.3)',
+      height: '3px',
+      position: 'absolute',
+      width: gridWidth,
+      gridRow: currentTimeLineName,
+      zIndex: 2,
+    };
+    tempArray.push(
+      <div key={`cur${currentTimeLineName}`} style={currentTimeLineStyle} />,
+    );
+
     setTimeSlots(tempArray);
   };
 
@@ -189,6 +219,9 @@ const EventsGridView = ({ events, locations }) => {
         generateTimeSlots(current.offsetWidth);
       }, 250);
     };
+    setInterval(() => {
+      handleResize();
+    }, 30000);
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -204,12 +237,12 @@ const EventsGridView = ({ events, locations }) => {
           aria-hidden="true"
           style={{ gridColumn: `track-${index}`, gridRow: 'tracks' }}
         >
-          {location.url !== null ? (
+          {location.url !== '' ? (
             <ExternalLink className={classes.externalLink} href={location.url}>
               {location.name}
             </ExternalLink>
           ) : (
-            location.name
+            <>{location.name}</>
           )}
         </Box>
       ))}

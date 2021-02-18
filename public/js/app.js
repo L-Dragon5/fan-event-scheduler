@@ -34562,8 +34562,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Modal/Modal.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Modal/Modal.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 /* harmony import */ var _EventsGridViewModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventsGridViewModal */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js");
 /* harmony import */ var _EventsGridViewEvent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EventsGridViewEvent */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js");
@@ -34580,6 +34581,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -34614,7 +34617,7 @@ var EventsGridView = function EventsGridView(_ref) {
       modalContent = _useState6[0],
       setModalContent = _useState6[1];
 
-  var gridRowSpacing = '15px'; // Get earliest and latest event times.
+  var gridRowSpacing = '3px'; // Get earliest and latest event times.
 
   events.forEach(function (event) {
     if (earliestEvent === '' || earliestEvent > event.time_start) {
@@ -34636,7 +34639,7 @@ var EventsGridView = function EventsGridView(_ref) {
 
   var gridTemplateRowsCss = '[tracks] auto ';
 
-  for (var minute = 0, hour = earliestHour; hour < latestHour; minute += 5) {
+  for (var minute = 0, hour = earliestHour; hour < latestHour; minute += 1) {
     if (minute !== 0 && minute === 60) {
       hour += 1;
       minute = 0;
@@ -34666,7 +34669,8 @@ var EventsGridView = function EventsGridView(_ref) {
         gridTemplateRows: gridTemplateRowsCss,
         gridTemplateColumns: gridTemplateColumnsCss,
         backgroundColor: theme.palette.grey[200],
-        padding: theme.spacing(0, 2, 0, 0)
+        padding: theme.spacing(0, 2, 0, 0),
+        position: 'relative'
       },
       timeSlot: {
         gridColumn: 'times',
@@ -34694,6 +34698,15 @@ var EventsGridView = function EventsGridView(_ref) {
         opacity: 0.9,
         fontWeight: 'bold',
         textAlign: 'center'
+      },
+      currentTimeLine: {
+        content: '""',
+        display: 'block',
+        backgroundColor: 'rgba(255,0,0,.3)',
+        top: '-1px',
+        height: '1px',
+        position: 'absolute',
+        width: '100%'
       },
       externalLink: {
         display: 'block',
@@ -34754,6 +34767,21 @@ var EventsGridView = function EventsGridView(_ref) {
       }, timeSlotName));
     }
 
+    var currentTime = luxon__WEBPACK_IMPORTED_MODULE_7__.DateTime.now();
+    var currentTimeLineName = "time-".concat(zeroPad(currentTime.hour, 2)).concat(zeroPad(currentTime.minute, 2));
+    var currentTimeLineStyle = {
+      content: '""',
+      display: 'block',
+      backgroundColor: 'rgba(255,0,0,.3)',
+      height: '3px',
+      position: 'absolute',
+      width: gridWidth,
+      gridRow: currentTimeLineName,
+      zIndex: 2
+    };
+    tempArray.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      style: currentTimeLineStyle
+    }, "cur".concat(currentTimeLineName)));
     setTimeSlots(tempArray);
   };
 
@@ -34780,6 +34808,9 @@ var EventsGridView = function EventsGridView(_ref) {
       }, 250);
     };
 
+    setInterval(function () {
+      handleResize();
+    }, 30000);
     handleResize();
     window.addEventListener('resize', handleResize);
     return function () {
@@ -34797,11 +34828,13 @@ var EventsGridView = function EventsGridView(_ref) {
           gridColumn: "track-".concat(index),
           gridRow: 'tracks'
         },
-        children: location.url !== null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ExternalLink__WEBPACK_IMPORTED_MODULE_3__.default, {
+        children: location.url !== '' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ExternalLink__WEBPACK_IMPORTED_MODULE_3__.default, {
           className: classes.externalLink,
           href: location.url,
           children: location.name
-        }) : location.name
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+          children: location.name
+        })
       }, location.id);
     }), timeSlots, locations.map(function (location, locationIndex) {
       return events.map(function (event) {
@@ -34817,7 +34850,7 @@ var EventsGridView = function EventsGridView(_ref) {
 
         return false;
       });
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
       open: open,
       onClose: handleClose,
       children: modalContent
