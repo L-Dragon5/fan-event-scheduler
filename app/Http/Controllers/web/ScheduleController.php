@@ -84,10 +84,10 @@ class ScheduleController extends Controller
             'name' => 'string|required',
             'start_date' => 'date|required',
             'end_date' => 'date|after_or_equal:start_date|required',
-            'social_fb' => 'string|nullable',
-            'social_tw' => 'string|nullable',
-            'social_ig' => 'string|nullable',
-            'social_web' => 'string|nullable',
+            'social_fb' => 'url|nullable',
+            'social_tw' => 'url|nullable',
+            'social_ig' => 'url|nullable',
+            'social_web' => 'url|nullable',
         ]);
 
         $user_id = Auth::id();
@@ -134,10 +134,10 @@ class ScheduleController extends Controller
             'name' => 'string|required',
             'start_date' => 'date|required',
             'end_date' => 'date|after_or_equal:start_date|required',
-            'social_fb' => 'string|nullable',
-            'social_tw' => 'string|nullable',
-            'social_ig' => 'string|nullable',
-            'social_web' => 'string|nullable',
+            'social_fb' => 'url|nullable',
+            'social_tw' => 'url|nullable',
+            'social_ig' => 'url|nullable',
+            'social_web' => 'url|nullable',
             'is_live' => 'boolean|required',
         ]);
 

@@ -23,9 +23,12 @@ class PublicScheduleController extends Controller
             return redirect('/');
         }
 
+        $social_settings = $this->getSocialSettings($schedule);
+
         return Inertia::render('Public/views/EventsPage', [
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
+            'socialSettings' => $social_settings,
             'events' => $schedule->events,
             'locations' => $schedule->locations,
         ])->withViewData(['title' => 'Events', 'schedule_name' => $schedule->name]);
@@ -47,10 +50,27 @@ class PublicScheduleController extends Controller
             return redirect('/');
         }
 
+        $sortedExhibitors = [];
+        $undefinedExhibitors = [];
+
+        foreach ($schedule->exhibitors as $exhibitor) {
+            $category = $exhibitor->category;
+            if (empty($category)) {
+                $undefinedExhibitors['Unknown'][] = $exhibitor;
+            } else {
+                $sortedExhibitors[$category][] = $exhibitor;
+            }
+        }
+        ksort($sortedExhibitors);
+        $sortedExhibitors = array_merge($sortedExhibitors, $undefinedExhibitors);
+
+        $social_settings = $this->getSocialSettings($schedule);
+
         return Inertia::render('Public/views/ExhibitorsPage', [
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
-            'exhibitors' => $schedule->exhibitors,
+            'socialSettings' => $social_settings,
+            'exhibitors' => $sortedExhibitors,
         ])->withViewData(['title' => 'Exhibitors', 'schedule_name' => $schedule->name]);
     }
 
@@ -70,10 +90,27 @@ class PublicScheduleController extends Controller
             return redirect('/');
         }
 
+        $sortedGuests = [];
+        $undefinedGuests = [];
+
+        foreach ($schedule->guests as $guest) {
+            $category = $guest->category;
+            if (empty($category)) {
+                $undefinedGuests['Unknown'][] = $guest;
+            } else {
+                $sortedGuests[$category][] = $guest;
+            }
+        }
+        ksort($sortedGuests);
+        $sortedGuests = array_merge($sortedGuests, $undefinedGuests);
+
+        $social_settings = $this->getSocialSettings($schedule);
+
         return Inertia::render('Public/views/GuestsPage', [
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
-            'guests' => $schedule->guests,
+            'socialSettings' => $social_settings,
+            'guests' => $sortedGuests,
         ])->withViewData(['title' => 'Guests', 'schedule_name' => $schedule->name]);
     }
 
@@ -93,9 +130,12 @@ class PublicScheduleController extends Controller
             return redirect('/');
         }
 
+        $social_settings = $this->getSocialSettings($schedule);
+
         return Inertia::render('Public/views/MapsPage', [
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
+            'socialSettings' => $social_settings,
             'maps' => $schedule->map,
         ])->withViewData(['title' => 'Maps', 'schedule_name' => $schedule->name]);
     }
@@ -116,10 +156,41 @@ class PublicScheduleController extends Controller
             return redirect('/');
         }
 
+        $social_settings = $this->getSocialSettings($schedule);
+
         return Inertia::render('Public/views/RulesPage', [
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
+            'socialSettings' => $social_settings,
             'rules' => $schedule->rules,
         ])->withViewData(['title' => 'Rules', 'schedule_name' => $schedule->name]);
+    }
+
+    /**
+     * Gets the schedule social links and returns it as a setup array.
+     * 
+     * @param Schedule  $schedule
+     * @return array
+     */
+    private function getSocialSettings($schedule) {
+        $return_array = [];
+        if (!empty($schedule->social_fb)) {
+            $return_array['fb'] = $schedule->social_fb;
+        }
+
+        if (!empty($schedule->social_tw)) {
+            $return_array['tw'] = $schedule->social_tw;
+        }
+
+        if (!empty($schedule->social_ig)) {
+            $return_array['ig'] = $schedule->social_ig;
+        }
+
+        if (!empty($schedule->social_web)) {
+            $return_array['web'] = $schedule->social_web;
+        }
+        
+
+        return $return_array;
     }
 }

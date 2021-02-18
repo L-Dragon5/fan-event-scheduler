@@ -30,7 +30,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PublicScheduleLayout = ({ title, scheduleName, uuid, children }) => {
+const PublicScheduleLayout = ({
+  title,
+  scheduleName,
+  socialSettings,
+  uuid,
+  children,
+}) => {
   const classes = useStyles();
 
   useEffect(() => {
@@ -41,7 +47,11 @@ const PublicScheduleLayout = ({ title, scheduleName, uuid, children }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box className={classes.root}>
-        <PublicScheduleNavbar uuid={uuid} scheduleName={scheduleName} />
+        <PublicScheduleNavbar
+          uuid={uuid}
+          scheduleName={scheduleName}
+          socialSettings={socialSettings}
+        />
         <Box component="main" className={classes.main}>
           <Box style={{ flexGrow: 1 }}>{children}</Box>
         </Box>

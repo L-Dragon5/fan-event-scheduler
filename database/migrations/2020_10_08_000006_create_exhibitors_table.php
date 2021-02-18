@@ -17,8 +17,8 @@ class CreateExhibitorsTable extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->string('name', 255);
-            $table->string('category', 255)->nullable();
-            $table->string('url', 255)->nullable();
+            $table->string('category', 255)->nullable()->default('');
+            $table->string('url', 255)->nullable()->default('');
         });
     }
 

@@ -11,7 +11,10 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 - Event Pages (Admin)
   - Maps (Image upload)
 - Event Pages (Public)
-  - Display grid/list schedule
+  - Events List View
+  - Events Day Selection
+  - Guests Modal View
+  - Maps View
 
 ## Requirements
 * MySQL/MariaDB Server

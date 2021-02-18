@@ -10,13 +10,18 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListSubheader,
   Toolbar,
   Typography,
   IconButton,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LanguageIcon from '@material-ui/icons/Language';
 import { makeStyles } from '@material-ui/core/styles';
+
+import ExternalLink from './ExternalLink';
 
 const drawerWidth = 240;
 
@@ -57,9 +62,13 @@ const useStyles = makeStyles((theme) => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
   },
+  iconLink: {
+    color: theme.palette.grey[900],
+    marginRight: theme.spacing(0.5),
+  },
 }));
 
-const PublicScheduleNavbar = ({ uuid, scheduleName }) => {
+const PublicScheduleNavbar = ({ uuid, scheduleName, socialSettings }) => {
   const classes = useStyles();
 
   const [drawerStatus, setDrawerStatus] = useState(false);
@@ -72,19 +81,45 @@ const PublicScheduleNavbar = ({ uuid, scheduleName }) => {
     setDrawerStatus(false);
   };
 
+  const socialIcons = (
+    <>
+      {socialSettings?.fb && (
+        <ExternalLink href={socialSettings.fb} className={classes.iconLink}>
+          <FacebookIcon />
+        </ExternalLink>
+      )}
+      {socialSettings?.tw && (
+        <ExternalLink href={socialSettings.tw} className={classes.iconLink}>
+          <TwitterIcon />
+        </ExternalLink>
+      )}
+      {socialSettings?.ig && (
+        <ExternalLink href={socialSettings.ig} className={classes.iconLink}>
+          <InstagramIcon />
+        </ExternalLink>
+      )}
+      {socialSettings?.web && (
+        <ExternalLink href={socialSettings.web} className={classes.iconLink}>
+          <LanguageIcon />
+        </ExternalLink>
+      )}
+    </>
+  );
+
   const NavigationList = () => {
     return (
       <>
-        <List
-          component="nav"
-          className={classes.nav}
-          aria-labelledby="main-options-header"
-          subheader={
-            <ListSubheader component="div" id="main-options-header">
-              Main Options
-            </ListSubheader>
-          }
-        >
+        <List>
+          <ListItem>
+            <ListItemText>
+              <Typography variant="h5">{scheduleName}</Typography>
+            </ListItemText>
+          </ListItem>
+          <ListItem divider>
+            <ListItemText>{socialIcons}</ListItemText>
+          </ListItem>
+        </List>
+        <List component="nav" className={classes.nav}>
           <InertiaLink href={`/s/${uuid}`}>
             <ListItem button>
               <ListItemText primary="Events" />

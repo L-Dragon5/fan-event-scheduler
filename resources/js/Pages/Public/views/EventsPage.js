@@ -6,7 +6,13 @@ import { useTheme } from '@material-ui/core/styles';
 import PublicScheduleLayout from '../PublicScheduleLayout';
 import EventsGridView from './schedule/grid/EventsGridView';
 
-const EventsPage = ({ uuid, scheduleName, events, locations }) => {
+const EventsPage = ({
+  uuid,
+  scheduleName,
+  socialSettings,
+  events,
+  locations,
+}) => {
   const [eventDisplay, setEventDisplay] = useState(null);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
@@ -23,6 +29,7 @@ const EventsPage = ({ uuid, scheduleName, events, locations }) => {
     <PublicScheduleLayout
       title="Events"
       scheduleName={scheduleName}
+      socialSettings={socialSettings}
       uuid={uuid}
     >
       {eventDisplay}

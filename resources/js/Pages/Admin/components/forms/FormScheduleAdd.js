@@ -79,6 +79,7 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
 
       <TextField
         fullWidth
+        type="url"
         name="social_fb"
         variant="outlined"
         label="Event Facebook"
@@ -87,6 +88,7 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
 
       <TextField
         fullWidth
+        type="url"
         name="social_tw"
         variant="outlined"
         label="Event Twitter"
@@ -95,6 +97,7 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
 
       <TextField
         fullWidth
+        type="url"
         name="social_ig"
         variant="outlined"
         label="Event Instagram"
@@ -103,6 +106,7 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
 
       <TextField
         fullWidth
+        type="url"
         name="social_web"
         variant="outlined"
         label="Event Website"

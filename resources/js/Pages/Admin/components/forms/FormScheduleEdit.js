@@ -101,6 +101,7 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
       <TextField
         fullWidth
         defaultValue={schedule.social_fb}
+        type="url"
         name="social_fb"
         variant="outlined"
         label="Event Facebook"
@@ -110,6 +111,7 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
       <TextField
         fullWidth
         defaultValue={schedule.social_tw}
+        type="url"
         name="social_tw"
         variant="outlined"
         label="Event Twitter"
@@ -118,7 +120,8 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
 
       <TextField
         fullWidth
-        defaultValue={schedule.ig}
+        defaultValue={schedule.social_ig}
+        type="url"
         name="social_ig"
         variant="outlined"
         label="Event Instagram"
@@ -127,7 +130,8 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
 
       <TextField
         fullWidth
-        defaultValue={schedule.web}
+        defaultValue={schedule.social_web}
+        type="url"
         name="social_web"
         variant="outlined"
         label="Event Website"
