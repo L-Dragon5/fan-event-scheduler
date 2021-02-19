@@ -13,7 +13,6 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 - Event Pages (Public)
   - Events List View
   - Events Day Selection
-  - Guests Modal View
   - Maps View
 
 ## Requirements

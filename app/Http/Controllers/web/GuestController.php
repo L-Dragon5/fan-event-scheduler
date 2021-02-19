@@ -35,9 +35,9 @@ class GuestController extends Controller
             'name' => 'string|required',
             'category' => 'string|required',
             'description' => 'string|nullable',
-            'social_fb' => 'string|nullable',
-            'social_tw' => 'string|nullable',
-            'social_ig' => 'string|nullable',
+            'social_fb' => 'url|nullable',
+            'social_tw' => 'url|nullable',
+            'social_ig' => 'url|nullable',
         ]);
 
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'guests', 'name')) {
@@ -75,9 +75,9 @@ class GuestController extends Controller
             'name' => 'string|required',
             'category' => 'string|required',
             'description' => 'string|nullable',
-            'social_fb' => 'string|nullable',
-            'social_tw' => 'string|nullable',
-            'social_ig' => 'string|nullable',
+            'social_fb' => 'url|nullable',
+            'social_tw' => 'url|nullable',
+            'social_ig' => 'url|nullable',
         ]);
 
         try {

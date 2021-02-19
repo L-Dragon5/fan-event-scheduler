@@ -66,6 +66,7 @@ const FormGuestEdit = ({ closeDrawer, reloadPage, scheduleId, guest }) => {
 
       <TextField
         fullWidth
+        type="url"
         defaultValue={guest.social_fb}
         name="social_fb"
         variant="outlined"
@@ -75,6 +76,7 @@ const FormGuestEdit = ({ closeDrawer, reloadPage, scheduleId, guest }) => {
 
       <TextField
         fullWidth
+        type="url"
         defaultValue={guest.social_tw}
         name="social_tw"
         variant="outlined"
@@ -84,6 +86,7 @@ const FormGuestEdit = ({ closeDrawer, reloadPage, scheduleId, guest }) => {
 
       <TextField
         fullWidth
+        type="url"
         defaultValue={guest.social_ig}
         name="social_ig"
         variant="outlined"

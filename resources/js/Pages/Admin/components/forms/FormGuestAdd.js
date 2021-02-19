@@ -62,6 +62,7 @@ const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
 
       <TextField
         fullWidth
+        type="url"
         name="social_fb"
         variant="outlined"
         label="Guest Facebook"
@@ -70,6 +71,7 @@ const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
 
       <TextField
         fullWidth
+        type="url"
         name="social_tw"
         variant="outlined"
         label="Guest Twitter"
@@ -78,6 +80,7 @@ const FormGuestAdd = ({ closeDrawer, reloadPage, scheduleId }) => {
 
       <TextField
         fullWidth
+        type="url"
         name="social_ig"
         variant="outlined"
         label="Guest Instagram"
