@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { DateTime } from 'luxon';
 
-import { Box, List, Modal } from '@material-ui/core';
+import { Box, Divider, List, ListSubheader, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import EventsListViewEvent from './EventsListViewEvent';
@@ -10,6 +11,13 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: '100%',
     backgroundColor: theme.palette.background.paper,
+    padding: 0,
+  },
+  timeHeader: {
+    fontSize: '1rem',
+    fontWeight: 700,
+    backgroundColor: 'rgba(0,0,0,.05)',
+    borderBottom: 'rgba(0,0,0,.15)',
   },
 }));
 
@@ -29,18 +37,57 @@ const EventsListView = ({ events, locations }) => {
     setOpen(true);
   };
 
+  const timeSortedEvents = events.reduce((r, a) => {
+    r[a.time_start] = r[a.time_start] || [];
+    r[a.time_start].push(a);
+    return r;
+  }, Object.create(null));
+
   return (
     <>
-      <List className={classes.list}>
-        {events.map((event) => (
-          <EventsListViewEvent
-            key={event.id}
-            event={event}
-            locations={locations}
-            onClick={() => handleEventClick(event)}
-          />
-        ))}
-      </List>
+      {Object.entries(timeSortedEvents).map((val) => {
+        const time = DateTime.fromISO(val[0]).toLocaleString(
+          DateTime.TIME_SIMPLE,
+        );
+        const entries = val[1];
+
+        return (
+          <List
+            key={time}
+            className={classes.list}
+            subheader={
+              <ListSubheader className={classes.timeHeader}>
+                {time}
+              </ListSubheader>
+            }
+          >
+            {entries.map((event, index) => {
+              if (index !== entries.length - 1) {
+                return (
+                  <React.Fragment key={event.id}>
+                    <EventsListViewEvent
+                      key={event.id}
+                      event={event}
+                      locations={locations}
+                      onClick={() => handleEventClick(event)}
+                    />
+                    <Divider />
+                  </React.Fragment>
+                );
+              }
+              return (
+                <EventsListViewEvent
+                  key={event.id}
+                  event={event}
+                  locations={locations}
+                  onClick={() => handleEventClick(event)}
+                />
+              );
+            })}
+          </List>
+        );
+      })}
+
       <Modal open={open} onClose={handleClose}>
         {modalContent}
       </Modal>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 
-import { Divider, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { ListItem, ListItemText, Typography } from '@material-ui/core';
 
 const EventsListViewEvent = ({ onClick, event, locations }) => {
   const beginDate = DateTime.fromISO(`${event.date}T${event.time_start}`);
@@ -14,55 +14,49 @@ const EventsListViewEvent = ({ onClick, event, locations }) => {
 
   if (event.is_cancelled === 1) {
     return (
-      <>
-        <ListItem alignItems="flex-start" button onClick={onClick}>
-          <ListItemText
-            secondary={
-              <>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  color="textPrimary"
-                  style={{ display: 'block', textDecoration: 'line-through' }}
-                >
-                  {timeEntry}
-                </Typography>
-                {location !== undefined ? location?.name : 'Unknown'}
-              </>
-            }
-          >
-            <Typography style={{ textDecoration: 'line-through' }}>
-              {event.name}
-            </Typography>
-          </ListItemText>
-        </ListItem>
-        <Divider />
-      </>
-    );
-  }
-
-  return (
-    <>
       <ListItem alignItems="flex-start" button onClick={onClick}>
         <ListItemText
-          primary={event.name}
           secondary={
             <>
               <Typography
                 component="span"
                 variant="body2"
                 color="textPrimary"
-                style={{ display: 'block' }}
+                style={{ display: 'block', textDecoration: 'line-through' }}
               >
                 {timeEntry}
               </Typography>
               {location !== undefined ? location?.name : 'Unknown'}
             </>
           }
-        />
+        >
+          <Typography style={{ textDecoration: 'line-through' }}>
+            {event.name}
+          </Typography>
+        </ListItemText>
       </ListItem>
-      <Divider />
-    </>
+    );
+  }
+
+  return (
+    <ListItem alignItems="flex-start" button onClick={onClick}>
+      <ListItemText
+        primary={event.name}
+        secondary={
+          <>
+            <Typography
+              component="span"
+              variant="body2"
+              color="textPrimary"
+              style={{ display: 'block' }}
+            >
+              {timeEntry}
+            </Typography>
+            {location !== undefined ? location?.name : 'Unknown'}
+          </>
+        }
+      />
+    </ListItem>
   );
 };
 

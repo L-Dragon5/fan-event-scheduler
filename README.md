@@ -7,22 +7,22 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 ## Minimium Viable Product To-Do
 - Main Site
   - Front Page: Re-do to make it look cooler
-  - Account Creation w/ Basic Account Settings
+  - Combining subscription with account
+    - Ads / Ad Free subscription
 - Event Pages (Admin)
   - Maps (Image upload)
 - Event Pages (Public)
-  - Events Day Selection
   - Maps View
 
 ## Future Ideas
-- Show time headers for Event List
+- Schedule time zone setting (and then display in that time zone)
+- Schedule color scheme selection
 - Event Type color selection
 - Show Event Types on Events
 - Clicking on Event Types will display modal list of similar events
 - Event Search
-- Filtering by Location, Event Type
+- Filtering by Event Type
 - Link Guests with Events
-- Schedule color scheme selection
 
 ## Requirements
 * MySQL/MariaDB Server

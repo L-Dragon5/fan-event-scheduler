@@ -1205,17 +1205,17 @@
         },
         {
             "name": "laravel/spark-stripe",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:laravel/spark-stripe.git",
-                "reference": "05fa1e84b44be151ba51ba11c8c745d25ab81b67"
+                "reference": "88fad6fc16081786ab8f4b87059844cc34d7e1d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://spark.laravel.com/dist/laravel/spark-stripe/laravel-spark-stripe-05fa1e84b44be151ba51ba11c8c745d25ab81b67-zip-5c0f01.zip",
-                "reference": "05fa1e84b44be151ba51ba11c8c745d25ab81b67",
-                "shasum": "7820571401d41e832c1973bbb0291b6297618323"
+                "url": "https://spark.laravel.com/dist/laravel/spark-stripe/laravel-spark-stripe-88fad6fc16081786ab8f4b87059844cc34d7e1d4-zip-d8ea6c.zip",
+                "reference": "88fad6fc16081786ab8f4b87059844cc34d7e1d4",
+                "shasum": "fb3e5efa2f10c1d2c21805b618a2f2db50959950"
             },
             "require": {
                 "ext-json": "*",
@@ -1273,10 +1273,10 @@
                 "stripe"
             ],
             "support": {
-                "source": "https://github.com/laravel/spark-stripe/tree/v1.0.1",
+                "source": "https://github.com/laravel/spark-stripe/tree/v1.0.2",
                 "issues": "https://github.com/laravel/spark-stripe/issues"
             },
-            "time": "2021-02-16T17:48:32+00:00"
+            "time": "2021-02-17T06:30:18+00:00"
         },
         {
             "name": "laravel/tinker",

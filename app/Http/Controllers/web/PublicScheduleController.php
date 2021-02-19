@@ -24,16 +24,17 @@ class PublicScheduleController extends Controller
         }
 
         $social_settings = $this->getSocialSettings($schedule);
-        $events = [];
-        foreach ($schedule->events->sortBy('date')->sortBy('time_start') as $event) {
-            $events[] = $event;
-        }
+        $all_events = $schedule
+            ->events
+            ->sortBy('time_start')
+            ->groupBy('date')
+            ->sortKeys();
 
         return Inertia::render('Public/views/EventsPage', [
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
             'socialSettings' => $social_settings,
-            'events' => $events,
+            'events' => $all_events,
             'locations' => $schedule->locations,
         ])->withViewData(['title' => 'Events', 'schedule_name' => $schedule->name]);
     }
