@@ -139,6 +139,7 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
       />
 
       <FormControlLabel
+        style={{ width: '100%' }}
         control={
           <Switch
             name="is_live"

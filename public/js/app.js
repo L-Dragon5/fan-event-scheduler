@@ -30119,13 +30119,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 /* harmony import */ var _AdminScheduleLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminScheduleLayout */ "./resources/js/Pages/Admin/AdminScheduleLayout.js");
 /* harmony import */ var _components_forms_FormScheduleEdit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/forms/FormScheduleEdit */ "./resources/js/Pages/Admin/components/forms/FormScheduleEdit.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_DeleteScheduleButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/DeleteScheduleButton */ "./resources/js/Pages/Admin/components/DeleteScheduleButton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -30134,7 +30135,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)(function (theme) {
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__.default)(function (theme) {
   return {
     contentRoot: {
       flexGrow: 1,
@@ -30146,7 +30148,7 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default
       backgroundColor: 'white'
     },
     publicLink: {
-      marginTop: theme.spacing(4)
+      margin: theme.spacing(4)
     }
   };
 });
@@ -30162,26 +30164,28 @@ var Settings = function Settings(_ref) {
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_AdminScheduleLayout__WEBPACK_IMPORTED_MODULE_2__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AdminScheduleLayout__WEBPACK_IMPORTED_MODULE_2__.default, {
     title: "Schedule Settings",
     scheduleId: scheduleId,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
       className: classes.contentRoot,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: classes.title,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           component: "span",
           variant: "h4",
           children: "Schedule Settings"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
         className: classes.formContainer,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_forms_FormScheduleEdit__WEBPACK_IMPORTED_MODULE_3__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_forms_FormScheduleEdit__WEBPACK_IMPORTED_MODULE_3__.default, {
           reloadPage: handleReload,
           schedule: schedule
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           className: classes.publicLink,
           children: schedule.public_link
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_DeleteScheduleButton__WEBPACK_IMPORTED_MODULE_4__.default, {
+          scheduleId: scheduleId
         })]
       })]
     })
@@ -30821,6 +30825,63 @@ var AdminUserNavbar = function AdminUserNavbar() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AdminUserNavbar);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Admin/components/DeleteScheduleButton.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/Pages/Admin/components/DeleteScheduleButton.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/icons */ "./node_modules/@material-ui/icons/esm/Delete.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)(function (theme) {
+  return {
+    buitton: {
+      padding: theme.spacing(2)
+    }
+  };
+});
+
+var DeleteScheduleButton = function DeleteScheduleButton(_ref) {
+  var scheduleId = _ref.scheduleId;
+  var classes = useStyles();
+
+  var handleDelete = function handleDelete() {
+    if (confirm('You are about to permanently delete this schedule, there is no recovering from this. Are you sure?')) {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/destroy"), {
+        id: scheduleId
+      });
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+    variant: "contained",
+    color: "secondary",
+    className: classes.button,
+    startIcon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_icons__WEBPACK_IMPORTED_MODULE_5__.default, {}),
+    onClick: handleDelete,
+    children: "Delete Forever"
+  }, "delete-schedule-button");
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DeleteScheduleButton);
 
 /***/ }),
 
@@ -33278,6 +33339,9 @@ var FormScheduleEdit = function FormScheduleEdit(_ref) {
       label: "Event Website",
       className: classes.formField
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      style: {
+        width: '100%'
+      },
       control: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         name: "is_live",
         checked: isLiveCheck,
@@ -98932,6 +98996,8 @@ var map = {
 	"./Admin/components/AdminScheduleNavbar.js": "./resources/js/Pages/Admin/components/AdminScheduleNavbar.js",
 	"./Admin/components/AdminUserNavbar": "./resources/js/Pages/Admin/components/AdminUserNavbar.js",
 	"./Admin/components/AdminUserNavbar.js": "./resources/js/Pages/Admin/components/AdminUserNavbar.js",
+	"./Admin/components/DeleteScheduleButton": "./resources/js/Pages/Admin/components/DeleteScheduleButton.js",
+	"./Admin/components/DeleteScheduleButton.js": "./resources/js/Pages/Admin/components/DeleteScheduleButton.js",
 	"./Admin/components/buttons/ButtonAdd": "./resources/js/Pages/Admin/components/buttons/ButtonAdd.js",
 	"./Admin/components/buttons/ButtonAdd.js": "./resources/js/Pages/Admin/components/buttons/ButtonAdd.js",
 	"./Admin/components/buttons/ButtonDelete": "./resources/js/Pages/Admin/components/buttons/ButtonDelete.js",

@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import AdminScheduleLayout from './AdminScheduleLayout';
 import FormScheduleEdit from './components/forms/FormScheduleEdit';
+import DeleteScheduleButton from './components/DeleteScheduleButton';
 
 const useStyles = makeStyles((theme) => ({
   contentRoot: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
   },
   publicLink: {
-    marginTop: theme.spacing(4),
+    margin: theme.spacing(4),
   },
 }));
 
@@ -43,6 +44,7 @@ const Settings = ({ scheduleId, schedule }) => {
           <Typography className={classes.publicLink}>
             {schedule.public_link}
           </Typography>
+          <DeleteScheduleButton scheduleId={scheduleId} />
         </Paper>
       </Box>
     </AdminScheduleLayout>

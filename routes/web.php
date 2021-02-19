@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth', 'subscribed'], 'prefix' => 'admin'], func
     Route::group(['middleware' => CheckUserOwnsSchedule::class, 'prefix' => 'schedule/{scheduleId}'], function() {
         // Update Schedule settings.
         Route::post('update', [ScheduleController::class, 'update']);
+        // Delete Schedule.
+        Route::post('destroy', [ScheduleController::class, 'destroy']);
 
         // Events
         Route::post('events/store', [EventController::class, 'store']);

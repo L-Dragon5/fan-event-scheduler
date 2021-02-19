@@ -92,13 +92,22 @@ class ScheduleController extends Controller
 
         $user_id = Auth::id();
 
-        if (check_for_duplicate(['user_id' => $user_id], $request->name, 'schedules', 'name')) {
-            return back()->withErrors(['Schedule already exists with this name']);
+        $existing_schedule_count = Schedule::where('user_id', '=', $user_id)->count();
+        // Free Plan
+        if ($request->user()->subscribedToPlan('price_1ILXwYL2f7m4oh9jJINn6q1O')) {
+            if ($existing_schedule_count > 0) {
+                return back()->withErrors(['Not allowed to create more than 1 schedule']);
+            }
+        }
+        // Ad Free Plan
+        else if ($request->user()->subscribedToPlan('price_1IMcKTL2f7m4oh9jRc69pIkx')) {
+            if ($existing_schedule_count > 4) {
+                return back()->withErrors(['Not allowed to create more than 5 schedule']);
+            }
         }
 
-        $existing_schedule_count = Schedule::where('user_id', '=', $user_id)->count();
-        if ($existing_schedule_count > 0) {
-            return back()->withErrors(['Not allowed to create more than 1 schedule']);
+        if (check_for_duplicate(['user_id' => $user_id], $request->name, 'schedules', 'name')) {
+            return back()->withErrors(['Schedule already exists with this name']);
         }
 
         $schedule = new Schedule;
@@ -199,10 +208,10 @@ class ScheduleController extends Controller
         ]);
 
         try {
-            $schedule = Schedule::findOrFail($id);
+            $schedule = Schedule::findOrFail($request->id);
             $schedule->delete();
     
-            return back()->with('message', 'Deleted schedule successfully');
+            return Inertia::location(route('admin-base'));
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return back()->withErrors(['Invalid schedule id']);
         }

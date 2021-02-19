@@ -97,7 +97,6 @@ return [
                     'monthly_id' => 'price_1ILXwYL2f7m4oh9jJINn6q1O',
                     'features' => [
                         '1 Schedule Max',
-                        'Features',
                         'Email Support',
                     ],
                     'archived' => false,
@@ -107,7 +106,9 @@ return [
                     'short_description' => 'Free subscription to test features, but with no ads.',
                     'monthly_id' => 'price_1IMcKTL2f7m4oh9jRc69pIkx',
                     'features' => [
-                        'Same as Free Plan but with Ads removed',
+                        'Ads removed',
+                        '5 Schedule Max',
+                        'Email Support',
                     ],
                     'archived' => false,
                 ],
