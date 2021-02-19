@@ -79,11 +79,12 @@ if (!function_exists('save_image_uploaded')) {
    * 
    * @param  string|array  $file
    * @param  string  $location
+   * @param  int  $width
    * @param  int  $height
    * @param  string  $old_image_path
    * @return string
    */
-  function save_image_uploaded($file, $location, $height, $old_image_path = null) {
+  function save_image_uploaded($file, $location, $width = null, $height = null, $old_image_path = null) {
     // Create directory if it doesn't exist
     if (!file_exists(storage_path("app/public/$location/"))) {
       mkdir(storage_path("app/public/$location/"), 775, true);
@@ -95,51 +96,61 @@ if (!function_exists('save_image_uploaded')) {
     // Check for multiple images
     if (is_array($file)) {
       foreach ($file as $img) {
-        // If Base64 String image
-        if (is_string($img)) {
-          list($extension, $img) = explode(';', $img);
-          list(, $img) = explode(',', $img);
-
-          $extension = substr($extension, 11);
-          $filename_to_store = bin2hex(random_bytes(5)) . '_' . time() . '.' . $extension;
-        } else {
-          // Get filenames
-          $filename_with_ext = $img->getClientOriginalName();
-          $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME);
-          $extension = $img->getClientOriginalExtension();
-          $filename_to_store = $filename . '_' . time() . '.' . $extension;
-        }
-
-        // Create image, resize, and save
-        $final_img = Image::make($img)->resize(null, $height, function ($constraint) {
-          $constraint->aspectRatio();
-        });
-        $final_img->save(storage_path("app/public/$location/$filename_to_store"), 80);
+        $return_path .= _store_file($img, $location, $width, $height);
       }
     } else {
-      // If Base64 String Image
-      if (is_string($file)) {
-        list($extension, $file) = explode(';', $file);
-        list(, $file) = explode(',', $file);
+      $return_path .= _store_file($file, $location, $width, $height);
+    }
 
-        $extension = substr($extension, 11);
-        $filename_to_store = bin2hex(random_bytes(5)) . '_' . time() . '.' . $extension;
-      } else {
-        // Get filenames
-        $filename_with_ext = $file->getClientOriginalName();
-        $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME);
-        $extension = $file->getClientOriginalExtension();
-        $filename_to_store = $filename . '_' . time() . '.' . $extension;
+    // Check if editing image path
+    if (!empty($old_image_path)) {
+      $full_path = storage_path('app/public/' . $old_image_path);
+      if (file_exists($full_path)) {
+        unlink($full_path);
       }
-
-      // Create image, resize, and save
-      $img = Image::make($file)->resize(null, $height, function ($constraint) {
-        $constraint->aspectRatio();
-      });
-      $img->save(storage_path("app/public/$location/$filename_to_store"), 80);
     }
 
     // Return image storage path
     return $return_path;
+  }
+
+  /**
+   * Store image and get path.
+   * 
+   * @param  string|array  $file
+   * @param  string  $location
+   * @param  int  $width
+   * @param  int  $height
+   * @return string
+   */
+  function _store_file($img, $location, $width, $height) {
+    // If Base64 String image
+    if (is_string($img)) {
+      list($extension, $img) = explode(';', $img);
+      list(, $img) = explode(',', $img);
+
+      $extension = substr($extension, 11);
+      $filename_to_store = bin2hex(random_bytes(5)) . '_' . time() . '.' . $extension;
+    } else {
+      // Get filenames
+      $filename_with_ext = $img->getClientOriginalName();
+      $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME);
+      $extension = $img->getClientOriginalExtension();
+      $filename_to_store = $filename . '_' . time() . '.' . $extension;
+    }
+
+    // Create image, resize, and save
+    $final_img = Image::make($img);
+    
+    if (!empty($width) || !empty($height)) {
+      $final_img->resize($width, $height, function ($constraint) {
+        $constraint->aspectRatio();
+        $constraint->upsize();
+      });
+    }
+
+    $final_img->save(storage_path("app/public/$location/$filename_to_store"), 100);
+
+    return "$location/$filename_to_store";
   }
 }

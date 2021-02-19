@@ -29714,12 +29714,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var _AdminScheduleLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AdminScheduleLayout */ "./resources/js/Pages/Admin/AdminScheduleLayout.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Drawer/Drawer.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/FormControl/FormControl.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/InputLabel/InputLabel.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Select/Select.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _AdminScheduleLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminScheduleLayout */ "./resources/js/Pages/Admin/AdminScheduleLayout.js");
+/* harmony import */ var _components_buttons_ButtonAdd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/buttons/ButtonAdd */ "./resources/js/Pages/Admin/components/buttons/ButtonAdd.js");
+/* harmony import */ var _components_buttons_ButtonEdit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/buttons/ButtonEdit */ "./resources/js/Pages/Admin/components/buttons/ButtonEdit.js");
+/* harmony import */ var _components_buttons_ButtonDelete__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/buttons/ButtonDelete */ "./resources/js/Pages/Admin/components/buttons/ButtonDelete.js");
+/* harmony import */ var _components_forms_FormMapAdd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/forms/FormMapAdd */ "./resources/js/Pages/Admin/components/forms/FormMapAdd.js");
+/* harmony import */ var _components_forms_FormMapEdit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/forms/FormMapEdit */ "./resources/js/Pages/Admin/components/forms/FormMapEdit.js");
+/* harmony import */ var _components_forms_FormMapDelete__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/forms/FormMapDelete */ "./resources/js/Pages/Admin/components/forms/FormMapDelete.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -29727,11 +29748,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__.default)(function (theme) {
   return {
     contentRoot: {
       flexGrow: 1,
       padding: theme.spacing(2)
+    },
+    image: {
+      padding: theme.spacing(2),
+      maxWidth: '100%'
+    },
+    actions: {
+      display: 'flex'
     }
   };
 });
@@ -29741,33 +29776,135 @@ var Maps = function Maps(_ref) {
       maps = _ref.maps;
   var classes = useStyles();
 
-  var handleReload = function handleReload() {
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.reload({
-      only: ['maps']
-    });
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      selectedMap = _useState2[0],
+      setSelectedMap = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      cMap = _useState4[0],
+      setMap = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      drawerStatus = _useState6[0],
+      setDrawerStatus = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      drawerContent = _useState8[0],
+      setDrawerContent = _useState8[1];
+
+  var handleClose = function handleClose() {
+    setDrawerStatus(false);
+    setDrawerContent('');
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_AdminScheduleLayout__WEBPACK_IMPORTED_MODULE_2__.default, {
+  var handleReload = function handleReload() {
+    window.location.reload();
+  };
+
+  var handleMapSelect = function handleMapSelect(e) {
+    setSelectedMap(e.target.value);
+  };
+
+  var handleAdd = function handleAdd() {
+    setDrawerContent( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_forms_FormMapAdd__WEBPACK_IMPORTED_MODULE_5__.default, {
+      closeDrawer: handleClose,
+      reloadPage: handleReload,
+      scheduleId: scheduleId
+    }));
+    setDrawerStatus(true);
+  };
+
+  var handleEdit = function handleEdit(map) {
+    setDrawerContent( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_forms_FormMapEdit__WEBPACK_IMPORTED_MODULE_6__.default, {
+      closeDrawer: handleClose,
+      reloadPage: handleReload,
+      scheduleId: scheduleId,
+      map: map
+    }));
+    setDrawerStatus(true);
+  };
+
+  var handleDelete = function handleDelete(map) {
+    setDrawerContent( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_forms_FormMapDelete__WEBPACK_IMPORTED_MODULE_7__.default, {
+      closeDrawer: handleClose,
+      reloadPage: handleReload,
+      scheduleId: scheduleId,
+      mapId: map.id,
+      mapName: map.name
+    }));
+    setDrawerStatus(true);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setMap(maps.find(function (map) {
+      return map.id === selectedMap;
+    }));
+  }, [selectedMap]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_AdminScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
     title: "Maps",
     scheduleId: scheduleId,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
       className: classes.contentRoot,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
         className: classes.title,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
           component: "span",
           variant: "h4",
           children: "Maps"
         })
-      }), maps && maps.length ? maps.map(function (map) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            children: map.name
-          })
-        }, map.name);
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        anchor: "right",
+        open: drawerStatus,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
+          children: drawerContent
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_buttons_ButtonAdd__WEBPACK_IMPORTED_MODULE_2__.default, {
+        onClick: handleAdd,
+        children: "Add Map"
+      }), maps !== null && maps !== void 0 && maps.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
+          fullWidth: true,
+          variant: "outlined",
+          className: classes.formField,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_14__.default, {
+            id: "map-selection-label",
+            children: "Map"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_15__.default, {
+            labelId: "map-selection-label",
+            value: selectedMap,
+            onChange: handleMapSelect,
+            children: maps.map(function (map) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_16__.default, {
+                value: map.id,
+                children: map.name
+              }, map.name);
+            })
+          })]
+        }), cMap && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
+            className: classes.actions,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_buttons_ButtonEdit__WEBPACK_IMPORTED_MODULE_3__.default, {
+              onClick: function onClick() {
+                return handleEdit(cMap);
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_buttons_ButtonDelete__WEBPACK_IMPORTED_MODULE_4__.default, {
+              onClick: function onClick() {
+                return handleDelete(cMap);
+              }
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+            className: classes.image,
+            alt: cMap.name,
+            src: "/storage/".concat(cMap.image)
+          })]
+        })]
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         variant: "body1",
-        children: "No maps (This will be last due to image handling)"
+        children: "No maps"
       })]
     })
   });
@@ -32765,6 +32902,327 @@ var FormLocationEdit = function FormLocationEdit(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Admin/components/forms/FormMapAdd.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/Pages/Admin/components/forms/FormMapAdd.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ButtonGroup/ButtonGroup.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)(function (theme) {
+  return {
+    form: {
+      padding: theme.spacing(1)
+    },
+    formField: {
+      marginBottom: theme.spacing(1)
+    },
+    uploadButton: {
+      width: '100%',
+      marginBottom: theme.spacing(4)
+    }
+  };
+});
+
+var FormMapAdd = function FormMapAdd(_ref) {
+  var closeDrawer = _ref.closeDrawer,
+      reloadPage = _ref.reloadPage,
+      scheduleId = _ref.scheduleId;
+  var classes = useStyles();
+
+  var handleAddSubmit = function handleAddSubmit(e) {
+    var _formData$get;
+
+    e.preventDefault();
+    var formData = new FormData(e.target);
+    formData.set('scheduleId', scheduleId);
+
+    if (((_formData$get = formData.get('image')) === null || _formData$get === void 0 ? void 0 : _formData$get.size) === 0) {
+      alert('Need to upload an image');
+      return;
+    }
+
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/maps/store"), formData, {
+      onSuccess: function onSuccess(page) {
+        reloadPage();
+        closeDrawer();
+      }
+    });
+  };
+
+  var UploadButton = function UploadButton() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: classes.uploadButton,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+        htmlFor: "map-button-file",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          accept: "image/*",
+          name: "image",
+          style: {
+            display: 'none'
+          },
+          id: "map-button-file",
+          type: "file"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+          variant: "contained",
+          color: "primary",
+          component: "span",
+          children: "Upload Image"
+        })]
+      })
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+    className: classes.form,
+    onSubmit: handleAddSubmit,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      required: true,
+      fullWidth: true,
+      name: "name",
+      variant: "outlined",
+      label: "Map Name",
+      className: classes.formField
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(UploadButton, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+      "aria-label": "add form buttons",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        type: "submit",
+        variant: "contained",
+        color: "primary",
+        children: "Submit"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        type: "reset",
+        variant: "contained",
+        color: "secondary",
+        onClick: closeDrawer,
+        children: "Cancel"
+      })]
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormMapAdd);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Admin/components/forms/FormMapDelete.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/Pages/Admin/components/forms/FormMapDelete.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ButtonGroup/ButtonGroup.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)(function (theme) {
+  return {
+    form: {
+      padding: theme.spacing(1)
+    },
+    formField: {
+      marginBottom: theme.spacing(1)
+    }
+  };
+});
+
+var FormMapDelete = function FormMapDelete(_ref) {
+  var closeDrawer = _ref.closeDrawer,
+      reloadPage = _ref.reloadPage,
+      scheduleId = _ref.scheduleId,
+      mapId = _ref.mapId,
+      mapName = _ref.mapName;
+  var classes = useStyles();
+
+  var handleDeleteSubmit = function handleDeleteSubmit(e) {
+    e.preventDefault();
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/maps/destroy"), {
+      id: mapId,
+      scheduleId: scheduleId
+    }, {
+      onSuccess: function onSuccess(page) {
+        reloadPage();
+        closeDrawer();
+      }
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+    className: classes.form,
+    onSubmit: handleDeleteSubmit,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+      children: ["Are you sure you want to delete \"", mapName, "\"?"]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+      children: "This is not reversible."
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      "aria-label": "add form buttons",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        type: "submit",
+        variant: "contained",
+        color: "primary",
+        children: "Delete"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        type: "reset",
+        variant: "contained",
+        color: "secondary",
+        onClick: closeDrawer,
+        children: "Cancel"
+      })]
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormMapDelete);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Admin/components/forms/FormMapEdit.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/Pages/Admin/components/forms/FormMapEdit.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ButtonGroup/ButtonGroup.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)(function (theme) {
+  return {
+    form: {
+      padding: theme.spacing(1)
+    },
+    formField: {
+      marginBottom: theme.spacing(1)
+    },
+    uploadButton: {
+      width: '100%',
+      marginBottom: theme.spacing(4)
+    }
+  };
+});
+
+var FormMapEdit = function FormMapEdit(_ref) {
+  var closeDrawer = _ref.closeDrawer,
+      reloadPage = _ref.reloadPage,
+      scheduleId = _ref.scheduleId,
+      map = _ref.map;
+  var classes = useStyles();
+
+  var handleAddSubmit = function handleAddSubmit(e) {
+    e.preventDefault();
+    var formData = new FormData(e.target);
+    formData.set('id', map.id);
+    formData.set('scheduleId', scheduleId);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.post("/admin/schedule/".concat(scheduleId, "/maps/update"), formData, {
+      onSuccess: function onSuccess(page) {
+        reloadPage();
+        closeDrawer();
+      }
+    });
+  };
+
+  var UploadButton = function UploadButton() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: classes.uploadButton,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+        htmlFor: "map-button-file",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          accept: "image/*",
+          name: "image",
+          style: {
+            display: 'none'
+          },
+          id: "map-button-file",
+          type: "file"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+          variant: "contained",
+          color: "primary",
+          component: "span",
+          children: "Upload Image"
+        })]
+      })
+    });
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+    className: classes.form,
+    onSubmit: handleAddSubmit,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      required: true,
+      fullWidth: true,
+      defaultValue: map.name,
+      name: "name",
+      variant: "outlined",
+      label: "Map Name",
+      className: classes.formField
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(UploadButton, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+      "aria-label": "add form buttons",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        type: "submit",
+        variant: "contained",
+        color: "primary",
+        children: "Submit"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        type: "reset",
+        variant: "contained",
+        color: "secondary",
+        onClick: closeDrawer,
+        children: "Cancel"
+      })]
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormMapEdit);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Admin/components/forms/FormRuleAdd.js":
 /*!******************************************************************!*\
   !*** ./resources/js/Pages/Admin/components/forms/FormRuleAdd.js ***!
@@ -34980,10 +35438,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/FormControl/FormControl.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/InputLabel/InputLabel.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Select/Select.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
 /* harmony import */ var _PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PublicScheduleLayout */ "./resources/js/Pages/Public/PublicScheduleLayout.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -34992,22 +35468,19 @@ __webpack_require__.r(__webpack_exports__);
 var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)(function (theme) {
   return {
     root: {
-      padding: theme.spacing(1)
-    },
-    categories: {
-      margin: theme.spacing(0, 0, 2, 1)
-    },
-    heading: {
-      borderBottom: '1px solid gray'
-    },
-    list: {
-      backgroundColor: theme.palette.background.paper
+      padding: theme.spacing(2)
     },
     centerText: {
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
       position: 'fixed'
+    },
+    image: {
+      display: 'block',
+      margin: '0 auto',
+      maxWidth: '100%',
+      paddingTop: theme.spacing(4)
     }
   };
 });
@@ -35019,16 +35492,58 @@ var MapsPage = function MapsPage(_ref) {
       maps = _ref.maps;
   var classes = useStyles();
 
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      selectedMap = _useState2[0],
+      setSelectedMap = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      cMap = _useState4[0],
+      setMap = _useState4[1];
+
+  var handleMapSelect = function handleMapSelect(e) {
+    setSelectedMap(e.target.value);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setMap(maps.find(function (map) {
+      return map.id === selectedMap;
+    }));
+  }, [selectedMap]);
+
   if (maps && Object.keys(maps).length !== 0) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
       title: "Maps",
       scheduleName: scheduleName,
       socialSettings: socialSettings,
       uuid: uuid,
-      children: maps === null || maps === void 0 ? void 0 : maps.map(function (map) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          children: map.name
-        }, map.id);
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        className: classes.root,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+          fullWidth: true,
+          variant: "outlined",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+            id: "map-selection-label",
+            children: "Map"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+            labelId: "map-selection-label",
+            value: selectedMap,
+            onChange: handleMapSelect,
+            children: maps === null || maps === void 0 ? void 0 : maps.map(function (map) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+                value: map.id,
+                children: map.name
+              }, map.name);
+            })
+          })]
+        }), cMap && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+            className: classes.image,
+            alt: cMap.name,
+            src: "/storage/".concat(cMap.image)
+          })
+        })]
       })
     });
   }
@@ -35038,7 +35553,7 @@ var MapsPage = function MapsPage(_ref) {
     scheduleName: scheduleName,
     socialSettings: socialSettings,
     uuid: uuid,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
       variant: "h4",
       className: classes.centerText,
       children: "No maps currently"
@@ -99034,6 +99549,12 @@ var map = {
 	"./Admin/components/forms/FormLocationDelete.js": "./resources/js/Pages/Admin/components/forms/FormLocationDelete.js",
 	"./Admin/components/forms/FormLocationEdit": "./resources/js/Pages/Admin/components/forms/FormLocationEdit.js",
 	"./Admin/components/forms/FormLocationEdit.js": "./resources/js/Pages/Admin/components/forms/FormLocationEdit.js",
+	"./Admin/components/forms/FormMapAdd": "./resources/js/Pages/Admin/components/forms/FormMapAdd.js",
+	"./Admin/components/forms/FormMapAdd.js": "./resources/js/Pages/Admin/components/forms/FormMapAdd.js",
+	"./Admin/components/forms/FormMapDelete": "./resources/js/Pages/Admin/components/forms/FormMapDelete.js",
+	"./Admin/components/forms/FormMapDelete.js": "./resources/js/Pages/Admin/components/forms/FormMapDelete.js",
+	"./Admin/components/forms/FormMapEdit": "./resources/js/Pages/Admin/components/forms/FormMapEdit.js",
+	"./Admin/components/forms/FormMapEdit.js": "./resources/js/Pages/Admin/components/forms/FormMapEdit.js",
 	"./Admin/components/forms/FormRuleAdd": "./resources/js/Pages/Admin/components/forms/FormRuleAdd.js",
 	"./Admin/components/forms/FormRuleAdd.js": "./resources/js/Pages/Admin/components/forms/FormRuleAdd.js",
 	"./Admin/components/forms/FormRuleDelete": "./resources/js/Pages/Admin/components/forms/FormRuleDelete.js",

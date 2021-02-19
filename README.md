@@ -7,10 +7,7 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 ## Minimium Viable Product To-Do
 - Main Site
   - Front Page: Re-do to make it look cooler
-- Event Pages (Admin)
-  - Maps (Image upload)
-- Event Pages (Public)
-  - Maps View
+  - Better SEO
 
 ## Future Ideas
 - Schedule time zone setting (and then display in that time zone)

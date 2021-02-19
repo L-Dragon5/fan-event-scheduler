@@ -32,7 +32,7 @@ class MapController extends Controller
         $request->validate([
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
-            'image' => 'string|nullable',
+            'image' => 'image|required',
         ]);
 
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'maps', 'name')) {
@@ -40,24 +40,16 @@ class MapController extends Controller
         }
 
         $map = new Map;
+        $map->schedule_id = $request->scheduleId;
         $map->name = $request->name;
-
-        // TODO: Image upload and save (save_image_uploaded function)
-        /*
-        $image = file_get_contents($request->image);
-        $image_data = base64_encode($image);
-        
-        $final_img = 'data:image/' . $request->image->extension() . ';base64,' . $image_data;
-
-        $map->image = $final_img;
-        */
+        $map->image = save_image_uploaded($request->image, 'schedules/' . $request->scheduleId . '/maps');
 
         $success = $map->save();
 
         if ($success) {
-            return return_json_message('Created new map succesfully', $this->successStatus);
+            return back()->with('message', 'Created new map');
         } else {
-            return return_json_message('Something went wrong while trying to create a new map', 401);
+            return back()->withErrors('Something went wrong while trying to create a new map');
         }
     }
 
@@ -74,6 +66,7 @@ class MapController extends Controller
             'id' => 'numeric|required',
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
+            'image' => 'image|nullable',            
         ]);
 
         try {
@@ -87,6 +80,10 @@ class MapController extends Controller
                 } else {
                     $map->name = $request->name;
                 }
+            }
+
+            if (!empty($request->image)) {
+                $map->image = save_image_uploaded($request->image, 'schedules/' . $request->scheduleId . '/maps', null, null, $map->image);
             }
             
             $success = $map->save();

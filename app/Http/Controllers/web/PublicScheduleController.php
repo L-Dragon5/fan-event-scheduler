@@ -141,7 +141,7 @@ class PublicScheduleController extends Controller
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
             'socialSettings' => $social_settings,
-            'maps' => $schedule->map,
+            'maps' => $schedule->maps,
         ])->withViewData(['title' => 'Maps', 'schedule_name' => $schedule->name]);
     }
 
