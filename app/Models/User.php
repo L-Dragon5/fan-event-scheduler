@@ -26,4 +26,8 @@ class User extends Authenticatable
     public function schedule() {
         return $this->hasMany(Schedule::class);
     }
+
+    public function getNameAttribute() {
+        return $this->attributes['email'];
+    }
 }

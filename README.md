@@ -7,8 +7,6 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 ## Minimium Viable Product To-Do
 - Main Site
   - Front Page: Re-do to make it look cooler
-  - Combining subscription with account
-    - Ads / Ad Free subscription
 - Event Pages (Admin)
   - Maps (Image upload)
 - Event Pages (Public)

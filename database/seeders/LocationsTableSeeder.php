@@ -16,17 +16,22 @@ class LocationsTableSeeder extends Seeder
     {
         DB::table('locations')->insert([
             'schedule_id' => 1,
-            'name' => 'Panel A'
+            'name' => 'Panel Room 1'
         ]);
 
         DB::table('locations')->insert([
             'schedule_id' => 1,
-            'name' => 'Panel B'
+            'name' => 'Panel Room 2'
         ]);
 
         DB::table('locations')->insert([
             'schedule_id' => 1,
-            'name' => 'Panel C'
+            'name' => 'Panel Room 3'
+        ]);
+
+        DB::table('locations')->insert([
+            'schedule_id' => 1,
+            'name' => 'Panel Room 4'
         ]);
 
         DB::table('locations')->insert([

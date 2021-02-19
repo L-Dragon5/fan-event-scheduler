@@ -18,6 +18,7 @@ class ExhibitorsTableSeeder extends Seeder
             'schedule_id' => 1,
             'name' => 'Vendor A',
             'category' => 'Vendor',
+            'url' => 'https://google.com/',
         ]);
 
         DB::table('exhibitors')->insert([

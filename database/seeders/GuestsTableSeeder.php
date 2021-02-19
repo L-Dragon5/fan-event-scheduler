@@ -17,13 +17,16 @@ class GuestsTableSeeder extends Seeder
         DB::table('guests')->insert([
             'schedule_id' => 1,
             'name' => 'Guest A',
-            'category' => 'Voice Actor'
+            'category' => 'Voice Actor',
+            'social_fb' => 'https://facebook.com/',
+            'social_tw' => 'https://twitter.com/',
         ]);
 
         DB::table('guests')->insert([
             'schedule_id' => 1,
             'name' => 'Guest B',
-            'category' => 'Voice Actress'
+            'category' => 'Voice Actress',
+            'social_tw' => 'https://twitter.com/',
         ]);
 
         DB::table('guests')->insert([

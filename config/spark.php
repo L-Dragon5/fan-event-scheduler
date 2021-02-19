@@ -19,6 +19,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Spark Dashboard URL
+    |--------------------------------------------------------------------------
+    |
+    | This configuration option determines the URI at which to send the user
+    | once they are done with the billing portal.
+    |
+    */
+    'dashboard_url' => '/admin',
+
+    /*
+    |--------------------------------------------------------------------------
     | Spark Middleware
     |--------------------------------------------------------------------------
     |
@@ -81,12 +92,22 @@ return [
             'model' => User::class,
             'plans' => [
                 [
-                    'name' => 'Free Alpha',
-                    'short_description' => 'Free subscription to all features as they are developed.',
+                    'name' => 'Free (w/Ads)',
+                    'short_description' => 'Free subscription to test features.',
                     'monthly_id' => 'price_1ILXwYL2f7m4oh9jJINn6q1O',
                     'features' => [
-                        'Alpha Features',
-                        'Continued Support',
+                        '1 Schedule Max',
+                        'Features',
+                        'Email Support',
+                    ],
+                    'archived' => false,
+                ],
+                [
+                    'name' => 'No Ads',
+                    'short_description' => 'Free subscription to test features, but with no ads.',
+                    'monthly_id' => 'price_1IMcKTL2f7m4oh9jRc69pIkx',
+                    'features' => [
+                        'Same as Free Plan but with Ads removed',
                     ],
                     'archived' => false,
                 ],
