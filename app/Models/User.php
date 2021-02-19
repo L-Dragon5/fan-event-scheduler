@@ -18,6 +18,10 @@ class User extends Authenticatable
     protected $fillable = [
         'email', 'password',
     ];
+    
+    protected $casts = [
+        'trial_ends_at' => 'datetime',
+    ];
 
     public function schedule() {
         return $this->hasMany(Schedule::class);
