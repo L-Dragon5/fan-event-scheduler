@@ -6,8 +6,8 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 
 ## Minimium Viable Product To-Do
 - Main Site
+  - Think of a name
   - Front Page: Re-do to make it look cooler
-  - Better SEO
 
 ## Future Ideas
 - Schedule time zone setting (and then display in that time zone)

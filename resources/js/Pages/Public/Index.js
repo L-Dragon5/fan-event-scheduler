@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import {
   Button,
@@ -87,6 +88,21 @@ const Index = () => {
 
   return (
     <>
+      <Helmet>
+        <meta
+          name="description"
+          content="Make simple schedules and agendas for your virtual and in-person events. Try it now, for free."
+        />
+        <meta
+          property="og:title"
+          content="SaaS Event Schedule - Schedules Made Simple"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:description"
+          content="Make simple schedules and agendas for your virtual and in-person events. Try it now, for free."
+        />
+      </Helmet>
       <CssBaseline />
       <Grid container component="main" className={classes.root}>
         <Box className={classes.intro}>

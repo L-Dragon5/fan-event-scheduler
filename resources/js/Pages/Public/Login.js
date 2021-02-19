@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
+    backgroundImage: 'url(/storage/jessica-lewis-fJXv46LT7Xk-unsplash.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light'
