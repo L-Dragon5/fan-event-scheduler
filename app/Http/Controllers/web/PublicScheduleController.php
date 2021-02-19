@@ -20,7 +20,7 @@ class PublicScheduleController extends Controller
                 ->with(['events', 'locations'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect('/');
+            return back();
         }
 
         $social_settings = $this->getSocialSettings($schedule);
@@ -47,7 +47,7 @@ class PublicScheduleController extends Controller
                 ->with(['exhibitors'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect('/');
+            return back();
         }
 
         $sortedExhibitors = [];
@@ -87,7 +87,7 @@ class PublicScheduleController extends Controller
                 ->with(['guests'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect('/');
+            return back();
         }
 
         $sortedGuests = [];
@@ -127,7 +127,7 @@ class PublicScheduleController extends Controller
                 ->with(['maps'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect('/');
+            return back();
         }
 
         $social_settings = $this->getSocialSettings($schedule);
@@ -153,7 +153,7 @@ class PublicScheduleController extends Controller
                 ->with(['rules'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect('/');
+            return back();
         }
 
         $social_settings = $this->getSocialSettings($schedule);

@@ -20,10 +20,44 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.h4,
     fontWeight: theme.typography.fontWeightMedium,
   },
+  centerText: {
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    position: 'fixed',
+  },
 }));
 
 const RulesPage = ({ uuid, scheduleName, socialSettings, rules }) => {
   const classes = useStyles();
+
+  if (rules && Object.keys(rules).length !== 0) {
+    return (
+      <PublicScheduleLayout
+        title="Rules"
+        scheduleName={scheduleName}
+        socialSettings={socialSettings}
+        uuid={uuid}
+      >
+        <Box className={classes.root}>
+          {rules?.map((rule) => {
+            return (
+              <Accordion key={rule.id}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography className={classes.heading}>
+                    {rule.title}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>{rule.description}</Typography>
+                </AccordionDetails>
+              </Accordion>
+            );
+          })}
+        </Box>
+      </PublicScheduleLayout>
+    );
+  }
 
   return (
     <PublicScheduleLayout
@@ -33,20 +67,9 @@ const RulesPage = ({ uuid, scheduleName, socialSettings, rules }) => {
       uuid={uuid}
     >
       <Box className={classes.root}>
-        {rules?.map((rule) => {
-          return (
-            <Accordion key={rule.id}>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography className={classes.heading}>
-                  {rule.title}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>{rule.description}</Typography>
-              </AccordionDetails>
-            </Accordion>
-          );
-        })}
+        <Typography variant="h4" className={classes.centerText}>
+          No rules currently
+        </Typography>
       </Box>
     </PublicScheduleLayout>
   );
