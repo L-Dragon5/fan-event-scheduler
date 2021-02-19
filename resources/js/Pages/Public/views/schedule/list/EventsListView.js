@@ -1,64 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const EventsListView = ({ events }) => {
+import { Box, List, Modal } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import EventsListViewEvent from './EventsListViewEvent';
+import EventsViewModal from '../EventsViewModal';
+
+const useStyles = makeStyles((theme) => ({
+  list: {
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+const EventsListView = ({ events, locations }) => {
+  const classes = useStyles();
+
+  const [open, setOpen] = useState(false);
+  const [modalContent, setModalContent] = useState(<Box />);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleEventClick = (event) => {
+    const foundLoc = locations.find((loc) => loc.id === event.location_id);
+    setModalContent(<EventsViewModal event={event} location={foundLoc} />);
+    setOpen(true);
+  };
+
   return (
-    <div>
-      <ul className="collection schedule-list">
-        {events ? (
-          Object.entries(events).map((k, index) => {
-            const event = k[1];
-            return (
-              <li className="collection-item schedule-list__item" key={index}>
-                <span
-                  className="schedule-list__item__title"
-                  style={{
-                    textDecoration: event.is_cancelled
-                      ? 'line-through'
-                      : 'none',
-                  }}
-                >
-                  {event.title}
-                </span>
-                <span
-                  className="schedule-list__item__location"
-                  style={{
-                    textDecoration: event.is_cancelled
-                      ? 'line-through'
-                      : 'none',
-                  }}
-                >
-                  {event.location}
-                </span>
-                <span
-                  className="schedule-list__item__time"
-                  style={{
-                    textDecoration: event.is_cancelled
-                      ? 'line-through'
-                      : 'none',
-                  }}
-                >
-                  {event.time_start} - {event.time_end}
-                </span>
-              </li>
-            );
-          })
-        ) : (
-          <div className="preloader-wrapper big active">
-            <div className="spinner-layer spinner-blue-only">
-              <div className="circle-clipper left">
-                <div className="circle" />
-              </div>
-              <div className="gap-patch">
-                <div className="circle" />
-              </div>
-              <div className="circle-clipper right">
-                <div className="circle" />
-              </div>
-            </div>
-          </div>
-        )}
-      </ul>
-    </div>
+    <>
+      <List className={classes.list}>
+        {events.map((event) => (
+          <EventsListViewEvent
+            key={event.id}
+            event={event}
+            locations={locations}
+            onClick={() => handleEventClick(event)}
+          />
+        ))}
+      </List>
+      <Modal open={open} onClose={handleClose}>
+        {modalContent}
+      </Modal>
+    </>
   );
 };
 

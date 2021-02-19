@@ -5,6 +5,7 @@ import { useTheme } from '@material-ui/core/styles';
 
 import PublicScheduleLayout from '../PublicScheduleLayout';
 import EventsGridView from './schedule/grid/EventsGridView';
+import EventsListView from './schedule/list/EventsListView';
 
 const EventsPage = ({
   uuid,
@@ -21,7 +22,7 @@ const EventsPage = ({
     if (isDesktop) {
       setEventDisplay(<EventsGridView events={events} locations={locations} />);
     } else {
-      setEventDisplay(<div>List view would go here once complete.</div>);
+      setEventDisplay(<EventsListView events={events} locations={locations} />);
     }
   }, [isDesktop]);
 

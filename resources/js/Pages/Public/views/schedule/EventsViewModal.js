@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EventsGridViewModal = ({ event, location }) => {
+const EventsViewModal = ({ event, location }) => {
   const classes = useStyles();
 
   const beginDate = DateTime.fromISO(`${event.date}T${event.time_start}`);
@@ -51,7 +51,7 @@ const EventsGridViewModal = ({ event, location }) => {
           {event.name}
         </Typography>
         <Typography variant="h5" className={classes.eventSubtitle}>
-          {location.name} | {timeEntry}
+          {location?.name} | {timeEntry}
         </Typography>
         <Typography variant="body1">{event.description}</Typography>
       </Box>
@@ -64,11 +64,11 @@ const EventsGridViewModal = ({ event, location }) => {
         {event.name}
       </Typography>
       <Typography variant="h5" className={classes.eventSubtitle}>
-        {location.name} | {timeEntry}
+        {location?.name} | {timeEntry}
       </Typography>
       <Typography variant="body1">{event.description}</Typography>
     </Box>
   );
 };
 
-export default EventsGridViewModal;
+export default EventsViewModal;

@@ -7006,6 +7006,172 @@ if (true) {
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/Divider/Divider.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/Divider/Divider.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "styles": () => (/* binding */ styles),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _styles_colorManipulator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/colorManipulator */ "./node_modules/@material-ui/core/esm/styles/colorManipulator.js");
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      height: 1,
+      margin: 0,
+      // Reset browser default style.
+      border: 'none',
+      flexShrink: 0,
+      backgroundColor: theme.palette.divider
+    },
+
+    /* Styles applied to the root element if `absolute={true}`. */
+    absolute: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: '100%'
+    },
+
+    /* Styles applied to the root element if `variant="inset"`. */
+    inset: {
+      marginLeft: 72
+    },
+
+    /* Styles applied to the root element if `light={true}`. */
+    light: {
+      backgroundColor: (0,_styles_colorManipulator__WEBPACK_IMPORTED_MODULE_5__.fade)(theme.palette.divider, 0.08)
+    },
+
+    /* Styles applied to the root element if `variant="middle"`. */
+    middle: {
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2)
+    },
+
+    /* Styles applied to the root element if `orientation="vertical"`. */
+    vertical: {
+      height: '100%',
+      width: 1
+    },
+
+    /* Styles applied to the root element if `flexItem={true}`. */
+    flexItem: {
+      alignSelf: 'stretch',
+      height: 'auto'
+    }
+  };
+};
+var Divider = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Divider(props, ref) {
+  var _props$absolute = props.absolute,
+      absolute = _props$absolute === void 0 ? false : _props$absolute,
+      classes = props.classes,
+      className = props.className,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'hr' : _props$component,
+      _props$flexItem = props.flexItem,
+      flexItem = _props$flexItem === void 0 ? false : _props$flexItem,
+      _props$light = props.light,
+      light = _props$light === void 0 ? false : _props$light,
+      _props$orientation = props.orientation,
+      orientation = _props$orientation === void 0 ? 'horizontal' : _props$orientation,
+      _props$role = props.role,
+      role = _props$role === void 0 ? Component !== 'hr' ? 'separator' : undefined : _props$role,
+      _props$variant = props.variant,
+      variant = _props$variant === void 0 ? 'fullWidth' : _props$variant,
+      other = (0,_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["absolute", "classes", "className", "component", "flexItem", "light", "orientation", "role", "variant"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Component, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__.default)(classes.root, className, variant !== 'fullWidth' && classes[variant], absolute && classes.absolute, flexItem && classes.flexItem, light && classes.light, orientation === 'vertical' && classes.vertical),
+    role: role,
+    ref: ref
+  }, other));
+});
+ true ? Divider.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * Absolutely position the element.
+   */
+  absolute: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * @ignore
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType),
+
+  /**
+   * If `true`, a vertical divider will have the correct height when used in flex container.
+   * (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
+   */
+  flexItem: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * If `true`, the divider will have a lighter color.
+   */
+  light: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+
+  /**
+   * The divider orientation.
+   */
+  orientation: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['horizontal', 'vertical']),
+
+  /**
+   * @ignore
+   */
+  role: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * The variant to use.
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['fullWidth', 'inset', 'middle'])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_styles_withStyles__WEBPACK_IMPORTED_MODULE_6__.default)(styles, {
+  name: 'MuiDivider'
+})(Divider));
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/Drawer/Drawer.js":
 /*!*************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/Drawer/Drawer.js ***!
@@ -34162,11 +34328,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/useMediaQuery/useMediaQuery.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/useTheme.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/useMediaQuery/useMediaQuery.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/useTheme.js");
 /* harmony import */ var _PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../PublicScheduleLayout */ "./resources/js/Pages/Public/PublicScheduleLayout.js");
 /* harmony import */ var _schedule_grid_EventsGridView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./schedule/grid/EventsGridView */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _schedule_list_EventsListView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./schedule/list/EventsListView */ "./resources/js/Pages/Public/views/schedule/list/EventsListView.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -34178,6 +34345,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -34198,21 +34366,22 @@ var EventsPage = function EventsPage(_ref) {
       eventDisplay = _useState2[0],
       setEventDisplay = _useState2[1];
 
-  var theme = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)();
-  var isDesktop = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default)(theme.breakpoints.up('md'));
+  var theme = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)();
+  var isDesktop = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default)(theme.breakpoints.up('md'));
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isDesktop) {
-      setEventDisplay( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_schedule_grid_EventsGridView__WEBPACK_IMPORTED_MODULE_2__.default, {
+      setEventDisplay( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_schedule_grid_EventsGridView__WEBPACK_IMPORTED_MODULE_2__.default, {
         events: events,
         locations: locations
       }));
     } else {
-      setEventDisplay( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        children: "List view would go here once complete."
+      setEventDisplay( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_schedule_list_EventsListView__WEBPACK_IMPORTED_MODULE_3__.default, {
+        events: events,
+        locations: locations
       }));
     }
   }, [isDesktop]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_PublicScheduleLayout__WEBPACK_IMPORTED_MODULE_1__.default, {
     title: "Events",
     scheduleName: scheduleName,
     socialSettings: socialSettings,
@@ -34821,6 +34990,112 @@ var GuestModal = function GuestModal(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Public/views/schedule/EventsViewModal.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/Pages/Public/views/schedule/EventsViewModal.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__.default)(function (theme) {
+  var _modalContent;
+
+  return {
+    modalContent: (_modalContent = {
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      position: 'absolute',
+      width: '80vw',
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3)
+    }, _defineProperty(_modalContent, theme.breakpoints.up('md'), {
+      width: '50vw'
+    }), _defineProperty(_modalContent, theme.breakpoints.up('lg'), {
+      width: '30vw'
+    }), _modalContent),
+    eventTitle: {
+      margin: theme.spacing(0, 0, 0.5, 0)
+    },
+    eventSubtitle: {
+      margin: theme.spacing(0, 0, 1, 0)
+    }
+  };
+});
+
+var EventsViewModal = function EventsViewModal(_ref) {
+  var event = _ref.event,
+      location = _ref.location;
+  var classes = useStyles();
+  var beginDate = luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_start));
+  var endDate = luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_end));
+  var timeEntry = "".concat(beginDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.TIME_SIMPLE), " - ").concat(endDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.TIME_SIMPLE));
+
+  if (event.is_cancelled === 1) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+      className: classes.modalContent,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        variant: "h4",
+        children: "Cancelled"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        variant: "h4",
+        className: classes.eventTitle,
+        style: {
+          textDecoration: 'line-through'
+        },
+        children: event.name
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        variant: "h5",
+        className: classes.eventSubtitle,
+        children: [location === null || location === void 0 ? void 0 : location.name, " | ", timeEntry]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+        variant: "body1",
+        children: event.description
+      })]
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+    className: classes.modalContent,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      variant: "h4",
+      className: classes.eventTitle,
+      children: event.name
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      variant: "h5",
+      className: classes.eventSubtitle,
+      children: [location === null || location === void 0 ? void 0 : location.name, " | ", timeEntry]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      variant: "body1",
+      children: event.description
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsViewModal);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js":
 /*!*************************************************************************!*\
   !*** ./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js ***!
@@ -34837,8 +35112,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Modal/Modal.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var _EventsGridViewModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventsGridViewModal */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js");
-/* harmony import */ var _EventsGridViewEvent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EventsGridViewEvent */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js");
+/* harmony import */ var _EventsGridViewEvent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventsGridViewEvent */ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js");
+/* harmony import */ var _EventsViewModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../EventsViewModal */ "./resources/js/Pages/Public/views/schedule/EventsViewModal.js");
 /* harmony import */ var _components_ExternalLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/ExternalLink */ "./resources/js/Pages/Public/components/ExternalLink.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -34984,17 +35259,6 @@ var EventsGridView = function EventsGridView(_ref) {
         width: '100%',
         height: '100%',
         color: 'black'
-      },
-      modalContent: {
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        position: 'absolute',
-        width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3)
       }
     };
   })(); // Create time slot elements
@@ -35057,7 +35321,7 @@ var EventsGridView = function EventsGridView(_ref) {
   };
 
   var handleEventClick = function handleEventClick(event, location) {
-    setModalContent( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventsGridViewModal__WEBPACK_IMPORTED_MODULE_1__.default, {
+    setModalContent( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventsViewModal__WEBPACK_IMPORTED_MODULE_2__.default, {
       event: event,
       location: location
     }));
@@ -35110,7 +35374,7 @@ var EventsGridView = function EventsGridView(_ref) {
     }), timeSlots, locations.map(function (location, locationIndex) {
       return events.map(function (event) {
         if (event.location_id === location.id) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventsGridViewEvent__WEBPACK_IMPORTED_MODULE_2__.default, {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventsGridViewEvent__WEBPACK_IMPORTED_MODULE_1__.default, {
             onClick: function onClick() {
               return handleEventClick(event, location);
             },
@@ -35237,112 +35501,6 @@ var EventsGridViewEvent = function EventsGridViewEvent(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js":
-/*!******************************************************************************!*\
-  !*** ./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__.default)(function (theme) {
-  var _modalContent;
-
-  return {
-    modalContent: (_modalContent = {
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      position: 'absolute',
-      width: '80vw',
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3)
-    }, _defineProperty(_modalContent, theme.breakpoints.up('md'), {
-      width: '50vw'
-    }), _defineProperty(_modalContent, theme.breakpoints.up('lg'), {
-      width: '30vw'
-    }), _modalContent),
-    eventTitle: {
-      margin: theme.spacing(0, 0, 0.5, 0)
-    },
-    eventSubtitle: {
-      margin: theme.spacing(0, 0, 1, 0)
-    }
-  };
-});
-
-var EventsGridViewModal = function EventsGridViewModal(_ref) {
-  var event = _ref.event,
-      location = _ref.location;
-  var classes = useStyles();
-  var beginDate = luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_start));
-  var endDate = luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_end));
-  var timeEntry = "".concat(beginDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.TIME_SIMPLE), " - ").concat(endDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__.DateTime.TIME_SIMPLE));
-
-  if (event.is_cancelled === 1) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
-      className: classes.modalContent,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        variant: "h4",
-        children: "Cancelled"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        variant: "h4",
-        className: classes.eventTitle,
-        style: {
-          textDecoration: 'line-through'
-        },
-        children: event.name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        variant: "h5",
-        className: classes.eventSubtitle,
-        children: [location.name, " | ", timeEntry]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        variant: "body1",
-        children: event.description
-      })]
-    });
-  }
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
-    className: classes.modalContent,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      variant: "h4",
-      className: classes.eventTitle,
-      children: event.name
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      variant: "h5",
-      className: classes.eventSubtitle,
-      children: [location.name, " | ", timeEntry]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      variant: "body1",
-      children: event.description
-    })]
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsGridViewModal);
-
-/***/ }),
-
 /***/ "./resources/js/Pages/Public/views/schedule/list/EventsListView.js":
 /*!*************************************************************************!*\
   !*** ./resources/js/Pages/Public/views/schedule/list/EventsListView.js ***!
@@ -35355,67 +35513,186 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/List/List.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Modal/Modal.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _EventsListViewEvent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventsListViewEvent */ "./resources/js/Pages/Public/views/schedule/list/EventsListViewEvent.js");
+/* harmony import */ var _EventsViewModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../EventsViewModal */ "./resources/js/Pages/Public/views/schedule/EventsViewModal.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
+  return {
+    list: {
+      width: '100%',
+      backgroundColor: theme.palette.background.paper
+    }
+  };
+});
+
+var EventsListView = function EventsListView(_ref) {
+  var events = _ref.events,
+      locations = _ref.locations;
+  var classes = useStyles();
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      open = _useState2[0],
+      setOpen = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {})),
+      _useState4 = _slicedToArray(_useState3, 2),
+      modalContent = _useState4[0],
+      setModalContent = _useState4[1];
+
+  var handleClose = function handleClose() {
+    setOpen(false);
+  };
+
+  var handleEventClick = function handleEventClick(event) {
+    var foundLoc = locations.find(function (loc) {
+      return loc.id === event.location_id;
+    });
+    setModalContent( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_EventsViewModal__WEBPACK_IMPORTED_MODULE_2__.default, {
+      event: event,
+      location: foundLoc
+    }));
+    setOpen(true);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+      className: classes.list,
+      children: events.map(function (event) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_EventsListViewEvent__WEBPACK_IMPORTED_MODULE_1__.default, {
+          event: event,
+          locations: locations,
+          onClick: function onClick() {
+            return handleEventClick(event);
+          }
+        }, event.id);
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+      open: open,
+      onClose: handleClose,
+      children: modalContent
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsListView);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Public/views/schedule/list/EventsListViewEvent.js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Public/views/schedule/list/EventsListViewEvent.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var luxon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! luxon */ "./node_modules/luxon/build/cjs-browser/luxon.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ListItem/ListItem.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ListItemText/ListItemText.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Divider/Divider.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
-var EventsListView = function EventsListView(_ref) {
-  var events = _ref.events;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
-      className: "collection schedule-list",
-      children: events ? Object.entries(events).map(function (k, index) {
-        var event = k[1];
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
-          className: "collection-item schedule-list__item",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            className: "schedule-list__item__title",
+
+
+
+var EventsListViewEvent = function EventsListViewEvent(_ref) {
+  var onClick = _ref.onClick,
+      event = _ref.event,
+      locations = _ref.locations;
+  var beginDate = luxon__WEBPACK_IMPORTED_MODULE_2__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_start));
+  var endDate = luxon__WEBPACK_IMPORTED_MODULE_2__.DateTime.fromISO("".concat(event.date, "T").concat(event.time_end));
+  var timeEntry = "".concat(beginDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_2__.DateTime.TIME_SIMPLE), " - ").concat(endDate.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_2__.DateTime.TIME_SIMPLE));
+  var location = locations.find(function (loc) {
+    return loc.id === event.location_id;
+  });
+
+  if (event.is_cancelled === 1) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, {
+        alignItems: "flex-start",
+        button: true,
+        onClick: onClick,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+          secondary: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+              component: "span",
+              variant: "body2",
+              color: "textPrimary",
+              style: {
+                display: 'block',
+                textDecoration: 'line-through'
+              },
+              children: timeEntry
+            }), location !== undefined ? location === null || location === void 0 ? void 0 : location.name : 'Unknown']
+          }),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
             style: {
-              textDecoration: event.is_cancelled ? 'line-through' : 'none'
+              textDecoration: 'line-through'
             },
-            children: event.title
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            className: "schedule-list__item__location",
+            children: event.name
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {})]
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, {
+      alignItems: "flex-start",
+      button: true,
+      onClick: onClick,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        primary: event.name,
+        secondary: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+            component: "span",
+            variant: "body2",
+            color: "textPrimary",
             style: {
-              textDecoration: event.is_cancelled ? 'line-through' : 'none'
+              display: 'block'
             },
-            children: event.location
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-            className: "schedule-list__item__time",
-            style: {
-              textDecoration: event.is_cancelled ? 'line-through' : 'none'
-            },
-            children: [event.time_start, " - ", event.time_end]
-          })]
-        }, index);
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "preloader-wrapper big active",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "spinner-layer spinner-blue-only",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "circle-clipper left",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              className: "circle"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "gap-patch",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              className: "circle"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "circle-clipper right",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              className: "circle"
-            })
-          })]
+            children: timeEntry
+          }), location !== undefined ? location === null || location === void 0 ? void 0 : location.name : 'Unknown']
         })
       })
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {})]
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsListView);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventsListViewEvent);
 
 /***/ }),
 
@@ -98497,14 +98774,16 @@ var map = {
 	"./Public/views/RulesPage.js": "./resources/js/Pages/Public/views/RulesPage.js",
 	"./Public/views/components/GuestModal": "./resources/js/Pages/Public/views/components/GuestModal.js",
 	"./Public/views/components/GuestModal.js": "./resources/js/Pages/Public/views/components/GuestModal.js",
+	"./Public/views/schedule/EventsViewModal": "./resources/js/Pages/Public/views/schedule/EventsViewModal.js",
+	"./Public/views/schedule/EventsViewModal.js": "./resources/js/Pages/Public/views/schedule/EventsViewModal.js",
 	"./Public/views/schedule/grid/EventsGridView": "./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js",
 	"./Public/views/schedule/grid/EventsGridView.js": "./resources/js/Pages/Public/views/schedule/grid/EventsGridView.js",
 	"./Public/views/schedule/grid/EventsGridViewEvent": "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js",
 	"./Public/views/schedule/grid/EventsGridViewEvent.js": "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewEvent.js",
-	"./Public/views/schedule/grid/EventsGridViewModal": "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js",
-	"./Public/views/schedule/grid/EventsGridViewModal.js": "./resources/js/Pages/Public/views/schedule/grid/EventsGridViewModal.js",
 	"./Public/views/schedule/list/EventsListView": "./resources/js/Pages/Public/views/schedule/list/EventsListView.js",
 	"./Public/views/schedule/list/EventsListView.js": "./resources/js/Pages/Public/views/schedule/list/EventsListView.js",
+	"./Public/views/schedule/list/EventsListViewEvent": "./resources/js/Pages/Public/views/schedule/list/EventsListViewEvent.js",
+	"./Public/views/schedule/list/EventsListViewEvent.js": "./resources/js/Pages/Public/views/schedule/list/EventsListViewEvent.js",
 	"./SnackbarMessages": "./resources/js/Pages/SnackbarMessages.js",
 	"./SnackbarMessages.js": "./resources/js/Pages/SnackbarMessages.js"
 };

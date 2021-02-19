@@ -4,8 +4,8 @@ import { DateTime } from 'luxon';
 import { Box, Modal } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import EventsGridViewModal from './EventsGridViewModal';
 import EventsGridViewEvent from './EventsGridViewEvent';
+import EventsViewModal from '../EventsViewModal';
 import ExternalLink from '../../../components/ExternalLink';
 
 let earliestEvent = '';
@@ -124,17 +124,6 @@ const EventsGridView = ({ events, locations }) => {
       height: '100%',
       color: 'black',
     },
-    modalContent: {
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
   }))();
 
   // Create time slot elements
@@ -201,7 +190,7 @@ const EventsGridView = ({ events, locations }) => {
   };
 
   const handleEventClick = (event, location) => {
-    setModalContent(<EventsGridViewModal event={event} location={location} />);
+    setModalContent(<EventsViewModal event={event} location={location} />);
     setOpen(true);
   };
 

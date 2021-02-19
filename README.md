@@ -11,9 +11,18 @@ Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 - Event Pages (Admin)
   - Maps (Image upload)
 - Event Pages (Public)
-  - Events List View
   - Events Day Selection
   - Maps View
+
+## Future Ideas
+- Show time headers for Event List
+- Event Type color selection
+- Show Event Types on Events
+- Clicking on Event Types will display modal list of similar events
+- Event Search
+- Filtering by Location, Event Type
+- Link Guests with Events
+- Schedule color scheme selection
 
 ## Requirements
 * MySQL/MariaDB Server

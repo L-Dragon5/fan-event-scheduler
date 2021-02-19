@@ -17,19 +17,23 @@ class PublicScheduleController extends Controller
         try {
             $schedule = Schedule::where('public_string', '=', $uuid)
                 ->where('is_live', '=', 1)
-                ->with(['events', 'locations'])
+                ->with(['locations'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return back();
         }
 
         $social_settings = $this->getSocialSettings($schedule);
+        $events = [];
+        foreach ($schedule->events->sortBy('date')->sortBy('time_start') as $event) {
+            $events[] = $event;
+        }
 
         return Inertia::render('Public/views/EventsPage', [
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
             'socialSettings' => $social_settings,
-            'events' => $schedule->events,
+            'events' => $events,
             'locations' => $schedule->locations,
         ])->withViewData(['title' => 'Events', 'schedule_name' => $schedule->name]);
     }
