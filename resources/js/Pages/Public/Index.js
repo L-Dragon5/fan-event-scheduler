@@ -155,7 +155,6 @@ const Index = () => {
                   Login
                 </Button>
                 <Button
-                  component={InertiaLink}
                   href="/register"
                   variant="contained"
                   color="secondary"

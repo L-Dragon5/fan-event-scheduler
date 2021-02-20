@@ -34216,7 +34216,6 @@ var Index = function Index() {
                 size: "large",
                 children: "Login"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
-                component: _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink,
                 href: "/register",
                 variant: "contained",
                 color: "secondary",
