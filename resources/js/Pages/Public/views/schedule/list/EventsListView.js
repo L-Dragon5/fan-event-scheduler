@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
   timeHeader: {
     fontSize: '1rem',
     fontWeight: 700,
-    backgroundColor: 'rgba(0,0,0,.05)',
-    borderBottom: 'rgba(0,0,0,.15)',
+    backgroundColor: theme.palette.grey[300],
+    borderBottom: theme.palette.grey[100],
   },
 }));
 

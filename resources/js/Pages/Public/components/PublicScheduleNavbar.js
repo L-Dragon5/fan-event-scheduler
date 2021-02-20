@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   appBar: {
-    width: '100vw',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   title: {
     flexGrow: 1,
@@ -155,9 +157,9 @@ const PublicScheduleNavbar = ({ uuid, scheduleName, socialSettings }) => {
   };
 
   return (
-    <Box>
+    <Box className={classes.appBar}>
       <Hidden mdUp>
-        <AppBar position="static" className={classes.appBar}>
+        <AppBar position="static">
           <Toolbar>
             <IconButton
               edge="start"
