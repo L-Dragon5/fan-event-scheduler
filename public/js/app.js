@@ -28567,7 +28567,7 @@ var AdminScheduleLayout = function AdminScheduleLayout(_ref) {
       children = _ref.children;
   var classes = useStyles();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    document.title = "".concat(title, " | Fan Event Schedule");
+    document.title = "".concat(title, " | Fan Event Scheduler");
   }, [title]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__.default, {
     theme: theme,
@@ -28638,7 +28638,7 @@ var AdminUserLayout = function AdminUserLayout(_ref) {
   var title = _ref.title,
       children = _ref.children;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    document.title = "".concat(title, " | Fan Event Schedule");
+    document.title = "".concat(title, " | Fan Event Scheduler");
   }, [title]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__.default, {
     theme: theme,
@@ -30928,7 +30928,7 @@ var AdminUserNavbar = function AdminUserNavbar() {
           className: classes.title,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
             href: "/admin",
-            children: "Admin - Fan Event Schedule"
+            children: "Admin - Fan Event Scheduler"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
           className: classes.desktopNav,
@@ -34072,15 +34072,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CssBaseline/CssBaseline.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Link/Link.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/CssBaseline/CssBaseline.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Typography/Typography.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/ButtonGroup/ButtonGroup.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _components_Copyright__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Copyright */ "./resources/js/Pages/Public/components/Copyright.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -34088,155 +34090,145 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)(function (theme) {
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)(function (theme) {
   return {
-    intro: {
-      height: '100vh',
-      width: '100%'
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
+      backgroundColor: theme.palette.grey[200]
     },
-    image: {
-      backgroundImage: 'url(/storage/organized-bg.jpg)',
-      backgroundRepeat: 'no-repeat',
-      backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      height: '100%',
-      width: '100%'
+    logo: _defineProperty({
+      textAlign: 'center',
+      flex: '0 1 auto',
+      paddingTop: theme.spacing(1),
+      fontSize: '2.75rem'
+    }, theme.breakpoints.up('md'), {
+      fontSize: '3.75rem'
+    }),
+    contentContainer: {
+      flex: '1 1 auto',
+      position: 'relative'
     },
-    overlay: {
-      position: 'absolute',
-      background: 'rgba(0, 0, 0, 0.75)',
-      height: '100%',
-      width: '100%',
-      top: '0'
-    },
-    introContent: {
+    content: _defineProperty({
+      margin: theme.spacing(4, 2, 0, 2)
+    }, theme.breakpoints.up('md'), {
       position: 'absolute',
       top: '50%',
       left: '50%',
-      transform: 'translate(-50%, -50%)',
-      color: '#fff',
-      textAlign: 'center'
+      transform: 'translate(-50%, -50%)'
+    }),
+    actions: {
+      textAlign: 'center',
+      margin: theme.spacing(4)
     },
-    introSubtitle: {
-      marginTop: '16px'
-    },
-    introButtons: {
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      marginTop: '32px'
-    },
-    features: {
-      minHeight: '100vh',
-      width: '100%',
-      padding: '32px'
-    },
-    about: {
-      width: '100%',
-      padding: '32px'
+    text: {
+      margin: theme.spacing(2, 0, 2, 0)
     },
     footer: {
+      flex: '0 1 40px',
       width: '100%',
       padding: '16px',
-      color: '#fff',
-      background: 'linear-gradient(180deg, rgba(255,153,0,1) 0%, rgba(255,106,0,1) 100%)'
-    },
-    changelog: {
-      maxHeight: '400px',
-      overflowY: 'auto',
-      padding: theme.spacing(2),
-      paddingTop: '0',
-      color: theme.palette.text.primary
-    },
-    carousel: {
-      maxWidth: '1200px',
-      margin: '32px 0',
-      '& img': {
-        width: '100%'
-      }
+      color: theme.palette.grey[100],
+      backgroundColor: theme.palette.grey[800]
     }
   };
 });
 
 var Index = function Index() {
   var classes = useStyles();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_helmet__WEBPACK_IMPORTED_MODULE_1__.Helmet, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("meta", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_helmet__WEBPACK_IMPORTED_MODULE_2__.Helmet, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("meta", {
         name: "description",
         content: "Make simple schedules and agendas for your virtual and in-person events. Try it now, for free."
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("meta", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("meta", {
         property: "og:title",
-        content: "Fan Event Schedule - Schedules Made Simple"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("meta", {
+        content: "Fan Event Scheduler - Schedules Made Simple"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("meta", {
         property: "og:type",
         content: "website"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("meta", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("meta", {
         property: "og:description",
         content: "Make simple schedules and agendas for your virtual and in-person events. Try it now, for free."
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      container: true,
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
       component: "main",
       className: classes.root,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        className: classes.intro,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          className: classes.image
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          className: classes.overlay
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          className: classes.introContent,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-            component: "h1",
-            variant: "h2",
-            children: "Schedule Made Simple"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-            className: classes.introButtons,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-              type: "button",
-              variant: "outlined",
-              color: "default",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+        className: classes.logo,
+        variant: "h2",
+        children: "Fan Event Scheduler"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        className: classes.contentContainer,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+          className: classes.content,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            variant: "h3",
+            children: "Welcome to FES!"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            variant: "subtitle2",
+            style: {
+              fontSize: '.75rem',
+              marginBottom: '32px'
+            },
+            children: "Please excuse the bare page"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            className: classes.text,
+            children: "Schedule creators for events, conferences, and conventions are nothing new. Many different types exist, but many of them come bundled in with other services provided driving up the cost of entry. As the founder of a small convention in my region, it's difficult sometimes to pay for these helpful services because our budget won't allow it. So we're left with trying to make schedules in spreadsheets that look nice for our attendees."
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            className: classes.text,
+            children: "This was developed with the small events in mind. I wanted to bring a more cost-effective solution that won't eat up an event's budget and instead allow them to use it for the attendees."
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            className: classes.text,
+            children: "Because of the Covid-19 pandemic, FES is now an alternative that allows organizers to build schedules for their free virtual events at free to low cost."
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            className: classes.text,
+            children: ["Yes, that's right.", ' ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+              children: "No payment required to get started."
+            }), " (There are limitations to the free accounts, but if you find you enjoy using this service, I hope you support us in the future)."]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            variant: "body2",
+            className: classes.text,
+            children: "This website is in what I consider an alpha-stage. Designed, developed, and maintained by a single person. I hope to have this service grow with more features and users."
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            variant: "body2",
+            className: classes.text,
+            children: ["If you need assistance or have any feature requests send me an email at:", ' ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
               style: {
-                color: '#fff'
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                color: '#fff',
+                padding: '4px'
               },
-              size: "large",
-              href: "/login",
-              children: "Login"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-              type: "button",
-              variant: "contained",
-              color: "primary",
-              size: "large",
-              href: "/register",
-              children: "Sign up now"
+              children: "support@fesapp.net"
             })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+            className: classes.actions,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
+                component: _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink,
+                href: "/login",
+                variant: "contained",
+                color: "primary",
+                size: "large",
+                children: "Login"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
+                component: _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink,
+                href: "/register",
+                variant: "contained",
+                color: "secondary",
+                size: "large",
+                children: "Signup"
+              })]
+            })
           })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        className: classes.about,
-        align: "center",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          variant: "h4",
-          children: "Who made this?"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          variant: "body1",
-          style: {
-            marginTop: '16px'
-          },
-          children: ["Hi, I'm Joe and I'm the creator and developer of CosManage. I make websites for fun (you can check out my", ' ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
-            href: "https://github.com/L-Dragon5/",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            children: "GitHub"
-          }), ")."]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          variant: "body1",
-          style: {
-            marginTop: '16px'
-          },
-          children: "Feel free to contact me if you have any problems or any things you wanted added in the future. I hope to grow this as much as possible!"
-        })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        className: classes.footer,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Copyright__WEBPACK_IMPORTED_MODULE_3__.default, {})
       })]
     })]
   });
@@ -34705,7 +34697,7 @@ var Copyright = function Copyright() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__.default, {
     variant: "body2",
     align: "center",
-    children: ["Copyright \xA9 Fan Event Schedule ", new Date().getFullYear()]
+    children: ["Copyright \xA9 Fan Event Scheduler ", new Date().getFullYear()]
   });
 };
 

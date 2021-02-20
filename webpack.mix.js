@@ -24,5 +24,5 @@ mix.browserSync({
   ui: false,
   injectChanges: true,
   notify: false,
-  proxy: 'http://saas-event-schedule.test',
+  proxy: 'http://fan-event-scheduler.test',
 });

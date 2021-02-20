@@ -93,11 +93,11 @@ return [
             'plans' => [
                 [
                     'name' => 'Basic Plan',
-                    'short_description' => 'Free subscription to test features, but with no ads.',
+                    'short_description' => 'You like what you see and you want to help with continued development. Thank you very much for your support!',
                     'yearly_id' => 'price_1IMjKOL2f7m4oh9jUGzzXBow',
                     'features' => [
                         'Ads removed',
-                        '5 Schedule Max',
+                        '2 Schedule Max',
                         'Priority Email Support',
                     ],
                     'archived' => false,
