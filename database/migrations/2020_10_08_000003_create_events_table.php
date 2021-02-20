@@ -16,7 +16,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
-            $table->foreignId('location_id')->nullable()->constrained('locations')->onDelete('set null');
+            $table->unsignedBigInteger('location_id')->nullable();
             $table->string('name', 255);
             $table->date('date');
             $table->time('time_start');

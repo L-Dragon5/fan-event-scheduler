@@ -37,7 +37,9 @@ class EventController extends Controller
 
         // Set all events to location
         foreach ($events as $event) {
-            $event->location_name = $event->location->name;
+            if (!empty($event->location)) {
+                $event->location_name = $event->location->name;
+            }
             $event->min_date = $event->schedule->start_date;
             $event->max_date = $event->schedule->end_date;
 
@@ -121,7 +123,11 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->time_start = $request->time_start;
         $event->time_end = $request->time_end;
-        if ($request->location_id !== 0) { $event->location_id = $request->location_id; }
+        if ($request->location_id !== 0) { 
+            $event->location_id = $request->location_id; 
+        } else { 
+            $request->location_id = null; 
+        }
         $event->description = $request->description;
 
         // Saving event types
@@ -185,7 +191,11 @@ class EventController extends Controller
             $event->date = $request->date;
             $event->time_start = $request->time_start;
             $event->time_end = $request->time_end;
-            if ($request->location_id !== 0) { $event->location_id = $request->location_id; }
+            if ($request->location_id !== 0) { 
+                $event->location_id = $request->location_id; 
+            } else { 
+                $request->location_id = null;
+            }
             $event->description = $request->description;
             $event->is_cancelled = $request->is_cancelled;
 
