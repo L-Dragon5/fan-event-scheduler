@@ -17,7 +17,6 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src='https://www.google.com/recaptcha/api.js' defer></script>
 
     @production
         <script data-ad-client="{{ config('app.adsense_client') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
