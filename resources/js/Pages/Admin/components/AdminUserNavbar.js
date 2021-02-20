@@ -170,7 +170,7 @@ const AdminUserNavbar = () => {
           </Hidden>
 
           <Typography variant="h6" className={classes.title}>
-            <InertiaLink href="/admin">Admin - Saas Event Schedule</InertiaLink>
+            <InertiaLink href="/admin">Admin - Fan Event Scheduler</InertiaLink>
           </Typography>
           <nav className={classes.desktopNav}>
             <Hidden smDown>

@@ -28567,7 +28567,7 @@ var AdminScheduleLayout = function AdminScheduleLayout(_ref) {
       children = _ref.children;
   var classes = useStyles();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    document.title = "".concat(title, " | SaaS Event Schedule");
+    document.title = "".concat(title, " | Fan Event Schedule");
   }, [title]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__.default, {
     theme: theme,
@@ -28638,7 +28638,7 @@ var AdminUserLayout = function AdminUserLayout(_ref) {
   var title = _ref.title,
       children = _ref.children;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    document.title = "".concat(title, " | SaaS Event Schedule");
+    document.title = "".concat(title, " | Fan Event Schedule");
   }, [title]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_8__.default, {
     theme: theme,
@@ -30928,7 +30928,7 @@ var AdminUserNavbar = function AdminUserNavbar() {
           className: classes.title,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.InertiaLink, {
             href: "/admin",
-            children: "Admin - Saas Event Schedule"
+            children: "Admin - Fan Event Schedule"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
           className: classes.desktopNav,
@@ -34167,7 +34167,7 @@ var Index = function Index() {
         content: "Make simple schedules and agendas for your virtual and in-person events. Try it now, for free."
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("meta", {
         property: "og:title",
-        content: "SaaS Event Schedule - Schedules Made Simple"
+        content: "Fan Event Schedule - Schedules Made Simple"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("meta", {
         property: "og:type",
         content: "website"
@@ -34705,7 +34705,7 @@ var Copyright = function Copyright() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__.default, {
     variant: "body2",
     align: "center",
-    children: ["Copyright \xA9 SaaS Event Schedule ", new Date().getFullYear()]
+    children: ["Copyright \xA9 Fan Event Schedule ", new Date().getFullYear()]
   });
 };
 

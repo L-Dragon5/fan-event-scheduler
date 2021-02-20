@@ -1,12 +1,11 @@
-# SaaS Event Schedule
-Successor to the Fan Event Schedule.
+# Fan Event Scheduler
+Successor to the original Fan Event Schedule (with the same name).
 Schedule application for fan events built as a SaaS for ease-of-use for users.
 
 Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 
 ## Minimium Viable Product To-Do
 - Main Site
-  - Think of a name
   - Front Page: Re-do to make it look cooler
 
 ## Future Ideas

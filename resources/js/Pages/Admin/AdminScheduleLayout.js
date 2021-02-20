@@ -36,7 +36,7 @@ const AdminScheduleLayout = ({ title, scheduleId, children }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    document.title = `${title} | SaaS Event Schedule`;
+    document.title = `${title} | Fan Event Scheduler`;
   }, [title]);
 
   return (

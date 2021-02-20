@@ -93,16 +93,16 @@ class ScheduleController extends Controller
         $user_id = Auth::id();
 
         $existing_schedule_count = Schedule::where('user_id', '=', $user_id)->count();
-        // Free Plan
-        if ($request->user()->subscribedToPlan('price_1ILXwYL2f7m4oh9jJINn6q1O')) {
-            if ($existing_schedule_count > 0) {
-                return back()->withErrors(['Not allowed to create more than 1 schedule']);
-            }
-        }
-        // Ad Free Plan
-        else if ($request->user()->subscribedToPlan('price_1IMcKTL2f7m4oh9jRc69pIkx')) {
+        // Basic Plan
+        if ($request->user()->subscribedToPlan('price_1IMjKOL2f7m4oh9jUGzzXBow')) {
             if ($existing_schedule_count > 4) {
                 return back()->withErrors(['Not allowed to create more than 5 schedule']);
+            }
+        }
+        // Everyone else (Free Plan)
+        else {
+            if ($existing_schedule_count > 0) {
+                return back()->withErrors(['Not allowed to create more than 1 schedule']);
             }
         }
 

@@ -95,7 +95,7 @@ const Index = () => {
         />
         <meta
           property="og:title"
-          content="SaaS Event Schedule - Schedules Made Simple"
+          content="Fan Event Scheduler - Schedules Made Simple"
         />
         <meta property="og:type" content="website" />
         <meta

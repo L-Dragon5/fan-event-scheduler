@@ -92,23 +92,13 @@ return [
             'model' => User::class,
             'plans' => [
                 [
-                    'name' => 'Free (w/Ads)',
-                    'short_description' => 'Free subscription to test features.',
-                    'monthly_id' => 'price_1ILXwYL2f7m4oh9jJINn6q1O',
-                    'features' => [
-                        '1 Schedule Max',
-                        'Email Support',
-                    ],
-                    'archived' => false,
-                ],
-                [
-                    'name' => 'No Ads',
+                    'name' => 'Basic Plan',
                     'short_description' => 'Free subscription to test features, but with no ads.',
-                    'monthly_id' => 'price_1IMcKTL2f7m4oh9jRc69pIkx',
+                    'yearly_id' => 'price_1IMjKOL2f7m4oh9jUGzzXBow',
                     'features' => [
                         'Ads removed',
                         '5 Schedule Max',
-                        'Email Support',
+                        'Priority Email Support',
                     ],
                     'archived' => false,
                 ],

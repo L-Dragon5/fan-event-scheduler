@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('forgot-password', [UserController::class, 'forgotPassword']);
 });
 
-Route::group(['middleware' => ['auth', 'subscribed'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::post('schedules/create', [ScheduleController::class, 'store']);
 
     Route::group(['middleware' => CheckUserOwnsSchedule::class, 'prefix' => 'schedule/{scheduleId}'], function() {
@@ -84,7 +84,7 @@ Route::group(['middleware' => ['auth', 'subscribed'], 'prefix' => 'admin'], func
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('/', [ScheduleController::class, 'index'])->name('admin-base');
 
-    Route::group(['middleware' => [CheckUserOwnsSchedule::class, 'subscribed'], 'prefix' => 'schedule/{scheduleId}'], function() {
+    Route::group(['middleware' => CheckUserOwnsSchedule::class, 'prefix' => 'schedule/{scheduleId}'], function() {
         Route::get('/', [ScheduleController::class, 'show']);
         Route::get('events', [EventController::class, 'index']);
         Route::get('eventTypes', [EventTypeController::class, 'index']);

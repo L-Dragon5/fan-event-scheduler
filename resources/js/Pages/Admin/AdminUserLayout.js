@@ -17,7 +17,7 @@ const theme = createMuiTheme({
 
 const AdminUserLayout = ({ title, children }) => {
   useEffect(() => {
-    document.title = `${title} | SaaS Event Schedule`;
+    document.title = `${title} | Fan Event Scheduler`;
   }, [title]);
 
   return (
