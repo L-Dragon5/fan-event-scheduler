@@ -34116,10 +34116,8 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default
     content: _defineProperty({
       margin: theme.spacing(4, 2, 0, 2)
     }, theme.breakpoints.up('md'), {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)'
+      margin: '80px auto',
+      maxWidth: 940
     }),
     actions: {
       textAlign: 'center',

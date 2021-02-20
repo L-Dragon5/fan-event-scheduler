@@ -36,10 +36,8 @@ const useStyles = makeStyles((theme) => ({
   content: {
     margin: theme.spacing(4, 2, 0, 2),
     [theme.breakpoints.up('md')]: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
+      margin: '80px auto',
+      maxWidth: 940,
     },
   },
   actions: {
