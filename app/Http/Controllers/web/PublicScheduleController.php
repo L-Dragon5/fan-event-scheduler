@@ -26,7 +26,6 @@ class PublicScheduleController extends Controller
         $social_settings = $this->getSocialSettings($schedule);
         $all_events = $schedule
             ->events
-            ->sortBy('time_start')
             ->groupBy('date')
             ->sortKeys();
 

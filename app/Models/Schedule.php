@@ -27,26 +27,26 @@ class Schedule extends Model
     }
 
     public function events() {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class)->orderBy('time_start');
     }
 
     public function exhibitors() {
-        return $this->hasMany(Exhibitor::class);
+        return $this->hasMany(Exhibitor::class)->orderBy('name');
     }
 
     public function guests() {
-        return $this->hasMany(Guest::class);
+        return $this->hasMany(Guest::class)->orderBy('name');
     }
 
     public function locations() {
-        return $this->hasMany(Location::class);
+        return $this->hasMany(Location::class)->orderBy('name');
     }
 
     public function maps() {
-        return $this->hasMany(Map::class);
+        return $this->hasMany(Map::class)->orderBy('name');
     }
 
     public function rules() {
-        return $this->hasMany(Rule::class);
+        return $this->hasMany(Rule::class)->orderBy('title');
     }
 }
