@@ -1,12 +1,8 @@
-# Fan Event Scheduler
+# Fan Event Scheduler (FES)
 Successor to the original Fan Event Schedule (with the same name).
 Schedule application for fan events built as a SaaS for ease-of-use for users.
 
 Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
-
-## Minimium Viable Product To-Do
-- Main Site
-  - Front Page: Re-do to make it look cooler
 
 ## Future Ideas
 - Schedule time zone setting (and then display in that time zone)
