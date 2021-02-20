@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
+import TimezoneSelect from 'react-timezone-select';
 
 import {
   Button,
@@ -20,11 +21,19 @@ const useStyles = makeStyles((theme) => ({
   fieldBreak: {
     marginBottom: theme.spacing(4),
   },
+  timezone: {
+    zIndex: 2,
+    marginBottom: theme.spacing(4),
+  },
 }));
 
 const FormScheduleEdit = ({ reloadPage, schedule }) => {
   const classes = useStyles();
 
+  const [selectedTimezone, setSelectedTimezone] = useState({
+    value: schedule.timezone,
+    abbrev: schedule.timezone_label,
+  });
   const [isLiveCheck, setIsLiveCheck] = useState(!!schedule.is_live);
 
   const handleSwitch = (e) => {
@@ -50,6 +59,8 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
     const formData = new FormData(e.target);
     formData.set('id', schedule.id);
     formData.set('is_live', isLiveCheck ? 1 : 0);
+    formData.set('timezone', selectedTimezone.value);
+    formData.set('timezone_label', selectedTimezone.abbrev);
 
     Inertia.post(`/admin/schedule/${schedule.id}/update`, formData, {
       onSuccess: (page) => {
@@ -57,6 +68,8 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
       },
     });
   };
+
+  console.log(selectedTimezone);
 
   return (
     <form className={classes.form} onSubmit={handleEditSubmit}>
@@ -92,10 +105,17 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
         name="end_date"
         variant="outlined"
         label="End Date"
-        className={(classes.formField, classes.fieldBreak)}
+        className={classes.formField}
         inputProps={{
           min: new Date().toISOString().split('T')[0],
         }}
+      />
+
+      <TimezoneSelect
+        className={classes.timezone}
+        value={selectedTimezone}
+        onChange={setSelectedTimezone}
+        labelStyle="abbrev"
       />
 
       <TextField

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
+import TimezoneSelect from 'react-timezone-select';
 
 import { Button, ButtonGroup, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,15 +15,25 @@ const useStyles = makeStyles((theme) => ({
   fieldBreak: {
     marginBottom: theme.spacing(4),
   },
+  timezone: {
+    zIndex: 2,
+    marginBottom: theme.spacing(4),
+  },
 }));
 
 const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
   const classes = useStyles();
+  const [selectedTimezone, setSelectedTimezone] = useState({
+    value: 'America/Detroit',
+    abbrev: 'EST',
+  });
 
   const handleAddSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    formData.set('timezone', selectedTimezone.value);
+    formData.set('timezone_label', selectedTimezone.abbrev);
 
     Inertia.post('/admin/schedules/create', formData, {
       onSuccess: (page) => {
@@ -67,7 +78,7 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
         name="end_date"
         variant="outlined"
         label="End Date"
-        className={(classes.formField, classes.fieldBreak)}
+        className={classes.formField}
         InputLabelProps={{
           shrink: true,
         }}
@@ -75,6 +86,13 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
           min: new Date().toISOString().split('T')[0],
         }}
         defaultValue={new Date().toISOString().split('T')[0]}
+      />
+
+      <TimezoneSelect
+        className={classes.timezone}
+        value={selectedTimezone}
+        onChange={setSelectedTimezone}
+        labelStyle="abbrev"
       />
 
       <TextField

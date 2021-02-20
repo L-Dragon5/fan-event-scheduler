@@ -33,6 +33,7 @@ class PublicScheduleController extends Controller
         return Inertia::render('Public/views/EventsPage', [
             'uuid' => $uuid,
             'scheduleName' => $schedule->name,
+            'scheduleTimezone' => ['timezone' => $schedule->timezone, 'label' => $schedule->timezone_label],
             'socialSettings' => $social_settings,
             'events' => $all_events,
             'locations' => $schedule->locations,

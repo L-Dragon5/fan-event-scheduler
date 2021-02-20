@@ -17,6 +17,8 @@ class Schedule extends Model
         'social_web',
         'is_live',
         'public_string',
+        'timezone',
+        'timezone_label',
     ];
     public $timestamps = false;
 

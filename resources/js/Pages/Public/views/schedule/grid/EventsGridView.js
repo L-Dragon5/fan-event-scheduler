@@ -13,7 +13,7 @@ let latestEvent = '';
 let earliestHour;
 let latestHour;
 
-const EventsGridView = ({ events, locations }) => {
+const EventsGridView = ({ timezone, events, locations }) => {
   const eventGridRef = useRef(null);
 
   const [timeSlots, setTimeSlots] = useState([]);
@@ -167,7 +167,7 @@ const EventsGridView = ({ events, locations }) => {
       );
     }
 
-    const currentTime = DateTime.now();
+    const currentTime = DateTime.now().setZone(timezone);
     const currentTimeLineName = `time-${zeroPad(currentTime.hour, 2)}${zeroPad(
       currentTime.minute,
       2,

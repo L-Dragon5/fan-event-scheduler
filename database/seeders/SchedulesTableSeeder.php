@@ -19,6 +19,8 @@ class SchedulesTableSeeder extends Seeder
             'name' => 'Schedule A',
             'start_date' => '2021-10-02',
             'end_date' => '2021-10-03',
+            'timezone' => 'America/Detroit',
+            'timezone_label' => 'EST',
         ]);
     }
 }

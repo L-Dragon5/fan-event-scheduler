@@ -7,6 +7,7 @@ import {
   FormControl,
   MenuItem,
   Select,
+  Typography,
   useMediaQuery,
 } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -20,11 +21,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
     minWidth: 120,
   },
+  eventHeader: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 const EventsPage = ({
   uuid,
   scheduleName,
+  scheduleTimezone,
   socialSettings,
   events,
   locations,
@@ -48,6 +54,7 @@ const EventsPage = ({
       if (isDesktop) {
         setEventDisplay(
           <EventsGridView
+            timezone={scheduleTimezone?.timezone}
             events={events[selectedDate]}
             locations={locations}
           />,
@@ -70,7 +77,7 @@ const EventsPage = ({
       socialSettings={socialSettings}
       uuid={uuid}
     >
-      <Box>
+      <Box className={classes.eventHeader}>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="events-date-select-label">Event Day</InputLabel>
           <Select
@@ -85,6 +92,10 @@ const EventsPage = ({
             ))}
           </Select>
         </FormControl>
+
+        <Typography display="inline">
+          Times displayed in {scheduleTimezone?.label}
+        </Typography>
       </Box>
       <Box>{eventDisplay}</Box>
     </PublicScheduleLayout>

@@ -5,7 +5,6 @@ Schedule application for fan events built as a SaaS for ease-of-use for users.
 Built on Laravel and InertiaJS with a ReactJS frontend built with MaterialUI.
 
 ## Future Ideas
-- Schedule time zone setting (and then display in that time zone)
 - Schedule color scheme selection
 - Event Type color selection
 - Show Event Types on Events

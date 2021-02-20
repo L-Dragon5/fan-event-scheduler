@@ -88,6 +88,8 @@ class ScheduleController extends Controller
             'social_tw' => 'url|nullable',
             'social_ig' => 'url|nullable',
             'social_web' => 'url|nullable',
+            'timezone' => 'string|required',
+            'timezone_label' => 'string|required',
         ]);
 
         $user_id = Auth::id();
@@ -119,6 +121,8 @@ class ScheduleController extends Controller
         $schedule->social_tw = $request->social_tw;
         $schedule->social_ig = $request->social_ig;
         $schedule->social_web = $request->social_web;
+        $schedule->timezone = $request->timezone;
+        $schedule->timezone_label = $request->timezone_label;
 
         $success = $schedule->save();
 
@@ -148,6 +152,8 @@ class ScheduleController extends Controller
             'social_ig' => 'url|nullable',
             'social_web' => 'url|nullable',
             'is_live' => 'boolean|required',
+            'timezone' => 'string|required',
+            'timezone_label' => 'string|required',
         ]);
 
         $user_id = Auth::id();
@@ -174,6 +180,8 @@ class ScheduleController extends Controller
             $schedule->social_ig = $request->social_ig;
             $schedule->social_web = $request->social_web;
             $schedule->is_live = $request->is_live;
+            $schedule->timezone = $request->timezone;
+            $schedule->timezone_label = $request->timezone_label;
 
             // If the schedule is set to be publically visible, but there's no public identifier, create one.
             // If the schedule is set to be hidden, but there's an identifier, remove it.
