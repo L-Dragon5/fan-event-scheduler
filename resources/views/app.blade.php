@@ -18,6 +18,10 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 
+    @if(Route::is('register'))
+    <script src="https://www.google.com/recaptcha/api.js" defer></script>
+    @endif
+
     @production
         <script data-ad-client="{{ config('app.adsense_client') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     @endproduction

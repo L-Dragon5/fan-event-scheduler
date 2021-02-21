@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { Helmet } from 'react-helmet';
 import { Inertia } from '@inertiajs/inertia';
 import { SnackbarProvider } from 'notistack';
 
@@ -53,95 +52,90 @@ const Register = () => {
   }, []);
 
   return (
-    <>
-      <Helmet>
-        <script src="https://www.google.com/recaptcha/api.js" defer />
-      </Helmet>
-      <SnackbarProvider
-        maxSnack={3}
-        dense
-        anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-        autoHideDuration={2000}
-      >
-        <SnackbarMessages />
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Register
-            </Typography>
+    <SnackbarProvider
+      maxSnack={3}
+      dense
+      anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+      autoHideDuration={2000}
+    >
+      <SnackbarMessages />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Register
+          </Typography>
 
-            <form className={classes.form} onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    type="email"
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="c_password"
-                    label="Confirm Password"
-                    type="password"
-                    id="c_password"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <div
-                    className="g-recaptcha"
-                    name="g-recaptcha-response"
-                    data-sitekey={process.env.MIX_GOOGLE_RECAPTCHA_KEY}
-                  />
-                </Grid>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  type="email"
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign Up
-              </Button>
-              <Grid container justify="flex-end">
-                <Grid item>
-                  <Link href="/login" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                />
               </Grid>
-            </form>
-          </div>
-          <Box mt={5}>
-            <Copyright />
-          </Box>
-        </Container>
-      </SnackbarProvider>
-    </>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="c_password"
+                  label="Confirm Password"
+                  type="password"
+                  id="c_password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <div
+                  className="g-recaptcha"
+                  name="g-recaptcha-response"
+                  data-sitekey={process.env.MIX_GOOGLE_RECAPTCHA_KEY}
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign Up
+            </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link href="/login" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+        <Box mt={5}>
+          <Copyright />
+        </Box>
+      </Container>
+    </SnackbarProvider>
   );
 };
 
