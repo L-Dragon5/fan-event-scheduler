@@ -85,8 +85,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('/', [ScheduleController::class, 'index'])->name('admin-base');
 
     Route::group(['middleware' => CheckUserOwnsSchedule::class, 'prefix' => 'schedule/{scheduleId}'], function() {
-        Route::get('/', [ScheduleController::class, 'show']);
-        Route::get('events', [EventController::class, 'index']);
+        Route::get('/', [EventController::class, 'index']);
         Route::get('eventTypes', [EventTypeController::class, 'index']);
         Route::get('exhibitors', [ExhibitorController::class, 'index']);
         Route::get('guests', [GuestController::class, 'index']);

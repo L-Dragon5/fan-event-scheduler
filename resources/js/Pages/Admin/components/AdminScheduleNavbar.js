@@ -89,12 +89,6 @@ const AdminScheduleNavbar = ({ scheduleId }) => {
         >
           <InertiaLink href={`/admin/schedule/${scheduleId}`}>
             <ListItem button>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-          </InertiaLink>
-
-          <InertiaLink href={`/admin/schedule/${scheduleId}/events`}>
-            <ListItem button>
               <ListItemText primary="Events" />
             </ListItem>
           </InertiaLink>

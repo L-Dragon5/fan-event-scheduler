@@ -18,12 +18,17 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($scheduleId) {
+        try {
+            $schedule = Schedule::findOrFail($scheduleId);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return back()->withErrors(['Could not find schedule']);
+        }
+    
         $events = Event::where('schedule_id', $scheduleId)
             ->with(['location', 'event_types'])
             ->orderBy('date', 'ASC')
             ->orderBy('name', 'ASC')
             ->get();
-        $schedule = Schedule::find($scheduleId);
         $available_locations = [];
         $available_event_types = [];
 

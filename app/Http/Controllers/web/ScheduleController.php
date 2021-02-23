@@ -54,25 +54,6 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Display the Schedule admin dashboard.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($scheduleId)
-    {
-        try {
-            Schedule::findOrFail($scheduleId);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return back()->withErrors(['Invalid schedule id']);
-        }
-        
-        return Inertia::render('Admin/Dashboard', [
-            'scheduleId' => $scheduleId
-        ])->withViewData(['title' => 'Dashboard']);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -103,7 +84,7 @@ class ScheduleController extends Controller
         }
         // Everyone else (Free Plan)
         else {
-            if ($existing_schedule_count >= 4) {
+            if ($existing_schedule_count >= 1) {
                 return back()->withErrors(['Not allowed to create more than 1 schedule']);
             }
         }
