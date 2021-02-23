@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EventType extends Model
 {
-    protected $fillable = ['schedule_id', 'name'];
+    protected $fillable = ['schedule_id', 'name', 'color'];
     public $timestamps = false;
 
     public function schedule() {

@@ -32,8 +32,7 @@ const EventsListView = ({ events, locations }) => {
   };
 
   const handleEventClick = (event) => {
-    const foundLoc = locations.find((loc) => loc.id === event.location_id);
-    setModalContent(<EventsViewModal event={event} location={foundLoc} />);
+    setModalContent(<EventsViewModal event={event} />);
     setOpen(true);
   };
 

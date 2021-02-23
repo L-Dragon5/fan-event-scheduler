@@ -17,7 +17,7 @@ class PublicScheduleController extends Controller
         try {
             $schedule = Schedule::where('public_string', '=', $uuid)
                 ->where('is_live', '=', 1)
-                ->with(['locations'])
+                ->with(['locations', 'events.location', 'events.event_types'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return back();

@@ -4,6 +4,8 @@ import { DateTime } from 'luxon';
 import { Box, Typography, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import EventTypeDot from '../EventTypeDot';
+
 const useStyles = makeStyles((theme) => ({
   event: {
     display: 'flex',
@@ -13,6 +15,14 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1,
     cursor: 'pointer',
     overflow: 'hidden',
+  },
+  dotContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  mainContainer: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   eventTitle: {
     margin: '0 0 4px',
@@ -51,33 +61,42 @@ const EventsGridViewEvent = ({ onClick, event, locationIndex }) => {
       className={classes.event}
       style={{ gridColumn: eventTrackNum, gridRow: eventTimeRow }}
     >
-      {event.is_cancelled === 1 ? (
-        <>
-          <Typography
-            component="h2"
-            className={classes.eventTitle}
-            style={{ textDecoration: 'line-through' }}
-          >
-            {event.name}
-          </Typography>
-          <Typography
-            component="h3"
-            className={classes.eventTime}
-            style={{ textDecoration: 'line-through' }}
-          >
-            {timeEntry}
-          </Typography>
-        </>
-      ) : (
-        <>
-          <Typography component="h2" className={classes.eventTitle}>
-            {event.name}
-          </Typography>
-          <Typography component="h3" className={classes.eventTime}>
-            {timeEntry}
-          </Typography>
-        </>
+      {event.event_types?.length > 0 && (
+        <Box className={classes.dotContainer}>
+          {event.event_types.map((type) => (
+            <EventTypeDot key={type.id} type={type} />
+          ))}
+        </Box>
       )}
+      <Box className={classes.mainContainer}>
+        {event.is_cancelled === 1 ? (
+          <>
+            <Typography
+              component="h2"
+              className={classes.eventTitle}
+              style={{ textDecoration: 'line-through' }}
+            >
+              {event.name}
+            </Typography>
+            <Typography
+              component="h3"
+              className={classes.eventTime}
+              style={{ textDecoration: 'line-through' }}
+            >
+              {timeEntry}
+            </Typography>
+          </>
+        ) : (
+          <>
+            <Typography component="h2" className={classes.eventTitle}>
+              {event.name}
+            </Typography>
+            <Typography component="h3" className={classes.eventTime}>
+              {timeEntry}
+            </Typography>
+          </>
+        )}
+      </Box>
     </Box>
   );
 };

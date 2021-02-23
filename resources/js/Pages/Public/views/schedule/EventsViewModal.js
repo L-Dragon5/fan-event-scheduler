@@ -1,7 +1,7 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 
-import { Box, Typography } from '@material-ui/core';
+import { Box, Chip, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,9 +30,15 @@ const useStyles = makeStyles((theme) => ({
   eventSubtitle: {
     margin: theme.spacing(0, 0, 1, 0),
   },
+  eventTypeChips: {
+    margin: theme.spacing(0, 0, 2, 0),
+  },
+  chip: {
+    margin: theme.spacing(0, 0.5, 0.5, 0),
+  },
 }));
 
-const EventsViewModal = ({ event, location }) => {
+const EventsViewModal = ({ event }) => {
   const classes = useStyles();
 
   const beginDate = DateTime.fromISO(`${event.date}T${event.time_start}`);
@@ -53,8 +59,22 @@ const EventsViewModal = ({ event, location }) => {
           {event.name}
         </Typography>
         <Typography variant="h5" className={classes.eventSubtitle}>
-          {location?.name} | {timeEntry}
+          {event.location?.name !== undefined
+            ? `${event.location?.name} | ${timeEntry}`
+            : timeEntry}
         </Typography>
+        <Box className={classes.eventTypeChips}>
+          {event.event_types.map((type) => (
+            <Chip
+              key={type.id}
+              variant="outlined"
+              label={type.name}
+              clickable
+              className={classes.chip}
+              style={{ borderColor: `#${type.color}` }}
+            />
+          ))}
+        </Box>
         <Typography variant="body1">{event.description}</Typography>
       </Box>
     );
@@ -66,8 +86,22 @@ const EventsViewModal = ({ event, location }) => {
         {event.name}
       </Typography>
       <Typography variant="h5" className={classes.eventSubtitle}>
-        {location?.name} | {timeEntry}
+        {event.location?.name !== undefined
+          ? `${event.location?.name} | ${timeEntry}`
+          : timeEntry}
       </Typography>
+      <Box className={classes.eventTypeChips}>
+        {event.event_types.map((type) => (
+          <Chip
+            key={type.id}
+            variant="outlined"
+            label={type.name}
+            clickable
+            className={classes.chip}
+            style={{ borderColor: `#${type.color}` }}
+          />
+        ))}
+      </Box>
       <Typography variant="body1">{event.description}</Typography>
     </Box>
   );

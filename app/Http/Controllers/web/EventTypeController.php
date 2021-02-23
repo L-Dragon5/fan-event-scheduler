@@ -33,6 +33,7 @@ class EventTypeController extends Controller
         $request->validate([
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
+            'color' => 'string|required',
         ]);
 
         if (check_for_duplicate(['schedule_id' => $request->scheduleId], $request->name, 'event_types', 'name')) {
@@ -42,7 +43,7 @@ class EventTypeController extends Controller
         $event_type = new EventType;
         $event_type->schedule_id = $request->scheduleId;
         $event_type->name = $request->name;
-
+        $event_type->color = str_replace('#', '', $request->color);
         $success = $event_type->save();
 
         if ($success) {
@@ -64,6 +65,7 @@ class EventTypeController extends Controller
             'id' => 'numeric|required',
             'scheduleId' => 'numeric|required',
             'name' => 'string|required',
+            'color' => 'string|required',
         ]);
 
         try {
@@ -77,9 +79,9 @@ class EventTypeController extends Controller
                 } else {
                     $event_type->name = $request->name;
                 }
-            } else {
-                return back()->withErrors('Nothing to update');
             }
+
+            $event_type->color = str_replace('#', '', $request->color);
 
             $success = $event_type->save();
 

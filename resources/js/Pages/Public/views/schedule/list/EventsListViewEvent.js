@@ -1,9 +1,23 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 
-import { ListItem, ListItemText, Typography } from '@material-ui/core';
+import { Box, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import EventTypeDot from '../EventTypeDot';
+
+const useStyles = makeStyles((theme) => ({
+  dotContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexBasis: 44,
+    justifyContent: 'flex-end',
+  },
+}));
 
 const EventsListViewEvent = ({ onClick, event, locations }) => {
+  const classes = useStyles();
+
   const beginDate = DateTime.fromISO(`${event.date}T${event.time_start}`);
   const endDate = DateTime.fromISO(`${event.date}T${event.time_end}`);
   const timeEntry = `${beginDate.toLocaleString(
@@ -34,6 +48,13 @@ const EventsListViewEvent = ({ onClick, event, locations }) => {
             {event.name}
           </Typography>
         </ListItemText>
+        {event.event_types?.length > 0 && (
+          <Box className={classes.dotContainer}>
+            {event.event_types.map((type) => (
+              <EventTypeDot key={type.id} type={type} />
+            ))}
+          </Box>
+        )}
       </ListItem>
     );
   }
@@ -56,6 +77,13 @@ const EventsListViewEvent = ({ onClick, event, locations }) => {
           </>
         }
       />
+      {event.event_types?.length > 0 && (
+        <Box className={classes.dotContainer}>
+          {event.event_types.map((type) => (
+            <EventTypeDot key={type.id} type={type} />
+          ))}
+        </Box>
+      )}
     </ListItem>
   );
 };

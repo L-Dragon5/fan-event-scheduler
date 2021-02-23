@@ -190,8 +190,8 @@ const EventsGridView = ({ timezone, events, locations }) => {
     setTimeSlots(tempArray);
   };
 
-  const handleEventClick = (event, location) => {
-    setModalContent(<EventsViewModal event={event} location={location} />);
+  const handleEventClick = (event) => {
+    setModalContent(<EventsViewModal event={event} />);
     setOpen(true);
   };
 
@@ -245,7 +245,7 @@ const EventsGridView = ({ timezone, events, locations }) => {
             return (
               <EventsGridViewEvent
                 key={event.id}
-                onClick={() => handleEventClick(event, location)}
+                onClick={() => handleEventClick(event)}
                 event={event}
                 locationIndex={locationIndex}
               />
