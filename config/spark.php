@@ -94,7 +94,7 @@ return [
                 [
                     'name' => 'Basic Plan',
                     'short_description' => 'You like what you see and you want to help with continued development. Thank you very much for your support!',
-                    'yearly_id' => 'price_1IMjKOL2f7m4oh9jUGzzXBow',
+                    'yearly_id' => 'price_1IN6GdL2f7m4oh9jP7L9QUu8',
                     'features' => [
                         'Ads removed',
                         '2 Schedule Max',
