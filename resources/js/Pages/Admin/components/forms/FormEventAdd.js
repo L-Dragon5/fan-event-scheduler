@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
+import { DateTime } from 'luxon';
+import { DatePicker, TimePicker } from '@material-ui/pickers';
 
 import {
   Button,
@@ -58,6 +60,13 @@ const FormEventAdd = ({
 
   const [locationId, setLocationId] = useState(0);
   const [eventTypes, setEventTypes] = useState([]);
+  const [eventDate, setEventDate] = useState(DateTime.fromISO(minDate));
+  const [eventStartTime, setEventStartTime] = useState(
+    DateTime.now().set({ second: 0, millisecond: 0 }),
+  );
+  const [eventEndTime, setEventEndTime] = useState(
+    DateTime.now().set({ second: 0, millisecond: 0 }),
+  );
 
   const handleLocationSelect = (e) => {
     setLocationId(e.target.value);
@@ -74,6 +83,21 @@ const FormEventAdd = ({
     formData.set('scheduleId', scheduleId);
     formData.set('location_id', locationId);
     formData.set('event_types', eventTypes);
+    formData.set('date', eventDate.toUTC().toISODate());
+    formData.set(
+      'time_start',
+      eventStartTime.toISOTime({
+        includeOffset: false,
+        suppressMilliseconds: true,
+      }),
+    );
+    formData.set(
+      'time_end',
+      eventEndTime.toISOTime({
+        includeOffset: false,
+        suppressMilliseconds: true,
+      }),
+    );
 
     Inertia.post(`/admin/schedule/${scheduleId}/events/store`, formData, {
       onSuccess: (page) => {
@@ -94,48 +118,36 @@ const FormEventAdd = ({
         className={classes.formField}
       />
 
-      <TextField
+      <DatePicker
+        value={eventDate}
+        onChange={setEventDate}
+        className={classes.formField}
         required
         fullWidth
-        type="date"
-        name="date"
-        variant="outlined"
         label="Date"
-        className={classes.formField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        inputProps={{
-          min: minDate,
-          max: maxDate,
-        }}
-        defaultValue={minDate}
+        inputVariant="outlined"
+        minDate={DateTime.fromISO(minDate)}
+        maxDate={DateTime.fromISO(maxDate)}
       />
 
-      <TextField
+      <TimePicker
+        value={eventStartTime}
+        onChange={setEventStartTime}
         required
         fullWidth
-        type="time"
-        name="time_start"
-        variant="outlined"
         label="Start Time"
+        inputVariant="outlined"
         className={classes.formField}
-        InputLabelProps={{
-          shrink: true,
-        }}
       />
 
-      <TextField
+      <TimePicker
+        value={eventEndTime}
+        onChange={setEventEndTime}
         required
         fullWidth
-        type="time"
-        name="time_end"
-        variant="outlined"
         label="End Time"
+        inputVariant="outlined"
         className={classes.formField}
-        InputLabelProps={{
-          shrink: true,
-        }}
       />
 
       <FormControl fullWidth variant="outlined" className={classes.formField}>

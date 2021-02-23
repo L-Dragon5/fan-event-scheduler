@@ -1,6 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { SnackbarProvider } from 'notistack';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import LuxonUtils from '@date-io/luxon';
 
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -30,8 +32,10 @@ const AdminUserLayout = ({ title, children }) => {
       >
         <SnackbarMessages />
         <CssBaseline />
-        <AdminUserNavbar />
-        <main>{children}</main>
+        <MuiPickersUtilsProvider utils={LuxonUtils}>
+          <AdminUserNavbar />
+          <main>{children}</main>
+        </MuiPickersUtilsProvider>
       </SnackbarProvider>
     </ThemeProvider>
   );

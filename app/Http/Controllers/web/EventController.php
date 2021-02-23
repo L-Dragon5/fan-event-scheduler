@@ -40,8 +40,6 @@ class EventController extends Controller
             if (!empty($event->location)) {
                 $event->location_name = $event->location->name;
             }
-            $event->min_date = $event->schedule->start_date;
-            $event->max_date = $event->schedule->end_date;
 
             $event_type_list = [];
             foreach ($event->event_types as $event_type) {

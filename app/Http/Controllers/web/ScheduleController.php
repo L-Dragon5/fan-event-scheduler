@@ -103,7 +103,7 @@ class ScheduleController extends Controller
         }
         // Everyone else (Free Plan)
         else {
-            if ($existing_schedule_count >= 1) {
+            if ($existing_schedule_count >= 4) {
                 return back()->withErrors(['Not allowed to create more than 1 schedule']);
             }
         }

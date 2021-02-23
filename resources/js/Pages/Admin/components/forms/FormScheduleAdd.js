@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import TimezoneSelect from 'react-timezone-select';
+import { DateTime } from 'luxon';
+import { DatePicker } from '@material-ui/pickers';
 
 import { Button, ButtonGroup, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
 const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
   const classes = useStyles();
+
+  const [scheduleStartDate, setScheduleStartDate] = useState(DateTime.now());
+  const [scheduleEndDate, setScheduleEndDate] = useState(DateTime.now());
   const [selectedTimezone, setSelectedTimezone] = useState({
     value: 'America/Detroit',
     abbrev: 'EST',
@@ -32,6 +37,8 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    formData.set('start_date', scheduleStartDate.toUTC().toISODate());
+    formData.set('end_date', scheduleEndDate.toUTC().toISODate());
     formData.set('timezone', selectedTimezone.value);
     formData.set('timezone_label', selectedTimezone.abbrev);
 
@@ -54,38 +61,26 @@ const FormScheduleAdd = ({ closeDrawer, reloadPage }) => {
         className={classes.formField}
       />
 
-      <TextField
+      <DatePicker
+        value={scheduleStartDate}
+        onChange={setScheduleStartDate}
+        className={classes.formField}
         required
         fullWidth
-        type="date"
-        name="start_date"
-        variant="outlined"
         label="Start Date"
-        className={classes.formField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        inputProps={{
-          min: new Date().toISOString().split('T')[0],
-        }}
-        defaultValue={new Date().toISOString().split('T')[0]}
+        inputVariant="outlined"
+        minDate={DateTime.now().toISODate()}
       />
 
-      <TextField
+      <DatePicker
+        value={scheduleEndDate}
+        onChange={setScheduleEndDate}
+        className={classes.formField}
         required
         fullWidth
-        type="date"
-        name="end_date"
-        variant="outlined"
         label="End Date"
-        className={classes.formField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        inputProps={{
-          min: new Date().toISOString().split('T')[0],
-        }}
-        defaultValue={new Date().toISOString().split('T')[0]}
+        inputVariant="outlined"
+        minDate={DateTime.now().toISODate()}
       />
 
       <TimezoneSelect

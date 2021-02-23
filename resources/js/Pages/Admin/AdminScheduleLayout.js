@@ -1,6 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { SnackbarProvider } from 'notistack';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import LuxonUtils from '@date-io/luxon';
 
 import { Box, CssBaseline } from '@material-ui/core';
 import {
@@ -49,12 +51,15 @@ const AdminScheduleLayout = ({ title, scheduleId, children }) => {
       >
         <SnackbarMessages />
         <CssBaseline />
-        <Box className={classes.root}>
-          <AdminScheduleNavbar scheduleId={scheduleId} />
-          <Box component="main" className={classes.main}>
-            {children}
+        <MuiPickersUtilsProvider utils={LuxonUtils}>
+          <Box className={classes.root}>
+            <AdminScheduleNavbar scheduleId={scheduleId} />
+            <Box component="main" className={classes.main}>
+              {children}
+            </Box>
           </Box>
-        </Box>
+        </MuiPickersUtilsProvider>
+        a
       </SnackbarProvider>
     </ThemeProvider>
   );

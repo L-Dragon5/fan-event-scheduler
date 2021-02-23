@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import TimezoneSelect from 'react-timezone-select';
+import { DateTime } from 'luxon';
+import { DatePicker } from '@material-ui/pickers';
 
 import {
   Button,
@@ -30,6 +32,12 @@ const useStyles = makeStyles((theme) => ({
 const FormScheduleEdit = ({ reloadPage, schedule }) => {
   const classes = useStyles();
 
+  const [scheduleStartDate, setScheduleStartDate] = useState(
+    DateTime.fromISO(schedule.start_date, { zone: 'utc' }),
+  );
+  const [scheduleEndDate, setScheduleEndDate] = useState(
+    DateTime.fromISO(schedule.end_date, { zone: 'utc' }),
+  );
   const [selectedTimezone, setSelectedTimezone] = useState({
     value: schedule.timezone,
     abbrev: schedule.timezone_label,
@@ -58,6 +66,8 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
 
     const formData = new FormData(e.target);
     formData.set('id', schedule.id);
+    formData.set('start_date', scheduleStartDate.toUTC().toISODate());
+    formData.set('end_date', scheduleEndDate.toUTC().toISODate());
     formData.set('is_live', isLiveCheck ? 1 : 0);
     formData.set('timezone', selectedTimezone.value);
     formData.set('timezone_label', selectedTimezone.abbrev);
@@ -68,8 +78,6 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
       },
     });
   };
-
-  console.log(selectedTimezone);
 
   return (
     <form className={classes.form} onSubmit={handleEditSubmit}>
@@ -83,32 +91,26 @@ const FormScheduleEdit = ({ reloadPage, schedule }) => {
         className={classes.formField}
       />
 
-      <TextField
+      <DatePicker
+        value={scheduleStartDate}
+        onChange={setScheduleStartDate}
+        className={classes.formField}
         required
         fullWidth
-        type="date"
-        defaultValue={schedule.start_date}
-        name="start_date"
-        variant="outlined"
         label="Start Date"
-        className={classes.formField}
-        inputProps={{
-          min: new Date().toISOString().split('T')[0],
-        }}
+        inputVariant="outlined"
+        minDate={DateTime.now().toISODate()}
       />
 
-      <TextField
+      <DatePicker
+        value={scheduleEndDate}
+        onChange={setScheduleEndDate}
+        className={classes.formField}
         required
         fullWidth
-        type="date"
-        defaultValue={schedule.end_date}
-        name="end_date"
-        variant="outlined"
         label="End Date"
-        className={classes.formField}
-        inputProps={{
-          min: new Date().toISOString().split('T')[0],
-        }}
+        inputVariant="outlined"
+        minDate={DateTime.now().toISODate()}
       />
 
       <TimezoneSelect

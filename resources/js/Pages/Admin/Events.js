@@ -79,6 +79,8 @@ const Events = ({
         availableLocations={availableLocations}
         availableEventTypes={availableEventTypes}
         event={event}
+        minDate={minDate}
+        maxDate={maxDate}
       />,
     );
     setDrawerStatus(true);
