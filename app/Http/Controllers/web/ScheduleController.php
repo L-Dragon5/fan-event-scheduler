@@ -78,8 +78,8 @@ class ScheduleController extends Controller
         $existing_schedule_count = Schedule::where('user_id', '=', $user_id)->count();
         // Basic Plan
         if ($request->user()->subscribedToPlan('price_1IMjKOL2f7m4oh9jUGzzXBow')) {
-            if ($existing_schedule_count >= 2) {
-                return back()->withErrors(['Not allowed to create more than 2 schedules']);
+            if ($existing_schedule_count >= 3) {
+                return back()->withErrors(['Not allowed to create more than 3 schedules']);
             }
         }
         // Everyone else (Free Plan)
