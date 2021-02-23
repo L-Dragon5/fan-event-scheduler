@@ -2,15 +2,10 @@ import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import { Helmet } from 'react-helmet';
 
-import {
-  CssBaseline,
-  Box,
-  Button,
-  ButtonGroup,
-  Typography,
-} from '@material-ui/core';
+import { Box, Button, ButtonGroup, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import BaseLayout from './BaseLayout';
 import Copyright from './components/Copyright';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,15 +55,16 @@ const Index = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <BaseLayout title="Home">
       <Helmet>
+        <title>Schedule & Agenda Builder for Events | FES</title>
         <meta
           name="description"
           content="Make simple schedules and agendas for your virtual and in-person events. Try it now, for free."
         />
         <meta
           property="og:title"
-          content="Fan Event Scheduler - Schedules Made Simple"
+          content="Schedule & Agenda Builder for Events | FES"
         />
         <meta property="og:type" content="website" />
         <meta
@@ -76,7 +72,6 @@ const Index = () => {
           content="Make simple schedules and agendas for your virtual and in-person events. Try it now, for free."
         />
       </Helmet>
-      <CssBaseline />
       <Box component="main" className={classes.root}>
         <Typography className={classes.logo} variant="h2">
           Fan Event Scheduler
@@ -119,6 +114,18 @@ const Index = () => {
               <strong>No payment required to get started.</strong> (There are
               limitations to the free accounts, but if you find you enjoy using
               this service, I hope you support us in the future).
+            </Typography>
+
+            <Typography className={classes.text}>
+              You can see an example schedule here:{' '}
+              <Button
+                component={InertiaLink}
+                href="/s/c2c5ed4f-f3ac-4bba-9e22-7a756f53ca54"
+                variant="contained"
+                color="primary"
+              >
+                Example Schedule
+              </Button>
             </Typography>
 
             <Typography variant="body2" className={classes.text}>
@@ -169,7 +176,7 @@ const Index = () => {
           <Copyright />
         </Box>
       </Box>
-    </>
+    </BaseLayout>
   );
 };
 

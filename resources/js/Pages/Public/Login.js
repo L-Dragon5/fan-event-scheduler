@@ -1,11 +1,9 @@
 import React, { useCallback } from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import { SnackbarProvider } from 'notistack';
 
 import {
   Avatar,
   Button,
-  CssBaseline,
   TextField,
   Link,
   Paper,
@@ -17,7 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Components
-import SnackbarMessages from '../SnackbarMessages';
+import BaseLayout from './BaseLayout';
 import Copyright from './components/Copyright';
 
 const useStyles = makeStyles((theme) => ({
@@ -65,15 +63,8 @@ const LoginPage = () => {
   }, []);
 
   return (
-    <SnackbarProvider
-      maxSnack={3}
-      dense
-      anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-      autoHideDuration={2000}
-    >
-      <SnackbarMessages />
+    <BaseLayout title="Login">
       <Grid container component="main" className={classes.root}>
-        <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
@@ -136,7 +127,7 @@ const LoginPage = () => {
           </div>
         </Grid>
       </Grid>
-    </SnackbarProvider>
+    </BaseLayout>
   );
 };
 

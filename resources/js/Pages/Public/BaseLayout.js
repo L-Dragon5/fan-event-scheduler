@@ -2,11 +2,10 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { SnackbarProvider } from 'notistack';
 
-import { CssBaseline } from '@material-ui/core';
+import { Box, CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { teal, pink } from '@material-ui/core/colors';
 
-import AdminUserNavbar from './components/AdminUserNavbar';
 import SnackbarMessages from '../SnackbarMessages';
 
 const theme = createMuiTheme({
@@ -16,7 +15,7 @@ const theme = createMuiTheme({
   },
 });
 
-const AdminUserLayout = ({ title, children }) => {
+const BaseLayout = ({ title, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <Helmet>
@@ -30,11 +29,10 @@ const AdminUserLayout = ({ title, children }) => {
       >
         <SnackbarMessages />
         <CssBaseline />
-        <AdminUserNavbar />
-        <main>{children}</main>
+        <Box component="main">{children}</Box>
       </SnackbarProvider>
     </ThemeProvider>
   );
 };
 
-export default AdminUserLayout;
+export default BaseLayout;

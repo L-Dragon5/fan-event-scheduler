@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import { Box, CssBaseline } from '@material-ui/core';
 import {
@@ -39,12 +40,13 @@ const PublicScheduleLayout = ({
 }) => {
   const classes = useStyles();
 
-  useEffect(() => {
-    document.title = `${title} | ${scheduleName}`;
-  }, [title]);
-
   return (
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <title>
+          {title} | {scheduleName}
+        </title>
+      </Helmet>
       <CssBaseline />
       <Box className={classes.root}>
         <PublicScheduleNavbar

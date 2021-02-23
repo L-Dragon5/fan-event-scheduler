@@ -1,12 +1,10 @@
 import React, { useCallback } from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import { SnackbarProvider } from 'notistack';
 
 import {
   Avatar,
   Button,
   Container,
-  CssBaseline,
   TextField,
   Link,
   Box,
@@ -17,7 +15,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Components
-import SnackbarMessages from '../SnackbarMessages';
+import BaseLayout from './BaseLayout';
 import Copyright from './components/Copyright';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,15 +50,8 @@ const ForgotPassword = () => {
   }, []);
 
   return (
-    <SnackbarProvider
-      maxSnack={3}
-      dense
-      anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-      autoHideDuration={2000}
-    >
-      <SnackbarMessages />
+    <BaseLayout title="Forgot Password">
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -100,7 +91,7 @@ const ForgotPassword = () => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/home" variant="body2">
+                <Link href="/" variant="body2">
                   Back to home
                 </Link>
               </Grid>
@@ -111,7 +102,7 @@ const ForgotPassword = () => {
           <Copyright />
         </Box>
       </Container>
-    </SnackbarProvider>
+    </BaseLayout>
   );
 };
 

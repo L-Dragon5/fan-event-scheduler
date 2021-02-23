@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet';
 import { SnackbarProvider } from 'notistack';
 
 import { Box, CssBaseline } from '@material-ui/core';
@@ -35,12 +36,11 @@ const useStyles = makeStyles((theme) => ({
 const AdminScheduleLayout = ({ title, scheduleId, children }) => {
   const classes = useStyles();
 
-  useEffect(() => {
-    document.title = `${title} | Fan Event Scheduler`;
-  }, [title]);
-
   return (
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <title>{title} | FES Admin</title>
+      </Helmet>
       <SnackbarProvider
         maxSnack={3}
         dense
