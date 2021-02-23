@@ -17,7 +17,7 @@ class PublicScheduleController extends Controller
         try {
             $schedule = Schedule::where('public_string', '=', $uuid)
                 ->where('is_live', '=', 1)
-                ->with(['locations', 'events.location', 'events.event_types'])
+                ->with(['locations', 'events.location', 'events.event_types', 'event_types'])
                 ->firstOrFail();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return back();
@@ -35,6 +35,7 @@ class PublicScheduleController extends Controller
             'scheduleTimezone' => ['timezone' => $schedule->timezone, 'label' => $schedule->timezone_label],
             'socialSettings' => $social_settings,
             'events' => $all_events,
+            'eventTypes' => $schedule->event_types,
             'locations' => $schedule->locations,
         ])->withViewData(['title' => 'Events', 'schedule_name' => $schedule->name]);
     }

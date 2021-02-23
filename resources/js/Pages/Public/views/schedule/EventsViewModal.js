@@ -69,7 +69,6 @@ const EventsViewModal = ({ event }) => {
               key={type.id}
               variant="outlined"
               label={type.name}
-              clickable
               className={classes.chip}
               style={{ borderColor: `#${type.color}` }}
             />

@@ -30,6 +30,10 @@ class Schedule extends Model
         return $this->hasMany(Event::class)->orderBy('time_start');
     }
 
+    public function event_types() {
+        return $this->hasMany(EventType::class)->orderBy('name');
+    }
+
     public function exhibitors() {
         return $this->hasMany(Exhibitor::class)->orderBy('name');
     }
