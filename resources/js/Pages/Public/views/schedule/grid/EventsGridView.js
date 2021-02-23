@@ -92,7 +92,7 @@ const EventsGridView = ({ timezone, events, locations }) => {
     timeSlotLine: {
       content: '""',
       display: 'block',
-      backgroundColor: 'rgba(0,0,0,.3)',
+      backgroundColor: theme.palette.grey[400],
       top: '-1px',
       height: '1px',
       position: 'absolute',
@@ -112,7 +112,8 @@ const EventsGridView = ({ timezone, events, locations }) => {
     currentTimeLine: {
       content: '""',
       display: 'block',
-      backgroundColor: 'rgba(255,0,0,.3)',
+      backgroundColor: theme.palette.common.black,
+      opacity: 0.3,
       top: '-1px',
       height: '1px',
       position: 'absolute',
@@ -122,7 +123,7 @@ const EventsGridView = ({ timezone, events, locations }) => {
       display: 'block',
       width: '100%',
       height: '100%',
-      color: 'black',
+      color: theme.palette.text.primary,
     },
   }))();
 

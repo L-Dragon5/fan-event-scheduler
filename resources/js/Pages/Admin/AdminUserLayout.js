@@ -3,14 +3,14 @@ import { SnackbarProvider } from 'notistack';
 
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { orange, pink } from '@material-ui/core/colors';
+import { teal, pink } from '@material-ui/core/colors';
 
 import AdminUserNavbar from './components/AdminUserNavbar';
 import SnackbarMessages from '../SnackbarMessages';
 
 const theme = createMuiTheme({
   palette: {
-    primary: orange,
+    primary: teal,
     secondary: pink,
   },
 });

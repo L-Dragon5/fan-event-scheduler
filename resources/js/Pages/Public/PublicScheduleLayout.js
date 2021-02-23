@@ -6,13 +6,13 @@ import {
   makeStyles,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import { blue, pink } from '@material-ui/core/colors';
+import { teal, pink } from '@material-ui/core/colors';
 
 import PublicScheduleNavbar from './components/PublicScheduleNavbar';
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
+    primary: teal,
     secondary: pink,
   },
 });

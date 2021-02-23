@@ -16,8 +16,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   scheduleButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.02)',
-    border: '1px solid rgba(0, 0, 0, 0.15)',
+    backgroundColor: theme.palette.grey[100],
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: theme.palette.grey[400],
     borderRadius: '5px',
     width: '100%',
     '& > div': {
@@ -27,7 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
   scheduleButtonImage: {
     width: '100%',
-    borderBottom: '1px solid rgba(0, 0, 0, 0.15)',
+    borderWidth: 1,
+    borderStyle: 'none none solid',
+    borderColor: theme.palette.grey[400],
     '& > svg': {
       fontSize: '3.5rem',
       marginBottom: theme.spacing(2),

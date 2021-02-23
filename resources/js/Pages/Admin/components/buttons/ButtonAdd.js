@@ -7,7 +7,7 @@ import { Add } from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
   baseButton: {
     backgroundColor: theme.palette.primary.main,
-    color: '#FFFFFF',
+    color: theme.palette.primary.contrastText,
     width: '200px',
     padding: theme.spacing(1, 2),
     margin: theme.spacing(2, 0),

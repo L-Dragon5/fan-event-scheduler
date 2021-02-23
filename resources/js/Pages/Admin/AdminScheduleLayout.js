@@ -7,14 +7,14 @@ import {
   makeStyles,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import { blue, pink } from '@material-ui/core/colors';
+import { teal, pink } from '@material-ui/core/colors';
 
 import AdminScheduleNavbar from './components/AdminScheduleNavbar';
 import SnackbarMessages from '../SnackbarMessages';
 
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
+    primary: teal,
     secondary: pink,
   },
 });

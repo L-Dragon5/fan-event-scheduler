@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   formContainer: {
     padding: theme.spacing(2),
     marginTop: theme.spacing(2),
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.paper,
   },
   publicLink: {
     margin: theme.spacing(4),

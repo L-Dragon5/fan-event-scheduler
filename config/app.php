@@ -232,4 +232,5 @@ return [
 
     // Custom Config
     'adsense_client' => env('GOOGLE_ADSENSE_CLIENT_KEY'),
+    'analytics_id' => env('GOOGLE_ANALYTICS_ID'),
 ];

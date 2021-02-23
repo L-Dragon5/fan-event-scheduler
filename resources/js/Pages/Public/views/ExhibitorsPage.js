@@ -21,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0, 0, 2, 1),
   },
   heading: {
-    borderBottom: '1px solid gray',
+    borderWidth: 1,
+    borderStyle: 'none none solid',
+    borderColor: theme.palette.grey,
   },
   list: {
     backgroundColor: theme.palette.background.paper,

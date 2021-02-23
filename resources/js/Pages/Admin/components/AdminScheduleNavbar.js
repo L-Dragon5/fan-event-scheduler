@@ -32,13 +32,13 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     '& > a': {
-      color: '#FFFFFF',
+      color: theme.palette.primary.contrastText,
       textDecoration: 'none',
     },
   },
   nav: {
     '& > a': {
-      color: 'rgba(0, 0, 0, 0.87)',
+      color: theme.palette.text.primary,
       textDecoration: 'none',
     },
   },

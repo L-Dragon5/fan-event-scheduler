@@ -30,26 +30,28 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     '& > a': {
-      color: 'rgba(0, 0, 0, 0.87)',
+      color: theme.palette.primary.contrastText,
       textDecoration: 'none',
     },
   },
   mobileNav: {
     '& > a': {
-      color: 'rgba(0, 0, 0, 0.87)',
+      color: theme.palette.text.primary,
       textDecoration: 'none',
     },
   },
   desktopNav: {
     '& > a': {
-      color: 'rgba(0, 0, 0, 0.87)',
+      color: theme.palette.primary.contrastText,
       textDecoration: 'none',
       padding: '12px',
       fontSize: '1rem',
       cursor: 'pointer',
     },
     '& > a:hover': {
-      borderBottom: '2px solid rgba(0, 0, 0, 0.87)',
+      borderWidth: 2,
+      borderStyle: 'none none solid',
+      borderColor: theme.palette.primary.contrastText,
     },
   },
   paper: {
@@ -69,7 +71,9 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: '80vw',
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     [theme.breakpoints.up('md')]: {
