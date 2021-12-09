@@ -74,7 +74,8 @@ class ScheduleController extends Controller
         ]);
 
         $user_id = Auth::id();
-
+        
+        /* Removing plan requirements
         $existing_schedule_count = Schedule::where('user_id', '=', $user_id)->count();
         // Basic Plan
         if ($request->user()->subscribedToPlan('price_1IMjKOL2f7m4oh9jUGzzXBow')) {
@@ -88,6 +89,7 @@ class ScheduleController extends Controller
                 return back()->withErrors(['Not allowed to create more than 1 schedule']);
             }
         }
+        */
 
         if (check_for_duplicate(['user_id' => $user_id], $request->name, 'schedules', 'name')) {
             return back()->withErrors(['Schedule already exists with this name']);

@@ -97,7 +97,6 @@ return [
                     'yearly_id' => 'price_1IN6GdL2f7m4oh9jP7L9QUu8',
                     'features' => [
                         'Ads removed',
-                        '2 Schedule Max',
                         'Priority Email Support',
                     ],
                     'archived' => false,

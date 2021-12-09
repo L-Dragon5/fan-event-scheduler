@@ -18,12 +18,13 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "inertiajs/inertia-laravel": "^0.3.1",
+        "inertiajs/inertia-laravel": "0.4.5",
         "intervention/image": "^2.5",
         "laravel/framework": "^8.0",
-        "laravel/spark-stripe": "^1.0",
+        "laravel/spark-stripe": "1.1.8",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0",
+        "mpociot/vat-calculator": "2.5"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

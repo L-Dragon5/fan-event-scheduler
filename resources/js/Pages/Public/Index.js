@@ -271,10 +271,9 @@ const Index = () => {
                 Unlimited Content
               </Typography>
               <Typography component="h5" variant="body1">
-                Although you are limited to how many schedules your account can
-                manage, you can add and edit as much content within those
-                schedules as you want. Whether your event handles a 1-day small
-                venue or a multi-day large conference hall, FES can handle it.
+                You can add and edit as much content within those schedules as
+                you want. Whether your event handles a 1-day small venue or a
+                multi-day large conference hall, FES can handle it.
               </Typography>
             </Grid>
           </Grid>
@@ -296,7 +295,11 @@ const Index = () => {
               <PricingCard
                 plan="Free"
                 price="0"
-                features={['1 Schedule', 'Email support', "It's free :D"]}
+                features={[
+                  'Unlimited Schedules',
+                  'Email support',
+                  "It's free :D",
+                ]}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -304,7 +307,6 @@ const Index = () => {
                 plan="Supporter"
                 price="50"
                 features={[
-                  '3 Schedules',
                   'Priority email support',
                   'Event displayed here as supporter',
                 ]}
